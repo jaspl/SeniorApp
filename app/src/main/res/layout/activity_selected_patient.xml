@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SelectedPatientActivity"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/selected_patient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pacjent:"
+        android:textSize="30dp"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/selected_patient_statistics_button"
+        android:layout_marginTop="20dp"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:text="Zonacz statystyki"
+        android:background="@color/colorAccent"/>
+
+    <Button
+        android:id="@+id/selected_patient_info_button"
+        android:layout_marginTop="20dp"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:text="Ogólne informacje o pacjencie"
+        android:background="@color/colorAccent"/>
+
+    <Button
+        android:id="@+id/selected_patient_MMSE_button"
+        android:layout_marginTop="20dp"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:text="Wykonaj test MMSE"
+        android:background="@color/colorAccent"/>
+
+    <Button
+        android:id="@+id/selected_patient_delete_patient_button"
+        android:layout_marginTop="20dp"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:text="Usuń pacjenta"
+        android:background="@color/colorAccent"/>
+
+</LinearLayout>
