@@ -61,14 +61,13 @@
             android:gravity="center">
 
             <TextView
-                android:layout_marginEnd="20dp"
                 android:id="@+id/MMSE_exercise_text"
                 android:layout_width="500dp"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="hasdgahjsdgkajshdjkahsldasdadasdaa das a sdas dasd as das dasd asd dsa da dhhag sd asjd ajdk agsd agsgd ga dka sdjkagsdk as aksgdka\ng sdka sdg akjsd gka sd ajk sdakjsdakk aa kd ashka kda/n asdaks da\nasgdas dgasdk gaksd aygsdygaks d kasd" />
+                android:text="który jest rok?" />
             <Button
                 android:id="@+id/MMSE_image_show_button"
                 android:layout_width="wrap_content"
