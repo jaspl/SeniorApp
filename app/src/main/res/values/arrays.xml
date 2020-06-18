@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="colors">
+        <item>#FFFF0000</item>
+        <item>#FF00FF00</item>
+        <item>#FF0000FF</item>
+        <item>#000000</item>
+        <item>#9900cc</item>
+        <item>#ff9933</item>
+        <item>#ffff00</item>
+    </array>
+    <array name="colorNames">
+        <item>CZERWONY</item>
+        <item>ZIELONY</item>
+        <item>NIEBIESKI</item>
+        <item>CZARNY</item>
+        <item>FIOLETOWY</item>
+        <item>POMARAŃCZOWY</item>
+        <item>ŻÓŁTY</item>
+    </array>
+</resources>

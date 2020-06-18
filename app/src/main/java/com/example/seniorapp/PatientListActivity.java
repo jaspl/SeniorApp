@@ -14,7 +14,7 @@ public class PatientListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_list);
         ListView patientList = findViewById(R.id.patient_list);
-
+        //TODO get patients list from database
         patientList.setAdapter(new PatientsAdapter(setPatients(), this));
     }
 
