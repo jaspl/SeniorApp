@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="LockedOrientationActivity">
-        <activity android:name=".MmseActivity"></activity>
+        <activity android:name=".Games.ColorGame.ColorGameActivity"></activity>
+        <activity android:name=".MmseActivity" />
         <activity android:name=".SelectedPatientActivity" />
         <activity android:name=".AddNewPatientActivity" />
         <activity android:name=".PatientLogInActivity" />

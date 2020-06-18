@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class CareTakerLogInActivity extends AppCompatActivity {
-
+ //TODO connection with database
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
