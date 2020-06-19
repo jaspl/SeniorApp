@@ -52,12 +52,11 @@ public class ColorGameActivity extends AppCompatActivity {
                 break;
         }
 
-        setButtons(colorNumber);
+        setButtons(colorNumber,getButtonsLayout());
         setColorText(colorNumber);
     }
 
-    private void setButtons(int colorNumber) {
-        LinearLayout colorByttonsLayout = getButtonsLayout();
+    private void setButtons(int colorNumber, LinearLayout colorByttonsLayout ) {
         TypedArray colors = getResources().obtainTypedArray(R.array.colors);
         for (int i = 0; i < colorNumber; i++) {
             Button colorButton = new Button(this);
