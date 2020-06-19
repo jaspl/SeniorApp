@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.seniorapp.Games.ColorGame.ColorGameActivity;
+import com.example.seniorapp.Games.SymbolsGame.SymbolsGameActivity;
 
 public class PatientLogInActivity extends AppCompatActivity {
 
@@ -23,7 +24,7 @@ public class PatientLogInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO Patient Log in action
-                Intent intent = new Intent(PatientLogInActivity.this, ColorGameActivity.class);
+                Intent intent = new Intent(PatientLogInActivity.this, SymbolsGameActivity.class);
                 startActivity(intent);
             }
         });
