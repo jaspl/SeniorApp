@@ -2,6 +2,7 @@ package com.example.seniorapp.Games.SymbolsGame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
@@ -13,7 +14,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.seniorapp.Games.ColorGame.ColorGameActivity;
 import com.example.seniorapp.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +32,10 @@ public class SymbolsGameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_symbols_game);
         setColorButtons(4, getColorButtonsLayout());
         setShapeButtons(4, getShapeButtonsLayout());
+        setShapesFromListOnBoard(new ShapeLocationController().getRandomShapesList(3,3,3));
         ImagesSeter();
+        setRemoveButtonClick();
+        setEndGameButton();
     }
 
     private void setColorButtons(int colorNumber, LinearLayout colorByttonsLayout) {
@@ -39,7 +45,7 @@ public class SymbolsGameActivity extends AppCompatActivity {
             ImageView colorImage = new ImageView(this);
             colorImage.setBackgroundColor(colors.getColor(i, 0));
             colorImage.setPadding(10, 10, 10, 10);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(100, 100);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(60, 60);
             colorImage.setLayoutParams(layoutParams);
             setColorButtonClickAction(colorButton);
             colorButton.addView(colorImage);
@@ -54,7 +60,7 @@ public class SymbolsGameActivity extends AppCompatActivity {
             ImageView colorImage = new ImageView(this);
             colorImage.setImageDrawable(shapes.getDrawable(i));
             colorImage.setPadding(10, 10, 10, 10);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(100, 100);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(85, 85);
             colorImage.setLayoutParams(layoutParams);
             setShapeButtonClickAction(shapeButton);
             shapeButton.addView(colorImage);
@@ -64,9 +70,9 @@ public class SymbolsGameActivity extends AppCompatActivity {
 
     private LinearLayout linearButtonCreator(LinearLayout colorByttonsLayout, int tagid) {
         LinearLayout colorButton = new LinearLayout(this);
-        colorButton.setLayoutParams(new LinearLayout.LayoutParams(100, 100));
+        colorButton.setLayoutParams(new LinearLayout.LayoutParams(85, 85));
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) colorButton.getLayoutParams();
-        params.setMargins(0, 0, 20, 0);
+        params.setMargins(10, 0, 10, 0);
         colorButton.setLayoutParams(params);
         colorButton.setTag(tagid);
         colorButton.setGravity(Gravity.CENTER);
@@ -124,6 +130,14 @@ public class SymbolsGameActivity extends AppCompatActivity {
         return findViewById(R.id.symbol_game_shape_button);
     }
 
+    private Button getRemoveButton() {
+        return findViewById(R.id.symbol_game_remove_shape_button);
+    }
+
+    private FloatingActionButton getEndGameButton() {
+        return findViewById(R.id.end_game_floatig_buton);
+    }
+
     private void ImagesSeter() {
         LinearLayout button00 = findViewById(R.id.symbol_game_bytton_c0r0);
         LinearLayout button10 = findViewById(R.id.symbol_game_bytton_c1r0);
@@ -137,78 +151,119 @@ public class SymbolsGameActivity extends AppCompatActivity {
         button00.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageView image = findViewById(R.id.symbol_game_image_c0r0);
-                image.setImageDrawable(getResources().getDrawable(new ShapeSelector().shapeSelector(shapeDetails.color,shapeDetails.shape), getTheme()));
+                setShapesAndRemoveInPlace(R.id.symbol_game_image_c0r0,shapeDetails);
+                setShapeDetailsColRow(0,0);
             }
         });
         button10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageView image = findViewById(R.id.symbol_game_image_c1r0);
-                image.setImageDrawable(getResources().getDrawable(new ShapeSelector().shapeSelector(shapeDetails.color,shapeDetails.shape), getTheme()));
-
+                setShapesAndRemoveInPlace(R.id.symbol_game_image_c1r0,shapeDetails);
+                setShapeDetailsColRow(1,0);
             }
         });
         button20.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageView image = findViewById(R.id.symbol_game_image_c2r0);
-                image.setImageDrawable(getResources().getDrawable(new ShapeSelector().shapeSelector(shapeDetails.color,shapeDetails.shape), getTheme()));
-
+                setShapesAndRemoveInPlace(R.id.symbol_game_image_c2r0,shapeDetails);
+                setShapeDetailsColRow(2,0);
             }
         });
         button01.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageView image = findViewById(R.id.symbol_game_image_c0r1);
-                image.setImageDrawable(getResources().getDrawable(new ShapeSelector().shapeSelector(shapeDetails.color,shapeDetails.shape), getTheme()));
-
+                setShapesAndRemoveInPlace(R.id.symbol_game_image_c0r1,shapeDetails);
+                setShapeDetailsColRow(0,1);
             }
         });
         button11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageView image = findViewById(R.id.symbol_game_image_c1r1);
-                image.setImageDrawable(getResources().getDrawable(new ShapeSelector().shapeSelector(shapeDetails.color,shapeDetails.shape), getTheme()));
-
+                setShapesAndRemoveInPlace(R.id.symbol_game_image_c1r1,shapeDetails);
+                setShapeDetailsColRow(1,1);
             }
         });
         button21.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageView image = findViewById(R.id.symbol_game_image_c2r1);
-                image.setImageDrawable(getResources().getDrawable(new ShapeSelector().shapeSelector(shapeDetails.color,shapeDetails.shape), getTheme()));
-
+                setShapesAndRemoveInPlace(R.id.symbol_game_image_c2r1,shapeDetails);
+                setShapeDetailsColRow(2,1);
             }
         });
         button02.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageView image = findViewById(R.id.symbol_game_image_c0r2);
-                image.setImageDrawable(getResources().getDrawable(new ShapeSelector().shapeSelector(shapeDetails.color,shapeDetails.shape), getTheme()));
-
+                setShapesAndRemoveInPlace(R.id.symbol_game_image_c0r2,shapeDetails);
+                setShapeDetailsColRow(0,2);
             }
         });
         button12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageView image = findViewById(R.id.symbol_game_image_c1r2);
-                image.setImageDrawable(getResources().getDrawable(new ShapeSelector().shapeSelector(shapeDetails.color,shapeDetails.shape), getTheme()));
-
+                setShapesAndRemoveInPlace(R.id.symbol_game_image_c1r2,shapeDetails);
+                setShapeDetailsColRow(1,2);
             }
         });
         button22.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageView image = findViewById(R.id.symbol_game_image_c2r2);
-                image.setImageDrawable(getResources().getDrawable(new ShapeSelector().shapeSelector(shapeDetails.color,shapeDetails.shape), getTheme()));
+                setShapesAndRemoveInPlace(R.id.symbol_game_image_c2r2,shapeDetails);
+                setShapeDetailsColRow(2,2);
+            }
+        });
+    }
+//TODO make strion to remove and set Objects
+    private void setShapeDetailsColRow(int col, int row) {
+        shapeDetails.setRow(row);
+        shapeDetails.setColumn(col);
+        ShapeLocationController.getInstance().addNewShapeToList(shapeDetails);
+
+    }
+
+    private void setShapesAndRemoveInPlace(int id, ShapeDetails shape) {
+        ImageView image = findViewById(id);
+        if (shapeDetails.getToRemove() == 0) {
+            //todo add shape to list
+            image.setImageDrawable(getResources().getDrawable(new ShapeSelector().shapeSelector(shape.color, shape.shape), getTheme()));
+        } else {
+            image.setImageDrawable(null);
+            //TODO remove shape from list
+        }
+    }
+
+    private void setRemoveButtonClick() {
+        getRemoveButton().setBackgroundColor(Color.GRAY);
+        getRemoveButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (shapeDetails.getToRemove() == 0) {
+                    shapeDetails.setToRemove(1);
+                    getRemoveButton().setBackgroundColor(Color.YELLOW);
+                } else {
+                    shapeDetails.setToRemove(0);
+                    getRemoveButton().setBackgroundColor(Color.GRAY);
+                }
             }
         });
     }
 
-    private void setShapeDetailsColRow(int col, int row) {
-        shapeDetails.setRow(row);
-        shapeDetails.setColumn(col);
-
+    private void setEndGameButton() {
+        getEndGameButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //todo set end game action;
+                Intent intent = new Intent(SymbolsGameActivity.this, ColorGameActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
+    private void setShapesFromListOnBoard(List <ShapeDetails> shapeList){
+        ShapeLocationController shapeLocationController= new ShapeLocationController();
+        for (ShapeDetails shape:shapeList) {
+            setShapesAndRemoveInPlace(shapeLocationController.getIdByColRow(shape.column,shape.row),shape);
+        }
+    }
+    //TODO clear board method
+
 }
