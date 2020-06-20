@@ -3,6 +3,8 @@ package com.example.seniorapp.Games.ColorGame;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +13,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.seniorapp.Games.SymbolsGame.SymbolsGameActivity;
 import com.example.seniorapp.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -24,6 +28,7 @@ public class ColorGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_color_game);
         setLvl();
+        setEndGameButton();
     }
 
     private int getLvl() {
@@ -52,11 +57,11 @@ public class ColorGameActivity extends AppCompatActivity {
                 break;
         }
 
-        setButtons(colorNumber,getButtonsLayout());
+        setButtons(colorNumber, getButtonsLayout());
         setColorText(colorNumber);
     }
 
-    private void setButtons(int colorNumber, LinearLayout colorByttonsLayout ) {
+    private void setButtons(int colorNumber, LinearLayout colorByttonsLayout) {
         TypedArray colors = getResources().obtainTypedArray(R.array.colors);
         for (int i = 0; i < colorNumber; i++) {
             Button colorButton = new Button(this);
@@ -91,7 +96,6 @@ public class ColorGameActivity extends AppCompatActivity {
         TypedArray colors = getResources().obtainTypedArray(R.array.colors);
         TypedArray colorNames = getResources().obtainTypedArray(R.array.colorNames);
         TextView colorText = getColotText();
-        Random r = new Random();
         int tag = ThreadLocalRandom.current().nextInt(0, colorNumber);
         colorText.setTag(tag);
         colorText.setTextColor(colors.getColor(tag, 0));
@@ -110,6 +114,22 @@ public class ColorGameActivity extends AppCompatActivity {
             }
         }
         return temp;
+    }
+
+    private void setEndGameButton() {
+        getEndGameButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //todo set end game action;
+                Intent intent = new Intent(ColorGameActivity.this, SymbolsGameActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+
+    public FloatingActionButton getEndGameButton() {
+        return findViewById(R.id.end_game_floatig_buton);
     }
 
     private LinearLayout getButtonsLayout() {

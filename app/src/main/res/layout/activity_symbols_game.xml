@@ -11,9 +11,9 @@
         android:id="@+id/gridLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="130dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginEnd="130dp"
         android:layout_marginBottom="5dp"
         android:columnCount="3"
         android:rowCount="3"
@@ -29,15 +29,15 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/border"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/symbol_game_image_c0r0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:padding="10dp"
-                android:src="@drawable/black_pentagon"/>
+                android:padding="10dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -47,15 +47,15 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/border"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/symbol_game_image_c1r0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:padding="10dp"
-                android:src="@drawable/black_triangle"/>
+                android:padding="10dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -65,15 +65,15 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/border"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/symbol_game_image_c2r0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:padding="10dp"
-                android:src="@drawable/black_rectangle"/>
+                android:padding="10dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -83,16 +83,15 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/border"
-            android:orientation="vertical"
             android:gravity="center"
-            >
+            android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/symbol_game_image_c0r1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:padding="10dp"
-                android:src="@drawable/black_circle"/>
+                android:padding="10dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -102,16 +101,16 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/border"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/symbol_game_image_c1r1"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:padding="10dp"
-                android:src="@drawable/black_circle"/>
+                android:padding="10dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -121,15 +120,15 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/border"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/symbol_game_image_c2r1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:padding="10dp"
-                android:src="@drawable/black_circle"/>
+                android:padding="10dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -139,15 +138,15 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/border"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/symbol_game_image_c0r2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:padding="10dp"
-                android:src="@drawable/black_circle"/>
+                android:padding="10dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -157,15 +156,15 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/border"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/symbol_game_image_c1r2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:padding="10dp"
-                android:src="@drawable/black_circle"/>
+                android:padding="10dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -175,15 +174,15 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/border"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/symbol_game_image_c2r2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:padding="10dp"
-                android:src="@drawable/black_circle"/>
+                android:padding="10dp" />
         </LinearLayout>
     </GridLayout>
 
@@ -198,18 +197,31 @@
             android:id="@+id/symbol_game_colors_button_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/symbol_game_remove_shape_button"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:orientation="horizontal"></LinearLayout>
+            android:text="X"
+            android:textSize="60sp" />
 
         <LinearLayout
             android:id="@+id/symbol_game_shape_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal"></LinearLayout>
+            android:orientation="horizontal" />
     </LinearLayout>
+
+    <include layout="@layout/end_game_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>

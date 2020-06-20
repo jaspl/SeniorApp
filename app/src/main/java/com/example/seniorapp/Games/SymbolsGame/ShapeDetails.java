@@ -7,6 +7,7 @@ public class ShapeDetails {
     int color;
     int column;
     int row;
+    int toRemove;
 
     public int getShape() {
         return shape;
@@ -38,5 +39,13 @@ public class ShapeDetails {
 
     public void setRow(int row) {
         this.row = row;
+    }
+
+    public int getToRemove() {
+        return toRemove;
+    }
+
+    public void setToRemove(int toRemove) {
+        this.toRemove = toRemove;
     }
 }
