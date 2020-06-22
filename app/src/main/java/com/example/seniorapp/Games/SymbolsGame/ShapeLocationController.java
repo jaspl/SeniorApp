@@ -1,16 +1,15 @@
 package com.example.seniorapp.Games.SymbolsGame;
 
-import android.widget.LinearLayout;
-
+import android.util.Log;
 import com.example.seniorapp.R;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.Random;
+
 
 public class ShapeLocationController {
-    List<ShapeDetails> destinationShapes = new ArrayList();
-    List<ShapeDetails> madeShapes = new ArrayList();
+    public List<ShapeDetails> destinationShapes = new ArrayList();
+    public List<ShapeDetails> madeShapes = new ArrayList();
     private static ShapeLocationController INSTANCE;
 
     public ShapeLocationController() {
@@ -23,26 +22,45 @@ public class ShapeLocationController {
         return INSTANCE;
     }
 
+    public List<ShapeDetails> getMadeShapes() {
+        return madeShapes;
+    }
+
     public List<ShapeDetails> getRandomShapesList(int figuresCount, int shapesCount, int colorCount) {
+        destinationShapes.clear();
         for (int i = 0; i < figuresCount; i++) {
-            ShapeDetails shapeDetails = new ShapeDetails();
-            shapeDetails.setShape(getRandomValue(shapesCount));
-            shapeDetails.setColor(getRandomValue(colorCount));
-            shapeDetails.setRow(getRandomValue(3));
-            shapeDetails.setColumn(getRandomValue(3));
-            shapeDetails.setToRemove(0);
+            ShapeDetails shapeDetails;
+            do {
+                shapeDetails = new ShapeDetails(getRandomValue(shapesCount), getRandomValue(colorCount), getRandomValue(3), getRandomValue(3), 0);
+            } while (checkIfThereIsSthOnThisPlace(shapeDetails.column, shapeDetails.row));
             destinationShapes.add(shapeDetails);
         }
         return destinationShapes;
     }
 
     public void addNewShapeToList(ShapeDetails shapeDetails) {
-        //TODO
-        madeShapes.add(shapeDetails);
+        if (shapeDetails.toRemove == 1) {
+            checkIfThereIsSthToRemoveAndRemove(shapeDetails);
+        } else {
+            checkIfThereIsSthToRemoveAndRemove(shapeDetails);
+            madeShapes.add(shapeDetails);
+        }
+        compareShapesChangeIfSame();
     }
 
+    private void checkIfThereIsSthToRemoveAndRemove(ShapeDetails shapeDetails) {
+        for (int i = 0; i < madeShapes.size(); i++) {
+            ShapeDetails shape = madeShapes.get(i);
+            if (shapeDetails.row == shape.row && shapeDetails.column == shape.column) {
+                madeShapes.remove(i);
+            }
+        }
+    }
+
+
     private int getRandomValue(int randomToNumber) {
-        return ThreadLocalRandom.current().nextInt(0, randomToNumber);
+        Random rand = new Random();
+        return rand.nextInt(randomToNumber);
     }
 
     public int getIdByColRow(int col, int row) {
@@ -67,22 +85,32 @@ public class ShapeLocationController {
         }
     }
 
-    public void compareShapesChangeIfSame(ShapeDetails shapeDetails, List<ShapeDetails> shapeDetailsList) {
-        //TODO
-
-    }
-
-    private int getRandomExceptOne(int number, int maxNr) {
-        int temp = number; // This will be your value to be compared to random value
-        for (int i = 0; i < maxNr; i++) { // assuming your filteredArraylist is size 10
-            int randomValue = ThreadLocalRandom.current().nextInt(0, maxNr);
-            if (randomValue == temp) {
-                i--; // it will repeat the generation of random value if temp and randomValue is same
-            } else {
-                temp = randomValue; // you will put here the ne random value to be compared to next value
-                return randomValue;
+    public void compareShapesChangeIfSame() {
+        int count = 0;
+        if (madeShapes.size() == destinationShapes.size()) {
+            for (ShapeDetails shape : destinationShapes) {
+                for (ShapeDetails shape2 : madeShapes) {
+                    if (shape.column == shape2.column && shape.row == shape2.row && shape.color == shape2.color && shape.shape == shape2.shape) {
+                        count++;
+                    }
+                }
             }
         }
-        return temp;
+        if (count == (destinationShapes.size())) {
+            Log.d("gra zakończona", "udało ci się odgadnąć wszystkie pola");
+        } else {
+            Log.d("gra w toku", "liczba pkształtów celu jest równa twoim");
+            //TODO end game
+        }
+    }
+
+    private boolean checkIfThereIsSthOnThisPlace(int col, int row) {
+        boolean ifThereIsSth = false;
+        for (ShapeDetails shape : destinationShapes) {
+            if (shape.row == row && shape.column == col) {
+                ifThereIsSth= true;
+            }
+        }
+        return ifThereIsSth;
     }
 }
