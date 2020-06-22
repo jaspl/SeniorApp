@@ -9,6 +9,14 @@ public class ShapeDetails {
     int row;
     int toRemove;
 
+    public ShapeDetails(int shape, int color, int column, int row, int toRemove) {
+        this.shape = shape;
+        this.color = color;
+        this.column = column;
+        this.row = row;
+        this.toRemove = toRemove;
+    }
+
     public int getShape() {
         return shape;
     }
