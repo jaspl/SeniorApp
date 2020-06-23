@@ -2,10 +2,10 @@ package com.example.seniorapp.Games.SymbolsGame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -28,17 +28,19 @@ public class SymbolsGameActivity extends AppCompatActivity {
     int colorNumner = 0;
     int toRemove = 0;
 
-
+    //TODO set Timer
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_symbols_game);
-        setColorButtons(4, getColorButtonsLayout());
-        setShapeButtons(4, getShapeButtonsLayout());
-        setShapesFromListOnBoard(ShapeLocationController.getInstance().getRandomShapesList(4, 4, 4));
+        gameInitialization();
+    }
+
+    private void gameInitialization() {
+        setLvlParams();
         ImagesSeter();
         setRemoveButtonClick();
-        setEndGameButton();
+        setButtonsAction();
     }
 
     private void setColorButtons(int colorNumber, LinearLayout colorByttonsLayout) {
@@ -80,7 +82,11 @@ public class SymbolsGameActivity extends AppCompatActivity {
         colorButton.setTag(tagid);
         colorButton.setGravity(Gravity.CENTER);
         colorButton.setOrientation(LinearLayout.HORIZONTAL);
-        colorButton.setBackgroundColor(Color.GRAY);
+        if (tagid == 0) {
+            colorButton.setBackgroundColor(Color.YELLOW);
+        } else {
+            colorButton.setBackgroundColor(Color.GRAY);
+        }
         colorButton.setPadding(10, 10, 10, 10);
         colorByttonsLayout.addView(colorButton);
         return colorButton;
@@ -90,12 +96,9 @@ public class SymbolsGameActivity extends AppCompatActivity {
         colorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), colorButton.getTag().toString(),
-                        Toast.LENGTH_LONG).show();
                 clearColorButtonsColorsToGray();
                 colorButton.setBackgroundColor(Color.YELLOW);
                 colorNumner = ((int) colorButton.getTag());
-                //TODO resets other colors
             }
         });
     }
@@ -104,8 +107,6 @@ public class SymbolsGameActivity extends AppCompatActivity {
         shapeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), shapeButton.getTag().toString(),
-                        Toast.LENGTH_LONG).show();
                 clearShapeButtonColorsToGray();
                 shapeButton.setBackgroundColor(Color.YELLOW);
                 shapeNumner = ((int) shapeButton.getTag());
@@ -139,6 +140,10 @@ public class SymbolsGameActivity extends AppCompatActivity {
 
     private FloatingActionButton getEndGameButton() {
         return findViewById(R.id.end_game_floatig_buton);
+    }
+
+    private Button getHelpButton() {
+        return findViewById(R.id.symbol_game_help_button);
     }
 
     private void ImagesSeter() {
@@ -244,13 +249,20 @@ public class SymbolsGameActivity extends AppCompatActivity {
         });
     }
 
-    private void setEndGameButton() {
+    private void setButtonsAction() {
         getEndGameButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //todo set end game action;
                 Intent intent = new Intent(SymbolsGameActivity.this, ColorGameActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        getHelpButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showHelpDIalog();
             }
         });
     }
@@ -261,7 +273,6 @@ public class SymbolsGameActivity extends AppCompatActivity {
         }
     }
 
-    //TODO clear board method
     private void clearBoard() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -273,6 +284,44 @@ public class SymbolsGameActivity extends AppCompatActivity {
 
     private void setShapesFromMadeShapes() {
         setShapesFromListOnBoard(ShapeLocationController.getInstance().getMadeShapes());
+    }
+
+    private int getLvl() {
+        //TODO get lvl from serwer
+        int lvl = 5;
+        return lvl;
+    }
+
+    private void setLvlParams() {
+        int lvl = getLvl();
+        if (lvl == 1) {
+            setGameLvl(1, 3);
+        } else if (lvl == 2) {
+            setGameLvl(2, 3);
+        } else if (lvl == 3) {
+            setGameLvl(3, 3);
+        } else if (lvl == 4) {
+            setGameLvl(3, 4);
+        } else {
+            setGameLvl(4, 4);
+        }
+    }
+
+    private void setGameLvl(int colorNumner, int shapeNumner) {
+        setColorButtons(colorNumner, getColorButtonsLayout());
+        setShapeButtons(shapeNumner, getShapeButtonsLayout());
+        ShapeLocationController.getInstance().resetLists();
+        setShapesFromListOnBoard(ShapeLocationController.getInstance().getRandomShapesList(4, shapeNumner, colorNumner));
+    }
+
+    private void showHelpDIalog() {
+        Dialog helpDialog = new Dialog(SymbolsGameActivity.this);
+        helpDialog.setContentView(R.layout.symbol_game_destination_view);
+        for (ShapeDetails shape : ShapeLocationController.getInstance().destinationShapes) {
+            ImageView imageView = helpDialog.findViewById(ShapeLocationController.getInstance().getHelpImageIdByColRow(shape.column, shape.row));
+            imageView.setImageDrawable(getResources().getDrawable(new ShapeSelector().shapeSelector(shape.color, shape.shape), getTheme()));
+        }
+        helpDialog.show();
     }
 
 
