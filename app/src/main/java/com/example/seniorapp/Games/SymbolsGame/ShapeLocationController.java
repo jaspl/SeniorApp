@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
 public class ShapeLocationController {
     public List<ShapeDetails> destinationShapes = new ArrayList();
     public List<ShapeDetails> madeShapes = new ArrayList();
@@ -85,6 +84,28 @@ public class ShapeLocationController {
         }
     }
 
+    public int getHelpImageIdByColRow(int col, int row) {
+        if (col == 0 && row == 0) {
+            return R.id.symbol_game_image_c0r0_2;
+        } else if (col == 1 && row == 0) {
+            return R.id.symbol_game_image_c1r0_2;
+        } else if (col == 2 && row == 0) {
+            return R.id.symbol_game_image_c2r0_2;
+        } else if (col == 0 && row == 1) {
+            return R.id.symbol_game_image_c0r1_2;
+        } else if (col == 1 && row == 1) {
+            return R.id.symbol_game_image_c1r1_2;
+        } else if (col == 2 && row == 1) {
+            return R.id.symbol_game_image_c2r1_2;
+        } else if (col == 0 && row == 2) {
+            return R.id.symbol_game_image_c0r2_2;
+        } else if (col == 1 && row == 2) {
+            return R.id.symbol_game_image_c1r2_2;
+        } else {
+            return R.id.symbol_game_image_c2r2_2;
+        }
+    }
+
     public void compareShapesChangeIfSame() {
         int count = 0;
         if (madeShapes.size() == destinationShapes.size()) {
@@ -98,9 +119,9 @@ public class ShapeLocationController {
         }
         if (count == (destinationShapes.size())) {
             Log.d("gra zakończona", "udało ci się odgadnąć wszystkie pola");
+            //TODO end game
         } else {
             Log.d("gra w toku", "liczba pkształtów celu jest równa twoim");
-            //TODO end game
         }
     }
 
@@ -108,9 +129,14 @@ public class ShapeLocationController {
         boolean ifThereIsSth = false;
         for (ShapeDetails shape : destinationShapes) {
             if (shape.row == row && shape.column == col) {
-                ifThereIsSth= true;
+                ifThereIsSth = true;
             }
         }
         return ifThereIsSth;
+    }
+
+    public void resetLists() {
+        destinationShapes.clear();
+        madeShapes.clear();
     }
 }
