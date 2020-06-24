@@ -48,11 +48,25 @@ public class MemoryGameController {
         int lvl = 1;
         return lvl;
     }
+    public void setLvl(int lvl){
+        //TODO add time
+        if (lvl ==1){
+            setGame(4,1,2);
+        }else if (lvl ==2){
+            setGame(6,1,3);
+        }else if (lvl ==3){
+            setGame(6,1,3);
+        }else if (lvl ==4){
+            setGame(8,0,3);
+        }else{
+            setGame(8,0,3);
+        }
+    }
 
-    public void setGame(int pairsNumber) {
+    public void setGame(int pairsNumber, int rowStart,int rowEnd) {
         for (int i = 0; i < pairsNumber; i++) {
             for (int j = 0; j < 2; j++) {
-                setNewCards(i);
+                setNewCards(i,rowStart,rowEnd);
             }
         }
         showCards();
@@ -69,31 +83,27 @@ public class MemoryGameController {
         return ifThereIsSth;
     }
 
-    private void setNewCards(int pairNumber) {
+    private void setNewCards(int pairNumber,int rowStart,int rowEnd) {
         Card card = new Card();
         card.setCardSign(pairNumber);
         do {
-            //TODO get random valuses not equals
-            card.setColumn(getRandomValue(4));
-            card.setRow(getRandomValue(4));
+            card.setColumn(getRandomValue(3,0));
+            card.setRow(getRandomValue(rowEnd,rowStart));
         }
         while (checkIfThereIsSthOnThisPlace(card.column, card.row));
         addCardToList(card);
-
     }
 
     private void showCards() {
         for (Card card : MemoryGameDataHolder.getInstance().cards) {
-            System.out.println("Id:" + card.cardSign + "    row:" + card.column + "     col:" + card.column);
+            System.out.println("Id:" + card.cardSign + "    row:" + card.row + "     col:" + card.column);
         }
-
     }
 
     private void addCardToList(Card card) {
         MemoryGameDataHolder.getInstance().cards.add(card);
     }
-    private int getRandomValue(int randomToNumber) {
-        Random rand = new Random();
-        return rand.nextInt(randomToNumber);
+    private int getRandomValue(int max, int min) {
+       return (int) (Math.random() * (max - min + 1) + min);
     }
 }
