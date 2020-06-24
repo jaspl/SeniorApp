@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="LockedOrientationActivity">
-        <activity android:name=".Games.SymbolsGame.SymbolsGameActivity"></activity>
+        <activity android:name=".Games.MemoryGame.MemoryGameActivity"></activity>
+        <activity android:name=".Games.SymbolsGame.SymbolsGameActivity" />
         <activity android:name=".Games.ColorGame.ColorGameActivity" />
         <activity android:name=".MmseActivity" />
         <activity android:name=".SelectedPatientActivity" />
