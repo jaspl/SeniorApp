@@ -17,15 +17,15 @@ public class MemoryGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memory_game);
         MemoryGameController memoryGameController = new MemoryGameController();
-        memoryGameController.setGame(2);
+        memoryGameController.setLvl(4);
         setButtonsClicks();
     }
 
     private void showCards() {
+        //TODO delete
         for (Card card : MemoryGameDataHolder.getInstance().cards) {
             System.out.println("Id:" + card.cardSign + "    row:" + card.column + "     col:" + card.column);
         }
-
     }
 
     private void setButtonsClicks() {
