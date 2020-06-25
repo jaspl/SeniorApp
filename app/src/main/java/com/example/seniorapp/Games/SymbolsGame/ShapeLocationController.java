@@ -1,7 +1,9 @@
 package com.example.seniorapp.Games.SymbolsGame;
 
 import android.util.Log;
+
 import com.example.seniorapp.R;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -44,7 +46,7 @@ public class ShapeLocationController {
             checkIfThereIsSthToRemoveAndRemove(shapeDetails);
             madeShapes.add(shapeDetails);
         }
-        compareShapesChangeIfSame();
+        checkIfGameFinished();
     }
 
     private void checkIfThereIsSthToRemoveAndRemove(ShapeDetails shapeDetails) {
@@ -84,6 +86,28 @@ public class ShapeLocationController {
         }
     }
 
+    public int getLayoutIdByColRow(int col, int row) {
+        if (col == 0 && row == 0) {
+            return R.id.symbol_game_bytton_c0r0;
+        } else if (col == 1 && row == 0) {
+            return R.id.symbol_game_bytton_c1r0;
+        } else if (col == 2 && row == 0) {
+            return R.id.symbol_game_bytton_c2r0;
+        } else if (col == 0 && row == 1) {
+            return R.id.symbol_game_bytton_c0r1;
+        } else if (col == 1 && row == 1) {
+            return R.id.symbol_game_bytton_c1r1;
+        } else if (col == 2 && row == 1) {
+            return R.id.symbol_game_bytton_c2r1;
+        } else if (col == 0 && row == 2) {
+            return R.id.symbol_game_bytton_c0r2;
+        } else if (col == 1 && row == 2) {
+            return R.id.symbol_game_bytton_c1r2;
+        } else {
+            return R.id.symbol_game_bytton_c2r2;
+        }
+    }
+
     public int getHelpImageIdByColRow(int col, int row) {
         if (col == 0 && row == 0) {
             return R.id.symbol_game_image_c0r0_2;
@@ -106,7 +130,7 @@ public class ShapeLocationController {
         }
     }
 
-    public void compareShapesChangeIfSame() {
+    public void checkIfGameFinished() {
         int count = 0;
         if (madeShapes.size() == destinationShapes.size()) {
             for (ShapeDetails shape : destinationShapes) {

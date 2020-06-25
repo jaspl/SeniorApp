@@ -25,7 +25,7 @@ public class PatientLogInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO Patient Log in action
-                Intent intent = new Intent(PatientLogInActivity.this, MemoryGameActivity.class);
+                Intent intent = new Intent(PatientLogInActivity.this, SymbolsGameActivity.class);
                 startActivity(intent);
             }
         });

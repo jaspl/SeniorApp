@@ -38,8 +38,7 @@
                 android:id="@+id/memory_game_image_c0_r0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/triangle_shape" />
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -55,8 +54,7 @@
                 android:id="@+id/memory_game_image_c1_r0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/triangle_shape" />
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -72,8 +70,7 @@
                 android:id="@+id/memory_game_image_c2_r0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/triangle_shape" />
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -89,8 +86,7 @@
                 android:id="@+id/memory_game_image_c3_r0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/triangle_shape" />
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -106,8 +102,7 @@
                 android:id="@+id/memory_game_image_c0_r1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/triangle_shape" />
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -123,8 +118,7 @@
                 android:id="@+id/memory_game_image_c1_r1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/triangle_shape" />
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -140,8 +134,7 @@
                 android:id="@+id/memory_game_image_c2_r1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/triangle_shape" />
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -157,8 +150,7 @@
                 android:id="@+id/memory_game_image_c3_r1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/triangle_shape" />
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -174,8 +166,7 @@
                 android:id="@+id/memory_game_image_c0_r2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/triangle_shape" />
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -191,8 +182,7 @@
                 android:id="@+id/memory_game_image_c1_r2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/triangle_shape" />
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -208,8 +198,7 @@
                 android:id="@+id/memory_game_image_c2_r2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/triangle_shape" />
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -225,8 +214,7 @@
                 android:id="@+id/memory_game_image_c3_r2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/triangle_shape" />
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -242,8 +230,7 @@
                 android:id="@+id/memory_game_image_c0_r3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/triangle_shape" />
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -259,8 +246,7 @@
                 android:id="@+id/memory_game_image_c1_r3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/triangle_shape" />
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -276,8 +262,7 @@
                 android:id="@+id/memory_game_image_c2_r3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/triangle_shape" />
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -293,8 +278,7 @@
                 android:id="@+id/memory_game_image_c3_r3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/triangle_shape" />
+                android:layout_gravity="center" />
         </LinearLayout>
 
     </GridLayout>
@@ -304,21 +288,23 @@
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginBottom="1dp"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:gravity="center">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="CZAS   "
-            android:textSize="40dp"/>
+            android:textSize="40dp" />
+
         <TextView
+            android:id="@+id/memory_game_time_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1:50"
-            android:textSize="40dp"/>
+            android:text="0:00"
+            android:textSize="40dp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
