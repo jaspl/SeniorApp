@@ -37,10 +37,28 @@ public class SymbolsGameActivity extends AppCompatActivity {
     }
 
     private void gameInitialization() {
-        setLvlParams();
+
+        setLvlParams(getLvl());
         ImagesSeter();
         setRemoveButtonClick();
         setButtonsAction();
+        setAllImagesEnabled(false);
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                setAllImagesEnabled(true);
+                                clearBoard();
+                                //TODO start timer
+                            }
+                        });
+                    }
+                },
+                5000
+        );
     }
 
     private void setColorButtons(int colorNumber, LinearLayout colorByttonsLayout) {
@@ -292,8 +310,7 @@ public class SymbolsGameActivity extends AppCompatActivity {
         return lvl;
     }
 
-    private void setLvlParams() {
-        int lvl = getLvl();
+    private void setLvlParams(int lvl) {
         if (lvl == 1) {
             setGameLvl(1, 3);
         } else if (lvl == 2) {
@@ -322,6 +339,15 @@ public class SymbolsGameActivity extends AppCompatActivity {
             imageView.setImageDrawable(getResources().getDrawable(new ShapeSelector().shapeSelector(shape.color, shape.shape), getTheme()));
         }
         helpDialog.show();
+    }
+
+    private void setAllImagesEnabled(Boolean bool) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                LinearLayout layout = findViewById(ShapeLocationController.getInstance().getLayoutIdByColRow(i, j));
+                layout.setEnabled(bool);
+            }
+        }
     }
 
 
