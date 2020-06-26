@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.seniorapp.Patterns.Patient;
 import com.example.seniorapp.R;
@@ -44,6 +45,10 @@ public class PatientsAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         LayoutInflater layoutInflater = activity.getLayoutInflater();
         view = layoutInflater.inflate(R.layout.single_patient_layout, null, true);
+        TextView name = view.findViewById(R.id.patient_list_patient_name);
+        name.setText(patientObjects.get(i).getName());
+        TextView surName = view.findViewById(R.id.patient_list_patient_surname);
+        surName.setText(patientObjects.get(i).getSurname());
         LinearLayout button = view.findViewById(R.id.patient_list_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override

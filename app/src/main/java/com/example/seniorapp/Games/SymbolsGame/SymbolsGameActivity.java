@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.seniorapp.GameSelectorActivity;
 import com.example.seniorapp.Games.ColorGame.ColorGameActivity;
 import com.example.seniorapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -272,7 +273,7 @@ public class SymbolsGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //todo set end game action;
-                Intent intent = new Intent(SymbolsGameActivity.this, ColorGameActivity.class);
+                Intent intent = new Intent(SymbolsGameActivity.this, GameSelectorActivity.class);
                 startActivity(intent);
             }
         });

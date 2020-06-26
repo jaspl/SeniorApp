@@ -1,9 +1,16 @@
 package com.example.seniorapp;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
+
 import com.example.seniorapp.Adapters.PatientsAdapter;
 import com.example.seniorapp.Patterns.Patient;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +23,7 @@ public class PatientListActivity extends AppCompatActivity {
         ListView patientList = findViewById(R.id.patient_list);
         //TODO get patients list from database
         patientList.setAdapter(new PatientsAdapter(setPatients(), this));
+        setButtonAcctions();
     }
 
     public List<Patient> setPatients() {
@@ -29,5 +37,19 @@ public class PatientListActivity extends AppCompatActivity {
         patients.add(patient2);
         patients.add(patient3);
         return patients;
+    }
+
+    private void setButtonAcctions() {
+        getFloattingButtonAddPatient().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PatientListActivity.this,AddNewPatientActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private FloatingActionButton getFloattingButtonAddPatient() {
+        return findViewById(R.id.add_new_patient_floating_button);
     }
 }
