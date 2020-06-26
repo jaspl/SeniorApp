@@ -12,6 +12,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -27,7 +28,7 @@
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_new_patient"
+        android:id="@+id/add_new_patient_floating_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"

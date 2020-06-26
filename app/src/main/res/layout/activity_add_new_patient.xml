@@ -12,9 +12,11 @@
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_new_patient_name_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp">
+            android:padding="20dp"
+            app:errorEnabled="true">
 
             <EditText
                 android:id="@+id/add_new_patient_name"
@@ -24,9 +26,11 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_new_patient_surname_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp">
+            android:padding="20dp"
+            app:errorEnabled="true">
 
             <EditText
                 android:id="@+id/add_new_patient_surname"
@@ -39,7 +43,8 @@
             android:id="@+id/add_new_patient_login_error"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp">
+            android:padding="20dp"
+            app:errorEnabled="true">
 
             <EditText
                 android:id="@+id/add_new_patient_login"
@@ -49,10 +54,12 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_new_patient_password_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
-            app:passwordToggleEnabled="true">
+            app:passwordToggleEnabled="true"
+            app:errorEnabled="true">
 
             <EditText
                 android:id="@+id/add_new_patient_password"
@@ -63,11 +70,12 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/add_new_patient_repeat_password_error"
+            android:id="@+id/add_new_patient_repeat_password_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
-            app:passwordToggleEnabled="true">
+            app:passwordToggleEnabled="true"
+            app:errorEnabled="true">
 
             <EditText
                 android:id="@+id/add_new_patient_repeat_password"
@@ -78,9 +86,11 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_new_patient_PESEL_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp">
+            android:padding="20dp"
+            app:errorEnabled="true">
 
             <EditText
                 android:id="@+id/add_new_patient_PESEL"
@@ -94,7 +104,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp">
+            android:padding="20dp"
+            app:errorEnabled="true">
 
             <EditText
                 android:id="@+id/add_new_patient_description_of_patient_condition"

@@ -2,6 +2,7 @@ package com.example.seniorapp.Games.MemoryGame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -9,6 +10,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.seniorapp.GameSelectorActivity;
+import com.example.seniorapp.Games.ColorGame.ColorGameActivity;
 import com.example.seniorapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -55,6 +58,8 @@ private void setTime(int timeInSeconds){
             @Override
             public void onClick(View v) {
                 //TODO set Exit action
+                Intent intent = new Intent(MemoryGameActivity.this, GameSelectorActivity.class);
+                startActivity(intent);
             }
         });
         setImageOnClicsk();
