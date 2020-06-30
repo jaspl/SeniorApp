@@ -26,6 +26,8 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="WYLOGUJ" />
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -51,6 +53,13 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="MEMORY" />
+
+        <Button
+            android:id="@+id/memory_how_to_play_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="JAK GRAĆ" />
     </LinearLayout>
 
     <LinearLayout
@@ -76,6 +85,13 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="GRA W SYMBOLE" />
+
+        <Button
+            android:id="@+id/symbol_game_how_to_play_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="JAK GRAĆ" />
     </LinearLayout>
 
     <LinearLayout
@@ -99,6 +115,13 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="GRA W CYFRY" />
+
+        <Button
+            android:id="@+id/number_game_how_to_play_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="JAK GRAĆ" />
     </LinearLayout>
 
     <LinearLayout
@@ -123,6 +146,13 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="GRA W KOLORY" />
+
+        <Button
+            android:id="@+id/color_game_how_to_play_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="JAK GRAĆ" />
     </LinearLayout>
 
     <LinearLayout
@@ -145,6 +175,13 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="WISIELEC" />
+
+        <Button
+            android:id="@+id/hungman_how_to_play_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="JAK GRAĆ" />
     </LinearLayout>
 
     <TextView
