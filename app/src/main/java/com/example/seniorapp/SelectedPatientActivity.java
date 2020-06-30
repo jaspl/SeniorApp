@@ -31,7 +31,7 @@ public class SelectedPatientActivity extends AppCompatActivity {
         infoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO Info about Patient
+                startActivity(new Intent(SelectedPatientActivity.this,PatientInfoActivity.class));
             }
         });
         MMSEButton.setOnClickListener(new View.OnClickListener() {
