@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 
 import com.example.seniorapp.Games.ColorGame.ColorGameActivity;
 import com.example.seniorapp.Games.MemoryGame.MemoryGameActivity;
+import com.example.seniorapp.Games.NumberGame.NumberGameActivity;
 import com.example.seniorapp.Games.SymbolsGame.SymbolsGameActivity;
 
 public class GameSelectorActivity extends AppCompatActivity {
@@ -59,7 +60,7 @@ public class GameSelectorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO change activity
-                //startActivity(new Intent(GameSelectorActivity.this, MemoryGameActivity.class));
+                startActivity(new Intent(GameSelectorActivity.this, NumberGameActivity.class));
             }
         });
         LinearLayout logOut = findViewById(R.id.log_out);

@@ -7,8 +7,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,11 +20,17 @@ import com.example.seniorapp.Games.SymbolsGame.SymbolsGameActivity;
 import com.example.seniorapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ColorGameActivity extends AppCompatActivity {
     int colorNumber = 0;
+    long startTime = System.currentTimeMillis();
+    long endTime = 0;
+    List<Button> colorButtonsList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +38,7 @@ public class ColorGameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_color_game);
         setLvl();
         setEndGameButton();
+        setStartTime();
     }
 
     private int getLvl() {
@@ -75,6 +84,13 @@ public class ColorGameActivity extends AppCompatActivity {
             colorButton.setBackgroundColor(colors.getColor(i, 0));
             colorByttonsLayout.addView(colorButton);
             setColorButtonClickAction(colorButton);
+            colorButtonsList.add(colorButton);
+        }
+    }
+
+    private void setAllButtonsEnabled(Boolean bool) {
+        for (Button colorbutton : colorButtonsList) {
+            colorbutton.setEnabled(bool);
         }
     }
 
@@ -82,16 +98,57 @@ public class ColorGameActivity extends AppCompatActivity {
         colorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), colorButton.getTag().toString(),
-                        Toast.LENGTH_LONG).show();
+                setAllButtonsEnabled(false);
+                setEndTime();
+                float reactionTimeInSeconds = (float) (endTime - startTime) / 1000;
+                sendResultToDatabase();
                 if (colorButton.getTag().equals(getColotText().getTag())) {
-                    setColorText(colorNumber);
-                    //TODO set counter
+                    getStatusShower().setImageDrawable(getDrawable(R.drawable.green_circle));
+                    new java.util.Timer().schedule(
+                            new java.util.TimerTask() {
+                                @Override
+                                public void run() {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            resetBoard();
+                                        }
+                                    });
+                                }
+                            },
+                            1000
+                    );
+                } else {
+                    getStatusShower().setImageDrawable(getDrawable(R.drawable.red_circle));
+                    new java.util.Timer().schedule(
+                            new java.util.TimerTask() {
+                                @Override
+                                public void run() {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            resetBoard();
+                                        }
+                                    });
+                                }
+                            },
+                            1000
+                    );
                 }
             }
         });
     }
 
+    private void resetBoard() {
+        setColorText(colorNumber);
+        getStatusShower().setImageDrawable(null);
+        setAllButtonsEnabled(true);
+        setStartTime();
+    }
+
+    private void sendResultToDatabase() {
+        //TODO
+    }
 
     private void setColorText(int colorNumber) {
         TypedArray colors = getResources().obtainTypedArray(R.array.colors);
@@ -140,5 +197,22 @@ public class ColorGameActivity extends AppCompatActivity {
     private TextView getColotText() {
         return findViewById(R.id.color_game_text);
     }
+
+    private long getTime() {
+        return System.currentTimeMillis();
+    }
+
+    private void setStartTime() {
+        startTime = getTime();
+    }
+
+    private void setEndTime() {
+        endTime = getTime();
+    }
+
+    private ImageView getStatusShower() {
+        return findViewById(R.id.color_game_satus_shower);
+    }
+
 
 }

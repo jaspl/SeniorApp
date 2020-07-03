@@ -2,12 +2,21 @@ package com.example.seniorapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.seniorapp.API.Api;
+import com.example.seniorapp.API.ApiClass;
+import com.example.seniorapp.Models.CaregiversObject;
 import com.google.android.material.textfield.TextInputLayout;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CareTakerRegistrationActivity extends AppCompatActivity {
     //TODO
@@ -31,6 +40,7 @@ public class CareTakerRegistrationActivity extends AppCompatActivity {
     private void checkIfAllDataCorrect(){
         if (checkIfLoginCorrect()&checkIfNameCorrect()&checkIfSurnameCorrect()&checkPasswordsIsOk()){
             checkIfLoginIsCOrrectWithDataBase();
+            sendToDatabase();
         }
     }
 
@@ -122,6 +132,33 @@ public class CareTakerRegistrationActivity extends AppCompatActivity {
     private void checkIfLoginIsCOrrectWithDataBase(){
         //TODO
     }
+
+    private void sendToDatabase(){
+        CaregiversObject caregiversObject = new CaregiversObject(getNameEditText().getText().toString(),getSurnameEditText().getText().toString(),getLoginEditText().getText().toString(),getPasswordEditText().getText().toString());
+        Api api = new ApiClass().getApi();
+        ProgressDialog progressDialog = new ProgressDialogClass().CustomCallBack(this,"wczytywanie");
+        progressDialog.show();
+        Call<CaregiversObject> call = api.createCaregiver(caregiversObject);
+    call.enqueue(new Callback<CaregiversObject>() {
+        @Override
+        public void onResponse(Call<CaregiversObject> call, Response<CaregiversObject> response) {
+            if (!response.isSuccessful()){
+                Log.d("code:",""+response.code());
+                //TODO error handler when sth i wrong
+                progressDialog.dismiss();
+            }
+            progressDialog.dismiss();
+        }
+
+        @Override
+        public void onFailure(Call<CaregiversObject> call, Throwable t) {
+            Log.d("msg:",t.getMessage());
+            progressDialog.dismiss();
+            //TODO det error dialog
+        }
+    });
+    }
+
 
     private void resetAllErrors(){
         getSecondPasswordInputText().setError(null);
