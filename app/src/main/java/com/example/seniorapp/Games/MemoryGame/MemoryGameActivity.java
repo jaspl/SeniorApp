@@ -104,9 +104,26 @@ private void setTime(int timeInSeconds){
             currentCard = card;
 
         } else {
-            checkIfPairIsToRemove(card, currentCard);
             cardClicked = false;
             setAllCardsEnabled(false);
+            checkIfPairIsToRemove(card, currentCard);
+        }
+    }
+
+    private void resetBoard() {
+        setImageOnClicsk();
+        turnOverAllCards();
+    }
+
+    private void checkIfPairIsToRemove(Card card, Card card2) {
+        if (card.cardSign == card2.cardSign) {
+            new MemoryGameController().removeCardFromList(card);
+            new MemoryGameController().removeCardFromList(card2);
+            checkIfGameEnded();
+            resetBoard();
+            setAllCardsEnabled(true);
+        }
+        else{
             new java.util.Timer().schedule(
                     new java.util.TimerTask() {
                         @Override
@@ -125,23 +142,11 @@ private void setTime(int timeInSeconds){
         }
     }
 
-    private void resetBoard() {
-        setImageOnClicsk();
-        turnOverAllCards();
-    }
-
-    private void checkIfPairIsToRemove(Card card, Card card2) {
-        if (card.cardSign == card2.cardSign) {
-            new MemoryGameController().removeCardFromList(card);
-            new MemoryGameController().removeCardFromList(card2);
-            checkIfGameEnded();
-        }
-    }
-
     private void checkIfGameEnded() {
         if (MemoryGameDataHolder.getInstance().cards.size() == 0) {
-            Log.d("koniec gry", "udało się zakończyć grę");
+            Log.d("koniec gry", "udało się zakończyć grę"+currentTime);
             countDownTimer.cancel();
+            sendDataToDatabase();
             //TODO end game action
         }
     }
@@ -170,7 +175,7 @@ private void setTime(int timeInSeconds){
             public void onFinish() {
                 //TODO end game nie udało ci się
                 Log.d("koniec gry ","nie udało sie wygrać");
-
+                sendDataToDatabase();
             }
         };
         countDownTimer.start();
@@ -183,6 +188,10 @@ private void setTime(int timeInSeconds){
             seconds = "0"+seconds;
         }
         time.setText(min+":"+seconds);
+    }
+
+    private void sendDataToDatabase(){
+
     }
 
 }

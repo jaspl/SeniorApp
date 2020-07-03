@@ -2,20 +2,24 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.seniorapp">
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:networkSecurityConfig="@xml/network_security_config"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="LockedOrientationActivity">
+        tools:ignore="LockedOrientationActivity"
+        tools:targetApi="n">
         <activity android:name=".PatientInfoActivity"></activity>
         <activity android:name=".GameSelectorActivity" />
         <activity android:name=".Games.MemoryGame.MemoryGameActivity" />
         <activity android:name=".Games.SymbolsGame.SymbolsGameActivity" />
         <activity android:name=".Games.ColorGame.ColorGameActivity" />
+        <activity android:name=".Games.NumberGame.NumberGameActivity" />
         <activity android:name=".MmseActivity" />
         <activity android:name=".SelectedPatientActivity" />
         <activity android:name=".AddNewPatientActivity" />
