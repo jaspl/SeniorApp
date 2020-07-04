@@ -3,6 +3,7 @@ package com.example.seniorapp.Adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.example.seniorapp.Models.PatientsObject;
 import com.example.seniorapp.Patterns.Patient;
 import com.example.seniorapp.R;
 import com.example.seniorapp.SelectedPatientActivity;
+import com.example.seniorapp.SharedPrefs;
 
 import java.util.List;
 
@@ -56,7 +58,9 @@ public class PatientsAdapter extends BaseAdapter {
             public void onClick(View view) {
                 Intent intent = new Intent(activity.getBaseContext(), SelectedPatientActivity.class);
                 activity.startActivity(intent);
-                //TODO sava id in shared prefferences
+                new SharedPrefs(activity).saveId(patientObjects.get(i).getId());
+                int id = new SharedPrefs(activity).getId();
+                Log.d("id", ""+id);
             }
         });
 
