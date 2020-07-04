@@ -37,16 +37,17 @@ public class CareTakerRegistrationActivity extends AppCompatActivity {
         });
     }
 
-    private void checkIfAllDataCorrect(){
-        if (checkIfLoginCorrect()&checkIfNameCorrect()&checkIfSurnameCorrect()&checkPasswordsIsOk()){
+    private void checkIfAllDataCorrect() {
+        if (checkIfLoginCorrect() & checkIfNameCorrect() & checkIfSurnameCorrect() & checkPasswordsIsOk()) {
             checkIfLoginIsCOrrectWithDataBase();
             sendToDatabase();
         }
     }
 
-    private Button getRegisterButon(){
+    private Button getRegisterButon() {
         return findViewById(R.id.care_taker_button_to_register);
     }
+
     private EditText getNameEditText() {
         return findViewById(R.id.care_taker_register_name);
     }
@@ -91,23 +92,25 @@ public class CareTakerRegistrationActivity extends AppCompatActivity {
         if (getNameEditText().getText().toString().equals("")) {
             getNameInputText().setError("Nie podano imienia!");
             return false;
-        }else{
+        } else {
             return true;
         }
     }
+
     private boolean checkIfSurnameCorrect() {
         if (getSurnameEditText().getText().toString().equals("")) {
             getSurnameInputText().setError("Nie podano nazwiska!");
             return false;
-        }else{
+        } else {
             return true;
         }
     }
+
     private boolean checkIfLoginCorrect() {
         if (getLoginEditText().getText().toString().equals("")) {
             getLoginInputText().setError("Nie podano loginu!");
             return false;
-        }else{
+        } else {
             return true;
         }
     }
@@ -129,38 +132,46 @@ public class CareTakerRegistrationActivity extends AppCompatActivity {
             return false;
         }
     }
-    private void checkIfLoginIsCOrrectWithDataBase(){
+
+    private void checkIfLoginIsCOrrectWithDataBase() {
         //TODO
     }
 
-    private void sendToDatabase(){
-        CaregiversObject caregiversObject = new CaregiversObject(getNameEditText().getText().toString(),getSurnameEditText().getText().toString(),getLoginEditText().getText().toString(),getPasswordEditText().getText().toString());
+    private CaregiversObject getCaregiver() {
+        CaregiversObject caregiversObject = new CaregiversObject(getNameEditText().getText().toString(),
+                getSurnameEditText().getText().toString(),
+                getLoginEditText().getText().toString(),
+                getPasswordEditText().getText().toString());
+        return caregiversObject;
+    }
+
+    private void sendToDatabase() {
         Api api = new ApiClass().getApi();
-        ProgressDialog progressDialog = new ProgressDialogClass().CustomCallBack(this,"wczytywanie");
+        ProgressDialog progressDialog = new ProgressDialogClass().CustomCallBack(this, "wczytywanie");
         progressDialog.show();
-        Call<CaregiversObject> call = api.createCaregiver(caregiversObject);
-    call.enqueue(new Callback<CaregiversObject>() {
-        @Override
-        public void onResponse(Call<CaregiversObject> call, Response<CaregiversObject> response) {
-            if (!response.isSuccessful()){
-                Log.d("code:",""+response.code());
-                //TODO error handler when sth i wrong
+        Call<CaregiversObject> call = api.createCaregiver(getCaregiver());
+        call.enqueue(new Callback<CaregiversObject>() {
+            @Override
+            public void onResponse(Call<CaregiversObject> call, Response<CaregiversObject> response) {
+                if (!response.isSuccessful()) {
+                    Log.d("code:", "" + response.code());
+                    //TODO error handler when sth i wrong
+                    progressDialog.dismiss();
+                }
                 progressDialog.dismiss();
             }
-            progressDialog.dismiss();
-        }
 
-        @Override
-        public void onFailure(Call<CaregiversObject> call, Throwable t) {
-            Log.d("msg:",t.getMessage());
-            progressDialog.dismiss();
-            //TODO det error dialog
-        }
-    });
+            @Override
+            public void onFailure(Call<CaregiversObject> call, Throwable t) {
+                Log.d("msg:", t.getMessage());
+                progressDialog.dismiss();
+                //TODO det error dialog
+            }
+        });
     }
 
 
-    private void resetAllErrors(){
+    private void resetAllErrors() {
         getSecondPasswordInputText().setError(null);
         getPasswordInputText().setError(null);
         getLoginInputText().setError(null);
