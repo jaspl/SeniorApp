@@ -2,19 +2,32 @@ package com.example.seniorapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 
+import com.example.seniorapp.API.Api;
+import com.example.seniorapp.API.ApiClass;
+import com.example.seniorapp.Adapters.PatientsAdapter;
+import com.example.seniorapp.Models.PatientsObject;
+import com.example.seniorapp.Patterns.Patient;
+import com.example.seniorapp.Utils.LevelGame;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.io.IOException;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddNewPatientActivity extends AppCompatActivity {
-    //TODO adding new patient
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +35,7 @@ public class AddNewPatientActivity extends AppCompatActivity {
         setButtonsOnClick();
     }
 
-    private void setButtonsOnClick(){
+    private void setButtonsOnClick() {
         getAddPatientButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,9 +46,8 @@ public class AddNewPatientActivity extends AppCompatActivity {
     }
 
     private void checkIfAllDataAreCorect() {
-        if (checkIfLoginIsOk() & checkIfNameIsOk() &   checkIfSurnameIsOk() & checkPasswordsIsOk()&checkIfPeselIsOk()) {
-
-            //TODO chceck if login matches to database and send Data To database
+        if (checkIfLoginIsOk() & checkIfNameIsOk() & checkIfSurnameIsOk() & checkPasswordsIsOk() & checkIfPeselIsOk()) {
+            getPatienstList();
         }
     }
 
@@ -62,7 +74,6 @@ public class AddNewPatientActivity extends AppCompatActivity {
             getPatientLoginInputText().setError("Nie podano loginu");
             return false;
         } else {
-            // ToDo check if exists in database
             return true;
         }
     }
@@ -148,16 +159,92 @@ public class AddNewPatientActivity extends AppCompatActivity {
         return findViewById(R.id.add_new_patient_description_of_patient_condition);
     }
 
-    private Button getAddPatientButton(){
+    private Button getAddPatientButton() {
         return findViewById(R.id.add_new_patient_button_to_add);
     }
 
-    private void resetAllErrors(){
+    private void resetAllErrors() {
         getPatientSecondPasswordInputText().setError(null);
         getPatientPasswordInputText().setError(null);
         getPatientLoginInputText().setError(null);
         getPatientPeselInputText().setError(null);
         getPatientNameInputText().setError(null);
         getPatientSurnameInputText().setError(null);
+    }
+
+    private PatientsObject getPatientObject() {
+        PatientsObject patientsObject = new PatientsObject(getPatientNameEditText().getText().toString(),
+                getPatientSurnameEditText().getText().toString(),
+                getPatientLoginEditText().getText().toString(),
+                getPatientPasswordEditText().getText().toString(),
+                getPatientPeselEditText().getText().toString(),
+                getPatientDescriptionEditText().getText().toString(),
+                LevelGame.EASY, false);
+        return patientsObject;
+    }
+
+    private void sendDataToDatabase() {
+        Api api = new ApiClass().getApi();
+        ProgressDialog progressDialog = new ProgressDialogClass().CustomCallBack(this, "wczytywanie");
+        progressDialog.show();
+        Call<PatientsObject> call = api.addPatient(getPatientObject());
+        call.enqueue(new Callback<PatientsObject>() {
+            @Override
+            public void onResponse(Call<PatientsObject> call, Response<PatientsObject> response) {
+                if (!response.isSuccessful()) {
+                    Log.d("code:", "" + response.code());
+                    //TODO error handler when sth i wrong
+                    progressDialog.dismiss();
+                } else {
+                    progressDialog.dismiss();
+                    startActivity(new Intent(AddNewPatientActivity.this, PatientListActivity.class));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PatientsObject> call, Throwable t) {
+                progressDialog.dismiss();
+            }
+        });
+    }
+
+    private void getPatienstList() {
+        Api api = new ApiClass().getApi();
+        ProgressDialog progressDialog = new ProgressDialogClass().CustomCallBack(this, "wczytywanie");
+        progressDialog.show();
+        Call<List<PatientsObject>> call = api.getPatientList();
+        call.enqueue(new Callback<List<PatientsObject>>() {
+            @Override
+            public void onResponse(Call<List<PatientsObject>> call, Response<List<PatientsObject>> response) {
+                if (!response.isSuccessful()) {
+                    Log.d("code:", "" + response.code());
+                    progressDialog.dismiss();
+                } else {
+                    progressDialog.dismiss();
+                    List<PatientsObject> patientsObjectList = response.body();
+                    if (!checkIfThereIsNomeoneWithSameLogin(patientsObjectList)) {
+                        sendDataToDatabase();
+                    }
+                }
+                progressDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<List<PatientsObject>> call, Throwable t) {
+                progressDialog.dismiss();
+            }
+        });
+    }
+
+    private Boolean checkIfThereIsNomeoneWithSameLogin(List<PatientsObject> patientsObjectList) {
+        Boolean is = false;
+        for (PatientsObject patient : patientsObjectList) {
+            if (patient.getLogin().equals(getPatientLoginEditText().getText().toString())) {
+                getPatientLoginInputText().setError("Użytkownik o takim loginie juz istnieje!");
+                is = true;
+                break;
+            }
+        }
+        return is;
     }
 }

@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.seniorapp.Models.PatientsObject;
 import com.example.seniorapp.Patterns.Patient;
 import com.example.seniorapp.R;
 import com.example.seniorapp.SelectedPatientActivity;
@@ -18,10 +19,10 @@ import java.util.List;
 
 public class PatientsAdapter extends BaseAdapter {
     Activity activity;
-    List<Patient> patientObjects;
+    List<PatientsObject> patientObjects;
 
 
-    public PatientsAdapter(List<Patient> patientObjects, Activity activity) {
+    public PatientsAdapter(List<PatientsObject> patientObjects, Activity activity) {
         this.patientObjects = patientObjects;
         this.activity = activity;
     }
@@ -55,6 +56,7 @@ public class PatientsAdapter extends BaseAdapter {
             public void onClick(View view) {
                 Intent intent = new Intent(activity.getBaseContext(), SelectedPatientActivity.class);
                 activity.startActivity(intent);
+                //TODO sava id in shared prefferences
             }
         });
 
