@@ -5,6 +5,30 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/exercisesLinearLayout"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="308dp"
+        android:gravity="top"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/exercisesView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:gravity="center"
+            android:text=" Działanie matematyczne: "
+            android:textSize="40dp" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/number_game_button_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,6 +40,44 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/numberLinearLayout"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="1dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Szukana liczba: "
+            android:textSize="40dp" />
+
+        <TextView
+            android:id="@+id/search_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="40dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="   Znaleziono: "
+            android:textSize="40dp" />
+
+        <TextView
+            android:id="@+id/count_number_pair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="40dp" />
+    </LinearLayout>
 
     <include
         layout="@layout/end_game_button"
