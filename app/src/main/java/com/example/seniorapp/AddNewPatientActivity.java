@@ -179,7 +179,7 @@ public class AddNewPatientActivity extends AppCompatActivity {
                 getPatientPasswordEditText().getText().toString(),
                 getPatientPeselEditText().getText().toString(),
                 getPatientDescriptionEditText().getText().toString(),
-                LevelGame.EASY, false);
+                LevelGame.VERYLOW, false);
         return patientsObject;
     }
 

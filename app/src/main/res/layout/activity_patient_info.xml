@@ -24,11 +24,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:gravity="center"
 
-            android:gravity="center">
+            android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/patirnt_info_name_error"
                 android:layout_width="500dp"
                 android:layout_height="wrap_content"
                 app:errorEnabled="true"
@@ -36,12 +37,14 @@
                 tools:layout_editor_absoluteY="73dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/patirnt_info_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Imię" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/patirnt_info_surname_error"
                 android:layout_width="500dp"
                 android:layout_height="wrap_content"
                 app:errorEnabled="true"
@@ -49,6 +52,7 @@
                 tools:layout_editor_absoluteY="73dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/patirnt_info_surname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Nazwisko" />
@@ -59,15 +63,18 @@
                 android:layout_height="wrap_content"
                 app:errorEnabled="true"
                 tools:layout_editor_absoluteX="1dp"
-                tools:layout_editor_absoluteY="73dp">
+                tools:layout_editor_absoluteY="73dp"
+                android:visibility="gone">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/patirnt_info_MMSE"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Wynik testu MMSE" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/patirnt_info_lvl_error"
                 android:layout_width="500dp"
                 android:layout_height="wrap_content"
                 app:errorEnabled="true"
@@ -75,12 +82,14 @@
                 tools:layout_editor_absoluteY="73dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/patirnt_info_lvl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Poziom" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/patirnt_info_login_error"
                 android:layout_width="500dp"
                 android:layout_height="wrap_content"
                 app:errorEnabled="true"
@@ -88,25 +97,43 @@
                 tools:layout_editor_absoluteY="73dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/patirnt_info_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Login" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/patirnt_info_password_error"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:errorEnabled="true"
+                app:passwordToggleEnabled="true"
+                tools:layout_editor_absoluteX="1dp"
+                tools:layout_editor_absoluteY="73dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/patirnt_info_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Hasło"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/patirnt_info_PESEL_error"
                 android:layout_width="500dp"
                 android:layout_height="wrap_content"
                 app:errorEnabled="true"
                 tools:layout_editor_absoluteX="1dp"
-                tools:layout_editor_absoluteY="73dp"
-                app:passwordToggleEnabled="true">
+                tools:layout_editor_absoluteY="73dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/patirnt_info_PESEL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Hasło"
-                    android:inputType="textPassword"
-                    />
+                    android:hint="PESEL" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -117,14 +144,16 @@
                 tools:layout_editor_absoluteY="73dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/patirnt_info_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="PESEL" />
+                    android:hint="Opis pacjenta" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <Space
@@ -133,16 +162,24 @@
                     android:layout_weight="1" />
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/patirnt_info_save_edited_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="Zapisz dane" />
+
+                <Button
+                    android:id="@+id/patirnt_info_edit_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="100dp"
                     android:text="Edytuj" />
             </LinearLayout>
+
             <Space
-                android:layout_marginTop="100dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
                 android:layout_weight="1" />
         </LinearLayout>
     </ScrollView>
