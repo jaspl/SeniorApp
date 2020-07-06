@@ -104,6 +104,7 @@ public class ColorGameActivity extends AppCompatActivity {
                 sendResultToDatabase();
                 if (colorButton.getTag().equals(getColotText().getTag())) {
                     getStatusShower().setImageDrawable(getDrawable(R.drawable.green_circle));
+                    sendResultToDatabase();//TODO send correct
                     new java.util.Timer().schedule(
                             new java.util.TimerTask() {
                                 @Override
@@ -120,6 +121,7 @@ public class ColorGameActivity extends AppCompatActivity {
                     );
                 } else {
                     getStatusShower().setImageDrawable(getDrawable(R.drawable.red_circle));
+                    sendResultToDatabase();//TODO send incorrect
                     new java.util.Timer().schedule(
                             new java.util.TimerTask() {
                                 @Override
@@ -156,8 +158,8 @@ public class ColorGameActivity extends AppCompatActivity {
         TextView colorText = getColotText();
         int tag = ThreadLocalRandom.current().nextInt(0, colorNumber);
         colorText.setTag(tag);
-        colorText.setTextColor(colors.getColor(tag, 0));
-        colorText.setText(colorNames.getText(getRandomExceptOne(tag)));
+        colorText.setTextColor(colors.getColor(getRandomExceptOne(tag), 0));
+        colorText.setText(colorNames.getText(tag));
     }
 
     private int getRandomExceptOne(int number) {
