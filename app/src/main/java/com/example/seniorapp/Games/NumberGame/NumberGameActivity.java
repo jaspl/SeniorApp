@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -37,7 +38,6 @@ public class NumberGameActivity extends AppCompatActivity {
     long startTime = System.currentTimeMillis();
     long endTime = 0;
     TextView countNumberPair = null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +49,7 @@ public class NumberGameActivity extends AppCompatActivity {
 
     private int getLvl() {
         //TODO get lvl
-        int lvl = 3;
+        int lvl = 4;
         return lvl;
     }
 
@@ -79,12 +79,12 @@ public class NumberGameActivity extends AppCompatActivity {
         }
 
         Random rand = new Random();
-        int exercise = rand.nextInt(exercises+1);
+        exercises = rand.nextInt(exercises+1);
         TextView exercisesView = findViewById(R.id.exercisesView);
-        if (exercise == 0) {
+        if (exercises == 0) {
             generateRandomNumbersAdditions(digitsNumber);
             exercisesView.append("Dodawanie");
-        } else if( exercise == 1) {
+        } else if( exercises == 1) {
             generateRandomNumbersMultiplications(digitsNumber);
             exercisesView.append("Mnożenie");
         }
@@ -98,19 +98,23 @@ public class NumberGameActivity extends AppCompatActivity {
     }
 
     private void setButtons(int digitsNumber, LinearLayout numberButtonsLayout) {
+        GridLayout gridLayout = new GridLayout(NumberGameActivity.this);
+        gridLayout.setColumnCount(5);
+        gridLayout.setRowCount(digitsNumber/5);
         for (int i = 0; i < digitsNumber; i++) {
             Button numberButton = new Button(this);
             numberButton.setBackgroundColor(Color.LTGRAY);
             numberButton.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) numberButton.getLayoutParams();
-            params.setMargins(0, 0, 10, 0);
+            params.setMargins(10, 10, 10, 10);
             numberButton.setLayoutParams(params);
             int j = randomDigitsList.get(i);
             numberButton.setText(String.valueOf(j));
             numberButton.setTag(j);
-            numberButtonsLayout.addView(numberButton);
+            gridLayout.addView(numberButton);
             setNumberButtonClickAction(numberButton);
         }
+        numberButtonsLayout.addView(gridLayout);
     }
 
     private void generateRandomNumbersAdditions(int digitsNumber) {
@@ -133,14 +137,16 @@ public class NumberGameActivity extends AppCompatActivity {
     }
 
     private void generateRandomNumbersMultiplications(int digitsNumber) {
+        int[] multiplicationList = {0, 1, 2, 3, 4,	5, 6, 7, 8, 9, 10, 12, 14, 16, 18,
+                                    15, 21, 24, 27, 20, 28, 32, 36, 25, 30, 35, 40,
+                                    45, 42, 48, 54, 49, 56, 63, 64, 72, 81};
         Random rand = new Random(); //instance of random class
-        searchNumber = rand.nextInt(81);
+        searchNumber = multiplicationList[rand.nextInt(multiplicationList.length)];
         do {
-            //generate random values from 0-24
             rand = new Random();
             randomDigitsList.clear();
             for (int i = 0; i < digitsNumber; i++) {
-                int r = rand.nextInt(9);
+                int r = rand.nextInt(10);
                 randomDigitsList.add(r);
             }
             count = 0;
@@ -163,7 +169,8 @@ public class NumberGameActivity extends AppCompatActivity {
                     number_one = colorButton;
                 } else if (click_two == 2) {
                     number_two = colorButton;
-                    if (parseInt(number_one.getText().toString())+parseInt(number_two.getText().toString())==searchNumber) {
+                    if ((exercises==0 && parseInt(number_one.getText().toString())+parseInt(number_two.getText().toString())==searchNumber) ||
+                            (exercises==1 && parseInt(number_one.getText().toString())*parseInt(number_two.getText().toString())==searchNumber)) {
                         countNumberPairs++;
                         number_one.setBackgroundColor(Color.GREEN);
                         number_two.setBackgroundColor(Color.GREEN);
