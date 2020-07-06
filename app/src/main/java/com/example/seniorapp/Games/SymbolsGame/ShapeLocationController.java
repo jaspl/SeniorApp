@@ -130,7 +130,7 @@ public class ShapeLocationController {
         }
     }
 
-    public void checkIfGameFinished() {
+    public Boolean checkIfGameFinished() {
         int count = 0;
         if (madeShapes.size() == destinationShapes.size()) {
             for (ShapeDetails shape : destinationShapes) {
@@ -144,8 +144,10 @@ public class ShapeLocationController {
         if (count == (destinationShapes.size())) {
             Log.d("gra zakończona", "udało ci się odgadnąć wszystkie pola");
             //TODO end game
+            return true;
         } else {
             Log.d("gra w toku", "liczba pkształtów celu jest równa twoim");
+            return false;
         }
     }
 

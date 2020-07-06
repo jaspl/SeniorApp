@@ -2,6 +2,8 @@ package com.example.seniorapp.Games.MemoryGame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.seniorapp.GameSelectorActivity;
 import com.example.seniorapp.Games.ColorGame.ColorGameActivity;
+import com.example.seniorapp.Games.NumberGame.NumberGameActivity;
 import com.example.seniorapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -147,6 +150,7 @@ private void setTime(int timeInSeconds){
             Log.d("koniec gry", "udało się zakończyć grę"+currentTime);
             countDownTimer.cancel();
             sendDataToDatabase();
+            getDialog();
             //TODO end game action
         }
     }
@@ -175,6 +179,7 @@ private void setTime(int timeInSeconds){
             public void onFinish() {
                 //TODO end game nie udało ci się
                 Log.d("koniec gry ","nie udało sie wygrać");
+                getDialog();
                 sendDataToDatabase();
             }
         };
@@ -190,8 +195,30 @@ private void setTime(int timeInSeconds){
         time.setText(min+":"+seconds);
     }
 
+    private void getDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Czy chcesz kontynuować grę ?")
+                .setCancelable(false)
+                .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent intent = new Intent(MemoryGameActivity.this, MemoryGameActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("Nie", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent intent = new Intent(MemoryGameActivity.this, GameSelectorActivity.class);
+                        startActivity(intent);
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.setTitle("?");
+        alert.show();
+    }
     private void sendDataToDatabase(){
 
     }
+
+
 
 }

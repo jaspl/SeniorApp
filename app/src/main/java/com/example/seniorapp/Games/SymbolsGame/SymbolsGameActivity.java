@@ -2,11 +2,14 @@ package com.example.seniorapp.Games.SymbolsGame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.seniorapp.GameSelectorActivity;
 import com.example.seniorapp.Games.ColorGame.ColorGameActivity;
+import com.example.seniorapp.Games.MemoryGame.MemoryGameActivity;
 import com.example.seniorapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -28,6 +32,8 @@ public class SymbolsGameActivity extends AppCompatActivity {
     int shapeNumner = 0;
     int colorNumner = 0;
     int toRemove = 0;
+    long startTime = 0;
+    long endTime = 0;
 
     //TODO set Timer
     @Override
@@ -53,6 +59,7 @@ public class SymbolsGameActivity extends AppCompatActivity {
                             public void run() {
                                 setAllImagesEnabled(true);
                                 clearBoard();
+                                setStartTime();
                                 //TODO start timer
                             }
                         });
@@ -122,6 +129,18 @@ public class SymbolsGameActivity extends AppCompatActivity {
         });
     }
 
+    private long getTime() {
+        return System.currentTimeMillis();
+    }
+
+    private void setStartTime() {
+        startTime = getTime();
+    }
+
+    private void setEndTime() {
+        endTime = getTime();
+    }
+
     private void setShapeButtonClickAction(final LinearLayout shapeButton) {
         shapeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,6 +182,10 @@ public class SymbolsGameActivity extends AppCompatActivity {
 
     private Button getHelpButton() {
         return findViewById(R.id.symbol_game_help_button);
+    }
+
+    private Button getSkipGameButton() {
+        return findViewById(R.id.symbol_game_skip_game);
     }
 
     private void ImagesSeter() {
@@ -242,6 +265,12 @@ public class SymbolsGameActivity extends AppCompatActivity {
 
     private void addShapeToList(int col, int row) {
         ShapeLocationController.getInstance().addNewShapeToList(new ShapeDetails(shapeNumner, colorNumner, col, row, toRemove));
+        if (ShapeLocationController.getInstance().checkIfGameFinished()) {
+            getDialog();
+            endGameTimer();
+            //TODO you win action
+
+        }
         clearBoard();
     }
 
@@ -272,7 +301,6 @@ public class SymbolsGameActivity extends AppCompatActivity {
         getEndGameButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //todo set end game action;
                 Intent intent = new Intent(SymbolsGameActivity.this, GameSelectorActivity.class);
                 startActivity(intent);
             }
@@ -282,6 +310,13 @@ public class SymbolsGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showHelpDIalog();
+            }
+        });
+
+        getSkipGameButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doYouWantToSkipTheGameDialog();
             }
         });
     }
@@ -343,6 +378,7 @@ public class SymbolsGameActivity extends AppCompatActivity {
     }
 
     private void setAllImagesEnabled(Boolean bool) {
+        getSkipGameButton().setEnabled(bool);
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 LinearLayout layout = findViewById(ShapeLocationController.getInstance().getLayoutIdByColRow(i, j));
@@ -351,5 +387,63 @@ public class SymbolsGameActivity extends AppCompatActivity {
         }
     }
 
+    private void getDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Czy chcesz kontynuować grę ?")
+                .setCancelable(false)
+                .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent intent = new Intent(SymbolsGameActivity.this, SymbolsGameActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("Nie", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent intent = new Intent(SymbolsGameActivity.this, GameSelectorActivity.class);
+                        startActivity(intent);
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.setTitle("?");
+        alert.show();
+    }
 
+    private void doYouWantToSkipTheGameDialog() {
+        setEndTime();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Czy pominąć grę i rozpocząć kolejną?")
+                .setCancelable(false)
+                .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent intent = new Intent(SymbolsGameActivity.this, SymbolsGameActivity.class);
+                        startActivity(intent);
+                        float time = (float) (endTime - startTime) / 1000;
+                        setStartTime();
+                        sendDatatadatabase(time, "nie udało się");
+                        //TODO wysłać dane do bazy o niewukonaniu zadania
+                    }
+                })
+                .setNegativeButton("Nie", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.setTitle("?");
+        alert.show();
+    }
+
+    private float endGameTimer() {
+        setEndTime();
+        float time = (float) (endTime - startTime) / 1000;
+        setStartTime();
+        sendDatatadatabase(time,"udało się");
+        return time;
+    }
+    private void sendDatatadatabase(float time, String status){
+
+            //TODO send data to database
+            Log.d("time", "sendDatatadatabase: "+time);
+
+    }
 }
