@@ -5,13 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.Spinner;
 
 import com.example.seniorapp.API.Api;
 import com.example.seniorapp.API.ApiClass;
 import com.example.seniorapp.Models.PatientsObject;
-import com.example.seniorapp.Patterns.Patient;
 import com.example.seniorapp.Utils.LevelGame;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -27,14 +30,38 @@ public class PatientInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_info);
+        setSpinner();
         Log.d("id", "" + new SharedPrefs(this).getId());
         getPatientInfo();
+        setAllButtonsOnClick();
     }
 
+    private void setAllButtonsOnClick() {
+        getEditButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO
+            }
+        });
+        getUpdatePatientButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkIfAllDataAreCorect();
+            }
+        });
+
+    }
+
+    private void setSpinner() {
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, getResources().getStringArray(R.array.lvls));
+        getPatientLvlSpinner().setAdapter(adapter);
+    }
 
     private void checkIfAllDataAreCorect() {
-        if (checkIfLoginIsOk() & checkIfNameIsOk() & checkIfSurnameIsOk() & checkPasswordsIsOk() & checkIfPeselIsOk()) {
-            getPatienstList();
+        if (checkIfNameIsOk() &
+                checkIfSurnameIsOk() &
+                checkIfPeselIsOk()) {
+            updatePatientInfo();
         }
     }
 
@@ -66,11 +93,12 @@ public class PatientInfoActivity extends AppCompatActivity {
     }
 
     private Boolean checkIfPeselIsOk() {
-        if (getPatientPeselEditText().getText().toString().equals("")) {
-            getPatientPeselInputText().setError("Nie podano Peselu");
+        resetAllErrors();
+        String value = getPatientPeselEditText().getText().toString();
+        if (getPatientPeselEditText().getText().toString().equals("") || !value.matches("\\d*")) {
+            getPatientPeselInputText().setError("Błędny pesel");
             return false;
         } else {
-            String value = getPatientPeselEditText().getText().toString();
             Long pesel = Long.parseLong(value);
             return true;
         }
@@ -101,12 +129,9 @@ public class PatientInfoActivity extends AppCompatActivity {
         return findViewById(R.id.patirnt_info_surname);
     }
 
-    private TextInputLayout getPatientLvlInputText() {
-        return findViewById(R.id.patirnt_info_lvl_error);
-    }
 
-    private EditText getPatientLvlEditText() {
-        return findViewById(R.id.patirnt_info_lvl);
+    private Spinner getPatientLvlSpinner() {
+        return findViewById(R.id.patirnt_info_lvl_spinner);
     }
 
     private TextInputLayout getPatientLoginInputText() {
@@ -141,6 +166,14 @@ public class PatientInfoActivity extends AppCompatActivity {
         return findViewById(R.id.patirnt_info_save_edited_data);
     }
 
+    private RadioButton getYesRadioButton() {
+        return findViewById(R.id.patirnt_info_MMSE_yes);
+    }
+
+    private RadioButton getNoRadioButton() {
+        return findViewById(R.id.patirnt_info_MMSE_no);
+    }
+
     private Button getEditButton() {
         return findViewById(R.id.patirnt_info_edit_button);
     }
@@ -154,7 +187,8 @@ public class PatientInfoActivity extends AppCompatActivity {
     }
 
     private PatientsObject getPatientObject() {
-        PatientsObject patientsObject = new PatientsObject(getPatientNameEditText().getText().toString(),
+        PatientsObject patientsObject = new PatientsObject(
+                getPatientNameEditText().getText().toString(),
                 getPatientSurnameEditText().getText().toString(),
                 getPatientLoginEditText().getText().toString(),
                 getPatientPasswordEditText().getText().toString(),
@@ -165,29 +199,27 @@ public class PatientInfoActivity extends AppCompatActivity {
         return patientsObject;
     }
 
-    private void getPatienstList() {
+    private void updatePatientInfo() {
         Api api = new ApiClass().getApi();
         ProgressDialog progressDialog = new ProgressDialogClass().CustomCallBack(this, "wczytywanie");
         progressDialog.show();
-        Call<List<PatientsObject>> call = api.getPatientList();
-        call.enqueue(new Callback<List<PatientsObject>>() {
+        Call<PatientsObject> call = api.updatePatientData(getUpdatedPatientInfo());
+        call.enqueue(new Callback<PatientsObject>() {
             @Override
-            public void onResponse(Call<List<PatientsObject>> call, Response<List<PatientsObject>> response) {
+            public void onResponse(Call<PatientsObject> call, Response<PatientsObject> response) {
                 if (!response.isSuccessful()) {
                     Log.d("code:", "" + response.code());
                     progressDialog.dismiss();
                 } else {
                     progressDialog.dismiss();
-                    List<PatientsObject> patientsObjectList = response.body();
-                    if (!checkIfThereIsNomeoneWithSameLogin(patientsObjectList)) {
-                        //TODO update patient data
-                    }
+                    PatientsObject patientsObject = response.body();
+                    getPatientInfo();
                 }
                 progressDialog.dismiss();
             }
 
             @Override
-            public void onFailure(Call<List<PatientsObject>> call, Throwable t) {
+            public void onFailure(Call<PatientsObject> call, Throwable t) {
                 progressDialog.dismiss();
             }
         });
@@ -207,7 +239,6 @@ public class PatientInfoActivity extends AppCompatActivity {
 
     private void getPatientInfo() {
         Api api = new ApiClass().getApi();
-        PatientsObject patientsObject = new PatientsObject();
         Call<PatientsObject> call = api.getPatientInfo(new SharedPrefs(this).getId());
         ProgressDialog progressDialog = new ProgressDialogClass().CustomCallBack(this, "wczytywanie");
         progressDialog.show();
@@ -239,21 +270,60 @@ public class PatientInfoActivity extends AppCompatActivity {
         getPatientLoginEditText().setText(patientsObject.getLogin());
         getPatientPeselEditText().setText(patientsObject.getPersonalIdentity());
         getPatientDescriptionEditText().setText(patientsObject.getInformation());
-        getPatientLvlEditText().setText(changeLvlToString(patientsObject.getLevel()));
-
+        setMMSEIfitsUsed(patientsObject.getLevelOfMMSE());
+        setLvlOnSpinner(patientsObject.getLevel());
     }
 
-    private String changeLvlToString(LevelGame levelGame) {
-        if (levelGame.toString().equals("VERYLOW")) {
-            return "Bardzo łatwy";
-        } else if (levelGame.toString().equals("EASY")) {
-            return "łatwy";
-        } else if (levelGame.toString().equals("MEDIUM")) {
-            return "średni";
-        } else if (levelGame.toString().equals("HIGH")) {
-            return "Trudny";
+    private PatientsObject getUpdatedPatientInfo() {
+        //TODO set
+        PatientsObject patientsObject = new PatientsObject(
+                getPatientNameEditText().getText().toString(),
+                getPatientSurnameEditText().getText().toString(),
+                getPatientLoginEditText().getText().toString(),
+                getPatientPeselEditText().getText().toString(),
+                getPatientDescriptionEditText().getText().toString(), getLevelGame(),
+                getSelectedMMSEYesOrNo()
+        );
+        patientsObject.setId(new SharedPrefs(this).getId());
+        return patientsObject;
+    }
+
+    private void setMMSEIfitsUsed(boolean bool) {
+        if (bool) {
+            getYesRadioButton().setChecked(true);
+            getNoRadioButton().setChecked(false);
         } else {
-            return "Bardzo trudny";
+            getYesRadioButton().setChecked(false);
+            getNoRadioButton().setChecked(true);
+        }
+    }
+
+    private LevelGame getLevelGame() {
+        int lvl = getPatientLvlSpinner().getSelectedItemPosition();
+        if (lvl == 0)return LevelGame.VERYLOW;
+        else if (lvl == 1) return LevelGame.EASY;
+        else if (lvl == 2) return LevelGame.MEDIUM;
+        else if (lvl == 3) return LevelGame.HIGH;
+        else  return LevelGame.HARD;
+    }
+
+    private Boolean getSelectedMMSEYesOrNo() {
+        if (getYesRadioButton().isSelected()) {
+            return true;
+        } else return false;
+    }
+
+    private void setLvlOnSpinner(LevelGame levelGame) {
+        if (levelGame.toString().equals("VERYLOW")) {
+            getPatientLvlSpinner().setSelection(0);
+        } else if (levelGame.toString().equals("EASY")) {
+            getPatientLvlSpinner().setSelection(1);
+        } else if (levelGame.toString().equals("MEDIUM")) {
+            getPatientLvlSpinner().setSelection(2);
+        } else if (levelGame.toString().equals("HIGH")) {
+            getPatientLvlSpinner().setSelection(3);
+        } else {
+            getPatientLvlSpinner().setSelection(4);
         }
     }
 

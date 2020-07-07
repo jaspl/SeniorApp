@@ -24,4 +24,11 @@
         <item>@drawable/triangle_shape</item>
         <item>@drawable/pentagon_shape</item>
     </array>
+    <array name="lvls">
+        <item>Bardzo łatwy</item>
+        <item>Łatwy</item>
+        <item>Śedni</item>
+        <item>Trudny</item>
+        <item>Bardzo trudny</item>
+    </array>
 </resources>
