@@ -10,5 +10,6 @@
     <color name="colorPurple">#9900cc</color>
     <color name="colorOrange">#ff9933</color>
     <color name="colorYellow">#ffff00</color>
+    <color name="secondaryTextColor">#8A000000</color>
 
 </resources>

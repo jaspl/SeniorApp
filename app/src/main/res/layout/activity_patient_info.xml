@@ -61,10 +61,10 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="500dp"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 app:errorEnabled="true"
                 tools:layout_editor_absoluteX="1dp"
-                tools:layout_editor_absoluteY="73dp"
-                android:visibility="gone">
+                tools:layout_editor_absoluteY="73dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/patirnt_info_MMSE"
@@ -73,20 +73,63 @@
                     android:hint="Wynik testu MMSE" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/patirnt_info_lvl_error"
+            <LinearLayout
+                android:layout_width="500dp"
+                android:layout_height="25dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="Poziom: "
+                    android:textSize="18sp" />
+
+                <Spinner
+                    android:id="@+id/patirnt_info_lvl_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:entries="@array/lvls" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="500dp"
                 android:layout_height="wrap_content"
-                app:errorEnabled="true"
-                tools:layout_editor_absoluteX="1dp"
-                tools:layout_editor_absoluteY="73dp">
+                android:orientation="vertical">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/patirnt_info_lvl"
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Poziom" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="match_parent"
+                    android:text="Czy test MMSE jest wykorzystywany, do dobierania poziomu gry?"
+                    android:textAlignment="center"
+                    android:textSize="18dp" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/patirnt_info_MMSE_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:text="tak" />
+
+                    <RadioButton
+                        android:id="@+id/patirnt_info_MMSE_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="nie" />
+                </RadioGroup>
+
+
+            </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/patirnt_info_login_error"

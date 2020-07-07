@@ -27,6 +27,16 @@ public class PatientsObject {
         this.level = level;
         this.levelOfMMSE = levelOfMMSE;
     }
+    public PatientsObject(String name, String surname, String login, String personalIdentity,
+                          String information, LevelGame level, boolean levelOfMMSE) {
+        this.name = name;
+        this.surname = surname;
+        this.login = login;
+        this.personalIdentity = personalIdentity;
+        this.information = information;
+        this.level = level;
+        this.levelOfMMSE = levelOfMMSE;
+    }
 
 
     public Integer getId() {
