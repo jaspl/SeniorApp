@@ -34,13 +34,16 @@ public class PatientInfoActivity extends AppCompatActivity {
         Log.d("id", "" + new SharedPrefs(this).getId());
         getPatientInfo();
         setAllButtonsOnClick();
+        setAllGapsEnabled(false);
     }
 
     private void setAllButtonsOnClick() {
         getEditButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
+                if (getPatientNameEditText().isEnabled()) {
+                    setAllGapsEnabled(false);
+                } else setAllGapsEnabled(true);
             }
         });
         getUpdatePatientButton().setOnClickListener(new View.OnClickListener() {
@@ -50,6 +53,26 @@ public class PatientInfoActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setAllGapsEnabled(Boolean bool) {
+        getPatientLvlSpinner().setEnabled(bool);
+        getYesRadioButton().setEnabled(bool);
+        getNoRadioButton().setEnabled(bool);
+        getPatientNameEditText().setEnabled(bool);
+        getPatientSurnameEditText().setEnabled(bool);
+        getPatientLoginEditText().setEnabled(bool);
+        getPatientPeselEditText().setEnabled(bool);
+        getPatientDescriptionEditText().setEnabled(bool);
+        if (bool) {
+            getUpdatePatientButton().setVisibility(View.VISIBLE);
+            getEditButton().setText("ANULUJ");
+
+        } else {
+            getUpdatePatientButton().setVisibility(View.GONE);
+            getEditButton().setText("EDYTUJ");
+            getPatientInfo();
+        }
     }
 
     private void setSpinner() {
@@ -300,11 +323,11 @@ public class PatientInfoActivity extends AppCompatActivity {
 
     private LevelGame getLevelGame() {
         int lvl = getPatientLvlSpinner().getSelectedItemPosition();
-        if (lvl == 0)return LevelGame.VERYLOW;
+        if (lvl == 0) return LevelGame.VERYLOW;
         else if (lvl == 1) return LevelGame.EASY;
         else if (lvl == 2) return LevelGame.MEDIUM;
         else if (lvl == 3) return LevelGame.HIGH;
-        else  return LevelGame.HARD;
+        else return LevelGame.HARD;
     }
 
     private Boolean getSelectedMMSEYesOrNo() {

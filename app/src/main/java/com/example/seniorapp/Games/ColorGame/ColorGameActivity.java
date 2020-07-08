@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Service;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -16,11 +17,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.seniorapp.GameSelectorActivity;
+import com.example.seniorapp.Games.GameResultSendToDatabase;
 import com.example.seniorapp.Games.SymbolsGame.SymbolsGameActivity;
+import com.example.seniorapp.Models.GamesObject;
 import com.example.seniorapp.R;
+import com.example.seniorapp.SharedPrefs;
+import com.example.seniorapp.Utils.NameGame;
+import com.example.seniorapp.Utils.StatusGame;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -42,27 +50,25 @@ public class ColorGameActivity extends AppCompatActivity {
     }
 
     private int getLvl() {
-        //TODO get lvl
-        int lvl = 5;
-        return lvl;
+        return new SharedPrefs(this).getlvlInInt();
     }
 
     private void setLvl() {
 
         switch (getLvl()) {
-            case 1:
+            case 0:
                 colorNumber = 3;
                 break;
-            case 2:
+            case 1:
                 colorNumber = 4;
                 break;
-            case 3:
+            case 2:
                 colorNumber = 5;
                 break;
-            case 4:
+            case 3:
                 colorNumber = 6;
                 break;
-            case 5:
+            case 4:
                 colorNumber = 7;
                 break;
         }
@@ -101,10 +107,10 @@ public class ColorGameActivity extends AppCompatActivity {
                 setAllButtonsEnabled(false);
                 setEndTime();
                 float reactionTimeInSeconds = (float) (endTime - startTime) / 1000;
-                sendResultToDatabase();
                 if (colorButton.getTag().equals(getColotText().getTag())) {
+
+                    sendResultToDatabase(StatusGame.SUCCESSFUL, reactionTimeInSeconds);
                     getStatusShower().setImageDrawable(getDrawable(R.drawable.green_circle));
-                    sendResultToDatabase();//TODO send correct
                     new java.util.Timer().schedule(
                             new java.util.TimerTask() {
                                 @Override
@@ -117,11 +123,12 @@ public class ColorGameActivity extends AppCompatActivity {
                                     });
                                 }
                             },
-                            1000
+                            2000
                     );
                 } else {
+                    sendResultToDatabase(StatusGame.FAILED, reactionTimeInSeconds);//TODO send incorrect
                     getStatusShower().setImageDrawable(getDrawable(R.drawable.red_circle));
-                    sendResultToDatabase();//TODO send incorrect
+
                     new java.util.Timer().schedule(
                             new java.util.TimerTask() {
                                 @Override
@@ -134,7 +141,7 @@ public class ColorGameActivity extends AppCompatActivity {
                                     });
                                 }
                             },
-                            1000
+                            2000
                     );
                 }
             }
@@ -148,8 +155,17 @@ public class ColorGameActivity extends AppCompatActivity {
         setStartTime();
     }
 
-    private void sendResultToDatabase() {
-        //TODO
+    private void sendResultToDatabase(StatusGame statusGame, float reactionTimeInSeconds) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+        Date date = java.util.Calendar.getInstance().getTime();
+        new GameResultSendToDatabase().sendDataToDatabase(ColorGameActivity.this,
+                new GamesObject(statusGame,
+                        String.valueOf(reactionTimeInSeconds),
+                        simpleDateFormat.format(date),
+                        new SharedPrefs(getApplicationContext()).getId(),
+                        new SharedPrefs(getApplicationContext()).getLvl(),
+                        NameGame.COLORS
+                ));
     }
 
     private void setColorText(int colorNumber) {

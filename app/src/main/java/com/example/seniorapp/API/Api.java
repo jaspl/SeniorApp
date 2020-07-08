@@ -1,7 +1,9 @@
 package com.example.seniorapp.API;
 
 import com.example.seniorapp.Models.CaregiversObject;
+import com.example.seniorapp.Models.GamesObject;
 import com.example.seniorapp.Models.PatientsObject;
+import com.example.seniorapp.Models.TestMmseObject;
 import com.example.seniorapp.Patterns.Patient;
 
 import java.util.List;
@@ -33,8 +35,14 @@ public interface Api {
     @POST("patients/add")
     Call<PatientsObject> addPatient(@Body PatientsObject patientsObject);
 
+    @POST("testMmse/add")
+    Call<TestMmseObject> addMMSE(@Body TestMmseObject testMmseObject);
+
+    @POST("games/add")
+    Call<GamesObject> addGame(@Body GamesObject gamesObject);
+
     @PUT("patients/put/update")
-    Call<PatientsObject> updatePatientData( @Body PatientsObject patientsObject);
+    Call<PatientsObject> updatePatientData(@Body PatientsObject patientsObject);
 
 
 }

@@ -19,11 +19,18 @@ import android.widget.Toast;
 
 import com.example.seniorapp.GameSelectorActivity;
 import com.example.seniorapp.Games.ColorGame.ColorGameActivity;
+import com.example.seniorapp.Games.GameResultSendToDatabase;
 import com.example.seniorapp.Games.MemoryGame.MemoryGameActivity;
+import com.example.seniorapp.Models.GamesObject;
 import com.example.seniorapp.R;
+import com.example.seniorapp.SharedPrefs;
+import com.example.seniorapp.Utils.NameGame;
+import com.example.seniorapp.Utils.StatusGame;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class SymbolsGameActivity extends AppCompatActivity {
@@ -35,7 +42,6 @@ public class SymbolsGameActivity extends AppCompatActivity {
     long startTime = 0;
     long endTime = 0;
 
-    //TODO set Timer
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +66,6 @@ public class SymbolsGameActivity extends AppCompatActivity {
                                 setAllImagesEnabled(true);
                                 clearBoard();
                                 setStartTime();
-                                //TODO start timer
                             }
                         });
                     }
@@ -341,19 +346,17 @@ public class SymbolsGameActivity extends AppCompatActivity {
     }
 
     private int getLvl() {
-        //TODO get lvl from serwer
-        int lvl = 5;
-        return lvl;
+       return new SharedPrefs(this).getlvlInInt();
     }
 
     private void setLvlParams(int lvl) {
-        if (lvl == 1) {
+        if (lvl == 0) {
             setGameLvl(1, 3);
-        } else if (lvl == 2) {
+        } else if (lvl == 1) {
             setGameLvl(2, 3);
-        } else if (lvl == 3) {
+        } else if (lvl == 2) {
             setGameLvl(3, 3);
-        } else if (lvl == 4) {
+        } else if (lvl == 3) {
             setGameLvl(3, 4);
         } else {
             setGameLvl(4, 4);
@@ -419,7 +422,7 @@ public class SymbolsGameActivity extends AppCompatActivity {
                         startActivity(intent);
                         float time = (float) (endTime - startTime) / 1000;
                         setStartTime();
-                        sendDatatadatabase(time, "nie udało się");
+                        sendDatatadatabase(time, StatusGame.FAILED);
                         //TODO wysłać dane do bazy o niewukonaniu zadania
                     }
                 })
@@ -437,13 +440,19 @@ public class SymbolsGameActivity extends AppCompatActivity {
         setEndTime();
         float time = (float) (endTime - startTime) / 1000;
         setStartTime();
-        sendDatatadatabase(time,"udało się");
+        sendDatatadatabase(time,StatusGame.SUCCESSFUL);
         return time;
     }
-    private void sendDatatadatabase(float time, String status){
-
-            //TODO send data to database
-            Log.d("time", "sendDatatadatabase: "+time);
-
+    private void sendDatatadatabase(float time, StatusGame status){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+        Date date = java.util.Calendar.getInstance().getTime();
+        new GameResultSendToDatabase().sendDataToDatabase(SymbolsGameActivity.this,
+                new GamesObject(status,
+                        String.valueOf(time),
+                        simpleDateFormat.format(date),
+                        new SharedPrefs(getApplicationContext()).getId(),
+                        new SharedPrefs(getApplicationContext()).getLvl(),
+                        NameGame.SYMBOLS
+                ));
     }
 }

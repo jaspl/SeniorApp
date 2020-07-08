@@ -57,8 +57,11 @@ public class PatientsAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(activity.getBaseContext(), SelectedPatientActivity.class);
+                intent.putExtra("name",patientObjects.get(i).getName());
+                intent.putExtra("surname",patientObjects.get(i).getSurname());
                 activity.startActivity(intent);
                 new SharedPrefs(activity).saveId(patientObjects.get(i).getId());
+                new SharedPrefs(activity).saveLvl(patientObjects.get(i).getLevel());
                 int id = new SharedPrefs(activity).getId();
                 Log.d("id", ""+id);
             }

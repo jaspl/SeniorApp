@@ -6,12 +6,12 @@ public class TestMmseObject {
     private int id;
     private int result;
     private String time;
-    private Date date;
+    private String date;
     private int idPatients;
 
     public TestMmseObject() { }
 
-    public TestMmseObject(int result, String time, Date date, int idPatients) {
+    public TestMmseObject(int result, String time, String date, int idPatients) {
         this.result =result;
         this.time = time;
         this.date = date;
@@ -43,11 +43,11 @@ public class TestMmseObject {
         this.time = time;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

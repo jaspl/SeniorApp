@@ -5,32 +5,48 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.seniorapp.API.Api;
+import com.example.seniorapp.API.ApiClass;
 import com.example.seniorapp.Controlles.MMSEQuestionController;
+import com.example.seniorapp.Models.PatientsObject;
+import com.example.seniorapp.Models.TestMmseObject;
 import com.example.seniorapp.Patterns.MMSEQuestion;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MmseActivity extends AppCompatActivity {
     int questionCount = 0;
     int pointGetCounter = 0;
     List<MMSEQuestion> questionList = new MMSEQuestionController().getQuestionList();
-
+    long startTime = 0;
+    long endTime = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mmse);
         setButtonsOnClics();
+        startTime = System.currentTimeMillis();
     }
 
     private void setButtonsOnClics() {
@@ -90,13 +106,19 @@ public class MmseActivity extends AppCompatActivity {
                     if (value >= 0 && value <= questionList.get(questionCount).getMaxPointAmount()) {
                         questionCount++;
                         pointGetCounter += value;
+                        endTime = System.currentTimeMillis();
+                        float time = (endTime-startTime)/1000;
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+                        Date date=java.util.Calendar.getInstance().getTime();
+                        TestMmseObject testMmseObject = new TestMmseObject(pointGetCounter,String.valueOf(time),simpleDateFormat.format(date),new SharedPrefs(getApplicationContext()).getId());
+                        sendResultToSerwer(testMmseObject);
                         pointGetError.setError(null);
                         final AlertDialog.Builder dialog = new AlertDialog.Builder(MmseActivity.this);
                         dialog.setMessage("Wynik pacjenta jest równy: " + pointGetCounter + ". \n Czy chcesz wykorzystać wynik testu w celu dobrania poziomu trudności gier?").setCancelable(false);
                         dialog.setPositiveButton("TAK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                sendResultToSerwer();
+                                //TODO zrobić aby zmieniło się ze btrac wynik mmse do doboru poziomu
                             }
                         });
                         dialog.setNegativeButton("NIE", new DialogInterface.OnClickListener() {
@@ -150,7 +172,51 @@ public class MmseActivity extends AppCompatActivity {
         maxPointToGet.setText("" + question.getMaxPointAmount());
     }
 
-    private void sendResultToSerwer() {
-        //TODO
+    private void sendResultToSerwer(TestMmseObject testMmseObject) {
+            Api api = new ApiClass().getApi();
+            ProgressDialog progressDialog = new ProgressDialogClass().CustomCallBack(this, "wczytywanie");
+            progressDialog.show();
+            Call<TestMmseObject> call = api.addMMSE(testMmseObject);
+            call.enqueue(new Callback<TestMmseObject>() {
+                @Override
+                public void onResponse(Call<TestMmseObject> call, Response<TestMmseObject> response) {
+                    if (!response.isSuccessful()) {
+                        Log.d("code:", "" + response.code());
+                        //TODO error handler when sth i wrong
+                        progressDialog.dismiss();
+                    } else {
+                        progressDialog.dismiss();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<TestMmseObject> call, Throwable t) {
+                    progressDialog.dismiss();
+                }
+            });
+    }
+//TODO do id mmse set lvl
+    private void setMMSETrueOrFalse(TestMmseObject testMmseObject) {
+        Api api = new ApiClass().getApi();
+        ProgressDialog progressDialog = new ProgressDialogClass().CustomCallBack(this, "wczytywanie");
+        progressDialog.show();
+        Call<TestMmseObject> call = api.addMMSE(testMmseObject);
+        call.enqueue(new Callback<TestMmseObject>() {
+            @Override
+            public void onResponse(Call<TestMmseObject> call, Response<TestMmseObject> response) {
+                if (!response.isSuccessful()) {
+                    Log.d("code:", "" + response.code());
+                    //TODO error handler when sth i wrong
+                    progressDialog.dismiss();
+                } else {
+                    progressDialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TestMmseObject> call, Throwable t) {
+                progressDialog.dismiss();
+            }
+        });
     }
 }
