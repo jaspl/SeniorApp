@@ -14,21 +14,30 @@ import android.widget.TextView;
 
 import com.example.seniorapp.GameSelectorActivity;
 import com.example.seniorapp.Games.ColorGame.ColorGameActivity;
+import com.example.seniorapp.Games.GameResultSendToDatabase;
 import com.example.seniorapp.Games.NumberGame.NumberGameActivity;
+import com.example.seniorapp.Models.GamesObject;
 import com.example.seniorapp.R;
+import com.example.seniorapp.SharedPrefs;
+import com.example.seniorapp.Utils.NameGame;
+import com.example.seniorapp.Utils.StatusGame;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MemoryGameActivity extends AppCompatActivity {
     boolean cardClicked = false;
     Card currentCard;
     int currentTime = 0;
     CountDownTimer countDownTimer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memory_game);
         final MemoryGameController memoryGameController = new MemoryGameController();
-        memoryGameController.setLvl(1);
+        memoryGameController.setLvl(new SharedPrefs(this).getlvlInInt());
         setButtonsClicks();
         setAllCardsEnabled(false);
         setTime(memoryGameController.timeInSeconds);
@@ -49,12 +58,13 @@ public class MemoryGameActivity extends AppCompatActivity {
                 5000
         );
     }
-private void setTime(int timeInSeconds){
 
-    int min = timeInSeconds/60;
-    int seconds = timeInSeconds%60;
-    updateTimer(min,seconds);
-}
+    private void setTime(int timeInSeconds) {
+
+        int min = timeInSeconds / 60;
+        int seconds = timeInSeconds % 60;
+        updateTimer(min, seconds);
+    }
 
     private void setButtonsClicks() {
         getEndGameButton().setOnClickListener(new View.OnClickListener() {
@@ -125,8 +135,7 @@ private void setTime(int timeInSeconds){
             checkIfGameEnded();
             resetBoard();
             setAllCardsEnabled(true);
-        }
-        else{
+        } else {
             new java.util.Timer().schedule(
                     new java.util.TimerTask() {
                         @Override
@@ -147,9 +156,9 @@ private void setTime(int timeInSeconds){
 
     private void checkIfGameEnded() {
         if (MemoryGameDataHolder.getInstance().cards.size() == 0) {
-            Log.d("koniec gry", "udało się zakończyć grę"+currentTime);
+            Log.d("koniec gry", "udało się zakończyć grę" + currentTime);
             countDownTimer.cancel();
-            sendDataToDatabase();
+            sendDataToDatabase(StatusGame.SUCCESSFUL,currentTime);
             getDialog();
             //TODO end game action
         }
@@ -166,33 +175,32 @@ private void setTime(int timeInSeconds){
     private void startTimer(int timeInSeconds) {
         currentTime = timeInSeconds;
 
-        countDownTimer= new CountDownTimer(timeInSeconds * 1000, 1000) {
+        countDownTimer = new CountDownTimer(timeInSeconds * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 currentTime--;
-                int min = currentTime/60;
-                int seconds = currentTime%60;
-                updateTimer(min,seconds);
+                int min = currentTime / 60;
+                int seconds = currentTime % 60;
+                updateTimer(min, seconds);
             }
 
             @Override
             public void onFinish() {
-                //TODO end game nie udało ci się
-                Log.d("koniec gry ","nie udało sie wygrać");
+                Log.d("koniec gry ", "nie udało sie wygrać");
                 getDialog();
-                sendDataToDatabase();
+                sendDataToDatabase(StatusGame.FAILED,currentTime);
             }
         };
         countDownTimer.start();
     }
 
-    private void updateTimer(int min,int sec) {
+    private void updateTimer(int min, int sec) {
         String seconds = String.valueOf(sec);
         TextView time = findViewById(R.id.memory_game_time_text);
-        if(sec<10){
-            seconds = "0"+seconds;
+        if (sec < 10) {
+            seconds = "0" + seconds;
         }
-        time.setText(min+":"+seconds);
+        time.setText(min + ":" + seconds);
     }
 
     private void getDialog() {
@@ -215,10 +223,19 @@ private void setTime(int timeInSeconds){
         alert.setTitle("?");
         alert.show();
     }
-    private void sendDataToDatabase(){
 
+    private void sendDataToDatabase(StatusGame statusGame, float reactionTimeInSeconds) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+        Date date = java.util.Calendar.getInstance().getTime();
+        new GameResultSendToDatabase().sendDataToDatabase(MemoryGameActivity.this,
+                new GamesObject(statusGame,
+                        String.valueOf(reactionTimeInSeconds),
+                        simpleDateFormat.format(date),
+                        new SharedPrefs(getApplicationContext()).getId(),
+                        new SharedPrefs(getApplicationContext()).getLvl(),
+                        NameGame.MEMORY
+                ));
     }
-
 
 
 }

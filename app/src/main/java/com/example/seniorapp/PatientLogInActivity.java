@@ -74,6 +74,7 @@ public class PatientLogInActivity extends AppCompatActivity {
                     startActivity(intent);
                     PatientsObject patientsObject= response.body();
                     new SharedPrefs(getApplicationContext()).saveId(patientsObject.getId());
+                    new SharedPrefs(getApplicationContext()).saveLvl(patientsObject.getLevel());
                     Log.d("login", new SharedPrefs(getApplicationContext()).getId()+"");
                     progressDialog.dismiss();
                 }

@@ -53,19 +53,19 @@ public class MemoryGameController {
     }
 
     public void setLvl(int lvl) {
-        if (lvl == 1) {
+        if (lvl == 0) {
             pairsNr = 4;
             timeInSeconds = 120;
             setGame(4, 1, 2);
-        } else if (lvl == 2) {
+        } else if (lvl == 1) {
             pairsNr = 6;
             timeInSeconds = 120;
             setGame(6, 1, 3);
-        } else if (lvl == 3) {
+        } else if (lvl == 2) {
             pairsNr = 6;
             timeInSeconds = 90;
             setGame(6, 1, 3);
-        } else if (lvl == 4) {
+        } else if (lvl == 3) {
             pairsNr = 8;
             timeInSeconds = 90;
             setGame(8, 0, 3);

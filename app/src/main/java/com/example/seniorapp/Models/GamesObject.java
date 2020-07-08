@@ -13,14 +13,14 @@ public class GamesObject {
     private Integer id;
     private StatusGame status;
     private String time;
-    private Date date;
+    private String date;
     private Integer idPatients;
     private LevelGame level;
     private NameGame name;
 
     public GamesObject() { }
 
-    public GamesObject(StatusGame status, String time, Date date, Integer idPatients, LevelGame level, NameGame name) {
+    public GamesObject(StatusGame status, String time, String date, Integer idPatients, LevelGame level, NameGame name) {
         this.status = status;
         this.time = time;
         this.date = date;
@@ -54,11 +54,11 @@ public class GamesObject {
         this.time = time;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
