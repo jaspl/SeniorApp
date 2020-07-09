@@ -35,6 +35,7 @@ public class PatientInfoActivity extends AppCompatActivity {
         getPatientInfo();
         setAllButtonsOnClick();
         setAllGapsEnabled(false);
+
     }
 
     private void setAllButtonsOnClick() {
@@ -57,12 +58,12 @@ public class PatientInfoActivity extends AppCompatActivity {
 
     private void setAllGapsEnabled(Boolean bool) {
         getPatientLvlSpinner().setEnabled(bool);
-        getYesRadioButton().setEnabled(bool);
-        getNoRadioButton().setEnabled(bool);
         getPatientNameEditText().setEnabled(bool);
         getPatientSurnameEditText().setEnabled(bool);
+        getYesRadioButton().setEnabled(false);
+        getNoRadioButton().setEnabled(false);
         getPatientLoginEditText().setEnabled(bool);
-        getPatientPeselEditText().setEnabled(bool);
+        getPatientPeselEditText().setEnabled(false);
         getPatientDescriptionEditText().setEnabled(bool);
         if (bool) {
             getUpdatePatientButton().setVisibility(View.VISIBLE);
