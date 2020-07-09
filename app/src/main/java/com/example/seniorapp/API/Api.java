@@ -5,6 +5,8 @@ import com.example.seniorapp.Models.GamesObject;
 import com.example.seniorapp.Models.PatientsObject;
 import com.example.seniorapp.Models.TestMmseObject;
 import com.example.seniorapp.Patterns.Patient;
+import com.example.seniorapp.Utils.LevelGame;
+import com.example.seniorapp.Utils.NameGame;
 
 import java.util.List;
 
@@ -29,6 +31,9 @@ public interface Api {
     @GET("patients/get/all")
     Call<List<PatientsObject>> getPatientList();
 
+    @GET("games/get/all")
+    Call<List<GamesObject>> getGames(@Query("Patient id") int id, @Query("Game name") NameGame nameGame);
+
     @POST("caregivers/add")
     Call<CaregiversObject> createCaregiver(@Body CaregiversObject caregiversObject);
 
@@ -44,5 +49,9 @@ public interface Api {
     @PUT("patients/put/update")
     Call<PatientsObject> updatePatientData(@Body PatientsObject patientsObject);
 
+    @PUT("patients/delete")
+    Call<PatientsObject> deletePatient(@Query("patient id") int id);
 
+    @PUT("patients/put/updateLevelFormMMSE")
+    Call<PatientsObject> updateLevelMMSE(@Query("patient id") int id, @Query("level Of MMSE") boolean mmseToLvl, @Query("level of Game") LevelGame levelGame);
 }

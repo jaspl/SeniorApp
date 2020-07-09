@@ -3,14 +3,23 @@ package com.example.seniorapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.example.seniorapp.API.Api;
+import com.example.seniorapp.API.ApiClass;
+import com.example.seniorapp.Models.PatientsObject;
+import com.example.seniorapp.Statistics.StatisticActivity;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SelectedPatientActivity extends AppCompatActivity {
 
@@ -58,6 +67,7 @@ public class SelectedPatientActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO statistic
+                startActivity(new Intent(SelectedPatientActivity.this, StatisticActivity.class));
             }
         });
     }
@@ -82,6 +92,27 @@ public class SelectedPatientActivity extends AppCompatActivity {
     }
 
     private void removaPatientFromSerwer() {
-        //TODO remove patient from serwer
+        Api api = new ApiClass().getApi();
+        ProgressDialog progressDialog = new ProgressDialogClass().CustomCallBack(this, "wczytywanie");
+        progressDialog.show();
+        Call<PatientsObject> call = api.deletePatient(new SharedPrefs(this).getId());
+        call.enqueue(new Callback<PatientsObject>() {
+            @Override
+            public void onResponse(Call<PatientsObject> call, Response<PatientsObject> response) {
+                if (!response.isSuccessful()) {
+                    Log.d("code:", "" + response.code());
+                    //TODO error handler when sth i wrong
+                    progressDialog.dismiss();
+                } else {
+                    progressDialog.dismiss();
+                    startActivity(new Intent(SelectedPatientActivity.this, PatientListActivity.class));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PatientsObject> call, Throwable t) {
+                progressDialog.dismiss();
+            }
+        });
     }
 }
