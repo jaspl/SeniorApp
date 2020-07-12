@@ -1,128 +1,137 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CareTakerRegistrationActivity">
 
-    <LinearLayout
-        android:layout_width="400dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:orientation="vertical">
+    <include
+        android:id="@+id/include3"
+        layout="@layout/end_game_button" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/add_new_patient_name_input_layout"
-            android:layout_width="match_parent"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="400dp"
             android:layout_height="wrap_content"
-            android:padding="20dp"
-            app:errorEnabled="true">
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/add_new_patient_name"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/add_new_patient_name_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Imię" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:padding="20dp"
+                app:errorEnabled="true">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/add_new_patient_surname_input_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            app:errorEnabled="true">
+                <EditText
+                    android:id="@+id/add_new_patient_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Imię" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:id="@+id/add_new_patient_surname"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/add_new_patient_surname_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nazwisko" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:padding="20dp"
+                app:errorEnabled="true">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/add_new_patient_login_error"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            app:errorEnabled="true">
+                <EditText
+                    android:id="@+id/add_new_patient_surname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nazwisko" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:id="@+id/add_new_patient_login"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/add_new_patient_login_error"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Login" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:padding="20dp"
+                app:errorEnabled="true">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/add_new_patient_password_input_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            app:passwordToggleEnabled="true"
-            app:errorEnabled="true">
+                <EditText
+                    android:id="@+id/add_new_patient_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Login" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:id="@+id/add_new_patient_password"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/add_new_patient_password_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Hasło"
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:padding="20dp"
+                app:errorEnabled="true"
+                app:passwordToggleEnabled="true">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/add_new_patient_repeat_password_input_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            app:passwordToggleEnabled="true"
-            app:errorEnabled="true">
+                <EditText
+                    android:id="@+id/add_new_patient_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Hasło"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:id="@+id/add_new_patient_repeat_password"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/add_new_patient_repeat_password_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Powtórz hasło"
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:padding="20dp"
+                app:errorEnabled="true"
+                app:passwordToggleEnabled="true">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/add_new_patient_PESEL_input_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            app:errorEnabled="true">
+                <EditText
+                    android:id="@+id/add_new_patient_repeat_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Powtórz hasło"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:id="@+id/add_new_patient_PESEL"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/add_new_patient_PESEL_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="PESEL"
-                android:inputType="number"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:padding="20dp"
+                app:errorEnabled="true">
+
+                <EditText
+                    android:id="@+id/add_new_patient_PESEL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="PESEL"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            app:errorEnabled="true">
-
-            <EditText
-                android:id="@+id/add_new_patient_description_of_patient_condition"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Opis stanu pacjenta" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:padding="20dp"
+                app:errorEnabled="true">
+
+                <EditText
+                    android:id="@+id/add_new_patient_description_of_patient_condition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Opis stanu pacjenta" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-        <Button
-            android:id="@+id/add_new_patient_button_to_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="?android:attr/textColorLink"
-            android:padding="10dp"
-            android:text="Dodaj nowego pacjenta" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/add_new_patient_button_to_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="?android:attr/textColorLink"
+                android:padding="10dp"
+                android:text="Dodaj nowego pacjenta" />
+        </LinearLayout>
 
-</ScrollView>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

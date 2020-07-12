@@ -43,7 +43,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/coose_your_game_statistic"
-        app:layout_constraintVertical_bias="0.15">
+        app:layout_constraintVertical_bias="0.16000003">
 
         <ImageView
             android:layout_width="match_parent"
@@ -163,9 +163,11 @@
 
     <TextView
         android:id="@+id/coose_your_game_statistic"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginStart="100dp"
         android:text="WYBIERZ GRĘ, KTÓREJ STATUSTYKI CHESZ ZOBACZYĆ"
         android:textAlignment="center"
         android:textSize="30dp"

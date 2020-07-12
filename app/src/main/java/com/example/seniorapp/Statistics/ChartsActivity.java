@@ -136,41 +136,12 @@ public class ChartsActivity extends AppCompatActivity {
     private void getAllResults(NameGame nameGame) {
         Log.d("TAG", "getAllResults: " + nameGame);
 
-        Api api = new ApiClass().getApi();
-        ProgressDialog progressDialog = new ProgressDialogClass().CustomCallBack(this, "wczytywanie");
-        progressDialog.show();
-        Call<List<GamesObject>> call = api.getGames(new SharedPrefs(getApplicationContext()).getId(),nameGame);
-        call.enqueue(new Callback<List<GamesObject>>() {
-            @Override
-            public void onResponse(Call<List<GamesObject>> call, Response<List<GamesObject>> response) {
-                if (!response.isSuccessful()) {
-                    Log.d("code:", "" + response.code());
-                    //TODO error handler when sth i wrong
-                    progressDialog.dismiss();
-
-                } else {
-                    progressDialog.dismiss();
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            List<GamesObject> gamesObjects = response.body();
-                            setChart(gamesObjects);
-                            Intent intent = getIntent();
-                            String name = intent.getStringExtra("gameTitle");
-                            setChartTitle(name);
-                            Log.d("code:", "" + response.code());
-                        }
-                    });
-
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<GamesObject>> call, Throwable t) {
-                progressDialog.dismiss();
-            }
-        });
-   }
+        Intent intent = getIntent();
+        Bundle args = intent.getBundleExtra("BUNDLE");
+        ArrayList<GamesObject> gamesObjects = (ArrayList<GamesObject>) args.getSerializable("ARRAYLIST");
+        setChart(gamesObjects);
+        String name = intent.getStringExtra("gameTitle");
+        setChartTitle(name);
+    }
 
 }
