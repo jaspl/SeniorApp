@@ -5,10 +5,11 @@ import com.example.seniorapp.Utils.LevelGame;
 import com.example.seniorapp.Utils.NameGame;
 import com.example.seniorapp.Utils.StatusGame;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.jar.Attributes;
 
-public class GamesObject {
+public class GamesObject implements Serializable {
 
     private Integer id;
     private StatusGame status;

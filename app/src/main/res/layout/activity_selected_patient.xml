@@ -1,51 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
-    tools:context=".SelectedPatientActivity"
-    android:gravity="center">
+    tools:context=".SelectedPatientActivity">
 
-    <TextView
-        android:id="@+id/selected_patient"
+    <include
+        android:id="@+id/include3"
+        layout="@layout/end_game_button" />
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Pacjent: "
-        android:textSize="30dp"
-        android:gravity="center"/>
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/selected_patient_statistics_button"
-        android:layout_marginTop="20dp"
-        android:layout_width="500dp"
-        android:layout_height="wrap_content"
-        android:text="Zonacz statystyki"
-        android:background="@color/colorAccent"/>
+        <TextView
+            android:id="@+id/selected_patient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Pacjent: "
+            android:textSize="30dp" />
 
-    <Button
-        android:id="@+id/selected_patient_info_button"
-        android:layout_marginTop="20dp"
-        android:layout_width="500dp"
-        android:layout_height="wrap_content"
-        android:text="Ogólne informacje o pacjencie"
-        android:background="@color/colorAccent"/>
+        <Button
+            android:id="@+id/selected_patient_statistics_button"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorAccent"
+            android:text="Zonacz statystyki" />
 
-    <Button
-        android:id="@+id/selected_patient_MMSE_button"
-        android:layout_marginTop="20dp"
-        android:layout_width="500dp"
-        android:layout_height="wrap_content"
-        android:text="Wykonaj test MMSE"
-        android:background="@color/colorAccent"/>
+        <Button
+            android:id="@+id/selected_patient_info_button"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorAccent"
+            android:text="Ogólne informacje o pacjencie" />
 
-    <Button
-        android:id="@+id/selected_patient_delete_patient_button"
-        android:layout_marginTop="20dp"
-        android:layout_width="500dp"
-        android:layout_height="wrap_content"
-        android:text="Usuń pacjenta"
-        android:background="@color/colorAccent"/>
+        <Button
+            android:id="@+id/selected_patient_MMSE_button"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorAccent"
+            android:text="Wykonaj test MMSE" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/selected_patient_delete_patient_button"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorAccent"
+            android:text="Usuń pacjenta" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
