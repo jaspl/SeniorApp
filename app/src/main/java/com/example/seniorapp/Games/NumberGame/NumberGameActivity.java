@@ -304,7 +304,7 @@ public class NumberGameActivity extends AppCompatActivity {
                 simpleDateFormat.format(date),
                 new SharedPrefs(getApplicationContext()).getId(),
                 new SharedPrefs(getApplicationContext()).getLvl(),
-                NameGame.COLORS));
+                NameGame.NUMBERPAIR));
         call.enqueue(new Callback<GamesObject>() {
             @Override
             public void onResponse(Call<GamesObject> call, Response<GamesObject> response) {
