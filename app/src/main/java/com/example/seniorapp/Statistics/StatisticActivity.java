@@ -16,6 +16,7 @@ import com.example.seniorapp.API.ApiClass;
 import com.example.seniorapp.Models.GamesObject;
 import com.example.seniorapp.ProgressDialogClass;
 import com.example.seniorapp.R;
+import com.example.seniorapp.SelectedPatientActivity;
 import com.example.seniorapp.SharedPrefs;
 import com.example.seniorapp.Utils.LevelGame;
 import com.example.seniorapp.Utils.NameGame;
@@ -87,6 +88,7 @@ public class StatisticActivity extends AppCompatActivity {
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent( StatisticActivity.this, SelectedPatientActivity.class));
             }
         });
     }

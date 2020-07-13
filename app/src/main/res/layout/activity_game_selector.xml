@@ -6,194 +6,201 @@
     android:layout_height="match_parent"
     tools:context=".GameSelectorActivity">
 
-    <LinearLayout
-        android:id="@+id/log_out"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="@+id/number_game"
-        app:layout_constraintTop_toTopOf="@+id/hangman">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_launcher_background"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="WYLOGUJ" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/memory_game"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="40dp"
-        android:orientation="vertical"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coose_your_game"
-        app:layout_constraintVertical_bias="0.15">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_launcher_background" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="MEMORY" />
-
-        <Button
-            android:id="@+id/memory_how_to_play_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="JAK GRAĆ" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/symbol_game"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toStartOf="@+id/number_game"
-        app:layout_constraintStart_toEndOf="@+id/memory_game"
-        app:layout_constraintTop_toTopOf="@+id/memory_game">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_launcher_background" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="GRA W SYMBOLE" />
-
-        <Button
-            android:id="@+id/symbol_game_how_to_play_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="JAK GRAĆ" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/number_game"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginEnd="40dp"
-        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/symbol_game">
+        app:layout_constraintHorizontal_bias="0.774"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/coose_your_game">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_launcher_background" />
+        <LinearLayout
+            android:id="@+id/log_out"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="@+id/number_game"
+            app:layout_constraintTop_toTopOf="@+id/hangman">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="GRA W CYFRY" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_launcher_background" />
 
-        <Button
-            android:id="@+id/number_game_how_to_play_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="JAK GRAĆ" />
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="WYLOGUJ" />
 
-    <LinearLayout
-        android:id="@+id/color_game"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="@+id/memory_game"
-        app:layout_constraintTop_toBottomOf="@+id/memory_game">
 
-        <ImageView
+        </LinearLayout>
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_launcher_background" />
+        <LinearLayout
+            android:id="@+id/memory_game"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="40dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="GRA W KOLORY" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_launcher_background" />
 
-        <Button
-            android:id="@+id/color_game_how_to_play_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="JAK GRAĆ" />
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="MEMORY" />
 
-    <LinearLayout
-        android:id="@+id/hangman"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="@+id/symbol_game"
-        app:layout_constraintTop_toTopOf="@+id/color_game">
+            <Button
+                android:id="@+id/memory_how_to_play_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="JAK GRAĆ" />
+        </LinearLayout>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_launcher_background" />
+        <LinearLayout
+            android:id="@+id/symbol_game"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/number_game"
+            app:layout_constraintStart_toEndOf="@+id/memory_game"
+            app:layout_constraintTop_toTopOf="@+id/memory_game">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="WISIELEC" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_launcher_background" />
 
-        <Button
-            android:id="@+id/hungman_how_to_play_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="JAK GRAĆ" />
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="GRA W SYMBOLE" />
+
+            <Button
+                android:id="@+id/symbol_game_how_to_play_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="JAK GRAĆ" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/number_game"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginEnd="40dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/symbol_game">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_launcher_background" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="GRA W CYFRY" />
+
+            <Button
+                android:id="@+id/number_game_how_to_play_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="JAK GRAĆ" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/color_game"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="@+id/memory_game"
+            app:layout_constraintTop_toBottomOf="@+id/memory_game">
+
+            <ImageView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_launcher_background" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="GRA W KOLORY" />
+
+            <Button
+                android:id="@+id/color_game_how_to_play_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="JAK GRAĆ" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/hangman"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="@+id/symbol_game"
+            app:layout_constraintTop_toTopOf="@+id/color_game">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_launcher_background" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="WISIELEC" />
+
+            <Button
+                android:id="@+id/hungman_how_to_play_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="JAK GRAĆ" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/coose_your_game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="350dp"
-        android:layout_marginEnd="100dp"
         android:layout_marginStart="100dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="100dp"
         android:text="WYBIERZ GRĘ, W KTÓRĄ CHCESZ ZAGRAĆ"
         android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

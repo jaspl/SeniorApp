@@ -37,10 +37,9 @@ public class SelectedPatientActivity extends AppCompatActivity {
     }
 
     private void setPatientName() {
-        Intent intent = getIntent();
-        String patientFullName = intent.getStringExtra("name") + " " + intent.getStringExtra("surname");
+        String name  = new SharedPrefs(this).getName();
         TextView textView = findViewById(R.id.selected_patient);
-        textView.append(patientFullName);
+        textView.append(name);
     }
 
     private void setButtonsOnClics() {
