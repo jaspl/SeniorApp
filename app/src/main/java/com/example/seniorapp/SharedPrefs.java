@@ -13,6 +13,7 @@ public class SharedPrefs {
     private static final String PREFERENCES_NAME = "PatientInfo";
     private static final String ID = "id";
     private static final String LVL = "lvl";
+    private static final String PatientName = "fullName";
 
     public SharedPrefs(Context context) {
         preferences = context.getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
@@ -24,6 +25,12 @@ public class SharedPrefs {
         preferencesEditor.commit();
     }
 
+    public void saveName(String name) {
+        SharedPreferences.Editor preferencesEditor = preferences.edit();
+        preferencesEditor.putString(PatientName, name);
+        preferencesEditor.commit();
+    }
+
     public void saveLvlInSharedPrefs(int lvl) {
         SharedPreferences.Editor preferencesEditor = preferences.edit();
         preferencesEditor.putInt(LVL, lvl);
@@ -32,6 +39,10 @@ public class SharedPrefs {
 
     public int getId() {
         return preferences.getInt(ID, 0);
+    }
+
+    public String getName() {
+        return preferences.getString(PatientName, " ");
     }
 
     public int getlvlInInt() {
@@ -51,11 +62,11 @@ public class SharedPrefs {
         else saveLvlInSharedPrefs(4);
     }
 
-    public LevelGame getLvl(){
-        if (getlvlInInt()==0) return LevelGame.VERYLOW;
-        else if (getlvlInInt()==1) return LevelGame.EASY;
-        else if (getlvlInInt()==1) return LevelGame.MEDIUM;
-        else if (getlvlInInt()==3) return LevelGame.HIGH;
+    public LevelGame getLvl() {
+        if (getlvlInInt() == 0) return LevelGame.VERYLOW;
+        else if (getlvlInInt() == 1) return LevelGame.EASY;
+        else if (getlvlInInt() == 1) return LevelGame.MEDIUM;
+        else if (getlvlInInt() == 3) return LevelGame.HIGH;
         else return LevelGame.HARD;
     }
 
