@@ -14,13 +14,15 @@ public class StartInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setOnClicks();
+    }
 
+    @Override
+    public void onBackPressed() {
     }
 
     private void setOnClicks() {
         LinearLayout pupil = findViewById(R.id.log_in_as_pupil);
         pupil.setOnClickListener(new View.OnClickListener() {
-            //TODO change activity to change
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StartInActivity.this, PatientLogInActivity.class);

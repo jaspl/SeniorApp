@@ -143,7 +143,6 @@ public class ShapeLocationController {
         }
         if (count == (destinationShapes.size())) {
             Log.d("gra zakończona", "udało ci się odgadnąć wszystkie pola");
-            //TODO end game
             return true;
         } else {
             Log.d("gra w toku", "liczba pkształtów celu jest równa twoim");

@@ -8,6 +8,7 @@ import com.example.seniorapp.API.Api;
 import com.example.seniorapp.API.ApiClass;
 import com.example.seniorapp.Models.GamesObject;
 import com.example.seniorapp.Models.TestMmseObject;
+import com.example.seniorapp.NoSerwerConnectionErrorDialog;
 import com.example.seniorapp.ProgressDialogClass;
 
 import retrofit2.Call;
@@ -25,7 +26,7 @@ public class GameResultSendToDatabase {
             public void onResponse(Call<GamesObject> call, Response<GamesObject> response) {
                 if (!response.isSuccessful()) {
                     Log.d("code:", "" + response.code());
-                    //TODO error handler when sth i wrong
+                    noSerwerConnectionError(context);
                     progressDialog.dismiss();
                 } else {
                     progressDialog.dismiss();
@@ -35,8 +36,11 @@ public class GameResultSendToDatabase {
             @Override
             public void onFailure(Call<GamesObject> call, Throwable t) {
                 progressDialog.dismiss();
-                //TODO
+                noSerwerConnectionError(context);
             }
         });
+    }
+    private void noSerwerConnectionError(Context context) {
+        new NoSerwerConnectionErrorDialog(context).startErrorDialog().show();
     }
 }

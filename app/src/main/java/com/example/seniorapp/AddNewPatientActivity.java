@@ -18,6 +18,7 @@ import com.example.seniorapp.Adapters.PatientsAdapter;
 import com.example.seniorapp.Models.PatientsObject;
 import com.example.seniorapp.Patterns.Patient;
 import com.example.seniorapp.Utils.LevelGame;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
@@ -35,12 +36,23 @@ public class AddNewPatientActivity extends AppCompatActivity {
         setButtonsOnClick();
     }
 
+    @Override
+    public void onBackPressed() {
+    }
+
     private void setButtonsOnClick() {
         getAddPatientButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 resetAllErrors();
                 checkIfAllDataAreCorect();
+            }
+        });
+        getExitButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddNewPatientActivity.this, PatientListActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -163,6 +175,10 @@ public class AddNewPatientActivity extends AppCompatActivity {
         return findViewById(R.id.add_new_patient_button_to_add);
     }
 
+    private FloatingActionButton getExitButton() {
+        return findViewById(R.id.end_game_floatig_buton);
+    }
+
     private void resetAllErrors() {
         getPatientSecondPasswordInputText().setError(null);
         getPatientPasswordInputText().setError(null);
@@ -193,7 +209,7 @@ public class AddNewPatientActivity extends AppCompatActivity {
             public void onResponse(Call<PatientsObject> call, Response<PatientsObject> response) {
                 if (!response.isSuccessful()) {
                     Log.d("code:", "" + response.code());
-                    //TODO error handler when sth i wrong
+                    noSerwerConnectionError();
                     progressDialog.dismiss();
                 } else {
                     progressDialog.dismiss();
@@ -204,8 +220,12 @@ public class AddNewPatientActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<PatientsObject> call, Throwable t) {
                 progressDialog.dismiss();
+                noSerwerConnectionError();
             }
         });
+    }
+    private void noSerwerConnectionError() {
+        new NoSerwerConnectionErrorDialog(this).startErrorDialog().show();
     }
 
     private void getPatienstList() {

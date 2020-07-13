@@ -18,11 +18,13 @@ import com.example.seniorapp.Games.MemoryGame.MemoryGameActivity;
 import com.example.seniorapp.Games.SymbolsGame.SymbolsGameActivity;
 import com.example.seniorapp.Models.CaregiversObject;
 import com.example.seniorapp.Models.PatientsObject;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.PATCH;
 
 public class PatientLogInActivity extends AppCompatActivity {
 
@@ -33,12 +35,28 @@ public class PatientLogInActivity extends AppCompatActivity {
         setButtonsOnClics();
     }
 
+    @Override
+    public void onBackPressed() {
+    }
+
+
     private void setButtonsOnClics() {
         Button patientLogInButton = findViewById(R.id.patient_log_in_button);
         patientLogInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              logIn();
+                logIn();
+               // startActivity(new Intent(PatientLogInActivity.this,GameSelectorActivity.class));
+            }
+
+        });
+
+        FloatingActionButton exitButton = findViewById(R.id.end_game_floatig_buton);
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PatientLogInActivity.this, StartInActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -52,40 +70,45 @@ public class PatientLogInActivity extends AppCompatActivity {
         EditText login = findViewById(R.id.patient_log_in_login);
         return login.getText().toString();
     }
-    private void setError(){
+
+    private void setError() {
         TextInputLayout textInputLayout = findViewById(R.id.patient_log_in_password_error);
         textInputLayout.setError("Login lub hasło jest nieprawidłowe!");
     }
-    private void logIn(){
+
+    private void logIn() {
         Api api = new ApiClass().getApi();
-        Call<PatientsObject> call = api.getPatient(getLogin(),getPassword());
-        ProgressDialog progressDialog = new ProgressDialogClass().CustomCallBack(this,"wczytywanie");
+        Call<PatientsObject> call = api.getPatient(getLogin(), getPassword());
+        ProgressDialog progressDialog = new ProgressDialogClass().CustomCallBack(this, "wczytywanie");
         progressDialog.show();
         call.enqueue(new Callback<PatientsObject>() {
             @Override
             public void onResponse(Call<PatientsObject> call, Response<PatientsObject> response) {
-
                 if (!response.isSuccessful()) {
                     Log.d("code:", "" + response.code());
                     setError();
                     progressDialog.dismiss();
-                }else {
+                } else {
                     Intent intent = new Intent(PatientLogInActivity.this, GameSelectorActivity.class);
                     startActivity(intent);
-                    PatientsObject patientsObject= response.body();
+                    PatientsObject patientsObject = response.body();
                     new SharedPrefs(getApplicationContext()).saveId(patientsObject.getId());
                     new SharedPrefs(getApplicationContext()).saveLvl(patientsObject.getLevel());
-                    Log.d("login", new SharedPrefs(getApplicationContext()).getId()+"");
+                    Log.d("login", new SharedPrefs(getApplicationContext()).getId() + "");
                     progressDialog.dismiss();
                 }
             }
 
             @Override
             public void onFailure(Call<PatientsObject> call, Throwable t) {
-                //TODO set error dialog
-                Log.d("caretaker logIn", "onFailure: "+t.getMessage());
+                Log.d("caretaker logIn", "onFailure: " + t.getMessage());
                 progressDialog.dismiss();
+                noSerwerConnectionError();
             }
         });
+    }
+
+    private void noSerwerConnectionError() {
+        new NoSerwerConnectionErrorDialog(this).startErrorDialog().show();
     }
 }

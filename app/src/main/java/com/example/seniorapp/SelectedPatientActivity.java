@@ -16,6 +16,7 @@ import com.example.seniorapp.API.Api;
 import com.example.seniorapp.API.ApiClass;
 import com.example.seniorapp.Models.PatientsObject;
 import com.example.seniorapp.Statistics.StatisticActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,7 +30,10 @@ public class SelectedPatientActivity extends AppCompatActivity {
         setContentView(R.layout.activity_selected_patient);
         setButtonsOnClics();
         setPatientName();
+    }
 
+    @Override
+    public void onBackPressed() {
     }
 
     private void setPatientName() {
@@ -44,6 +48,7 @@ public class SelectedPatientActivity extends AppCompatActivity {
         Button infoButton = findViewById(R.id.selected_patient_info_button);
         Button MMSEButton = findViewById(R.id.selected_patient_MMSE_button);
         Button statisticButton = findViewById(R.id.selected_patient_statistics_button);
+        FloatingActionButton exitButton = findViewById(R.id.end_game_floatig_buton);
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,6 +73,14 @@ public class SelectedPatientActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //TODO statistic
                 startActivity(new Intent(SelectedPatientActivity.this, StatisticActivity.class));
+            }
+        });
+
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SelectedPatientActivity.this,PatientListActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -103,6 +116,7 @@ public class SelectedPatientActivity extends AppCompatActivity {
                     Log.d("code:", "" + response.code());
                     //TODO error handler when sth i wrong
                     progressDialog.dismiss();
+                    noSerwerConnectionError();
                 } else {
                     progressDialog.dismiss();
                     startActivity(new Intent(SelectedPatientActivity.this, PatientListActivity.class));
@@ -112,7 +126,11 @@ public class SelectedPatientActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<PatientsObject> call, Throwable t) {
                 progressDialog.dismiss();
+                noSerwerConnectionError();
             }
         });
+    }
+    private void noSerwerConnectionError() {
+        new NoSerwerConnectionErrorDialog(this).startErrorDialog().show();
     }
 }

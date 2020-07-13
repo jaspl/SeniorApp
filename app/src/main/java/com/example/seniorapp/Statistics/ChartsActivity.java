@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.example.seniorapp.API.Api;
 import com.example.seniorapp.API.ApiClass;
@@ -17,6 +18,7 @@ import com.example.seniorapp.PatientListActivity;
 import com.example.seniorapp.ProgressDialogClass;
 import com.example.seniorapp.R;
 import com.example.seniorapp.SharedPrefs;
+import com.example.seniorapp.StartInActivity;
 import com.example.seniorapp.Utils.LevelGame;
 import com.example.seniorapp.Utils.NameGame;
 import com.example.seniorapp.Utils.StatusGame;
@@ -28,6 +30,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,23 +48,30 @@ public class ChartsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_charts);
         Intent intent = getIntent();
         NameGame nameGame = (NameGame) intent.getSerializableExtra("gameName");
-
+        setExitButton();
         getAllResults(nameGame);
     }
 
+    private void setExitButton() {
+        FloatingActionButton exitButton = findViewById(R.id.end_game_floatig_buton);
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ChartsActivity.this, StatisticActivity.class));
+            }
+        });
+    }
 
-
-    private void setChart( List<GamesObject> gamesObjects) {
+    private void setChart(List<GamesObject> gamesObjects) {
         List<Entry> succesful = new ArrayList<>();
         List<Entry> failed = new ArrayList<>();
-
         for (int i = 0; i < gamesObjects.size(); i++) {
             if (!(i == 0) && !(i == gamesObjects.size() - 1)) {
                 if (!(gamesObjects.get(i).getLevel().equals(gamesObjects.get(i - 1).getLevel()))) {
-                    setLimitLineX(i,gamesObjects.get(i).getLevel());
+                    setLimitLineX(i, gamesObjects.get(i).getLevel());
                 }
-            }else if ( i ==0 ){
-                setLimitLineX(i,gamesObjects.get(i).getLevel());
+            } else if (i == 0) {
+                setLimitLineX(i, gamesObjects.get(i).getLevel());
             }
             if (gamesObjects.get(i).getStatus().equals(StatusGame.SUCCESSFUL)) {
                 succesful.add(new Entry(i, Float.parseFloat(gamesObjects.get(i).getTime())));
@@ -111,26 +121,6 @@ public class ChartsActivity extends AppCompatActivity {
         description.setText(name);
         description.setTextSize(20);
         getLineChart().setDescription(description);
-    }
-
-    private List<GamesObject> getAllSuccessfulFromList(List<GamesObject> gamesObjects) {
-        List<GamesObject> listOfSuccessfulGameObjects = new ArrayList<>();
-        for (int i = 0; i < gamesObjects.size(); i++) {
-            if (gamesObjects.get(i).getStatus().equals(StatusGame.SUCCESSFUL)) {
-                listOfSuccessfulGameObjects.add(gamesObjects.get(i));
-            }
-        }
-        return listOfSuccessfulGameObjects;
-    }
-
-    private List<GamesObject> getAllFailedFromList(List<GamesObject> gamesObjects) {
-        List<GamesObject> listOfFailedGameObjects = new ArrayList<>();
-        for (int i = 0; i < gamesObjects.size(); i++) {
-            if (gamesObjects.get(i).getStatus().equals(StatusGame.FAILED)) {
-                listOfFailedGameObjects.add(gamesObjects.get(i));
-            }
-        }
-        return listOfFailedGameObjects;
     }
 
     private void getAllResults(NameGame nameGame) {
