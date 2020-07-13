@@ -50,6 +50,9 @@ public class MmseActivity extends AppCompatActivity {
         setButtonsOnClics();
         startTime = System.currentTimeMillis();
     }
+    @Override
+    public void onBackPressed() {
+    }
 
     private void setButtonsOnClics() {
         setLayoutForQuestion(questionList.get(questionCount));
@@ -185,7 +188,7 @@ public class MmseActivity extends AppCompatActivity {
             public void onResponse(Call<TestMmseObject> call, Response<TestMmseObject> response) {
                 if (!response.isSuccessful()) {
                     Log.d("code:", "" + response.code());
-                    //TODO error handler when sth i wrong
+                   noSerwerConnectionError();
                     progressDialog.dismiss();
                 } else {
                     progressDialog.dismiss();
@@ -195,6 +198,7 @@ public class MmseActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<TestMmseObject> call, Throwable t) {
                 progressDialog.dismiss();
+                noSerwerConnectionError();
             }
         });
     }
@@ -210,8 +214,8 @@ public class MmseActivity extends AppCompatActivity {
             public void onResponse(Call<PatientsObject> call, Response<PatientsObject> response) {
                 if (!response.isSuccessful()) {
                     Log.d("code:", "" + response.code());
-                    //TODO error handler when sth i wrong
                     progressDialog.dismiss();
+                    noSerwerConnectionError();
                 } else {
                     progressDialog.dismiss();
                 }
@@ -220,8 +224,12 @@ public class MmseActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<PatientsObject> call, Throwable t) {
                 progressDialog.dismiss();
+                noSerwerConnectionError();
             }
         });
+    }
+    private void noSerwerConnectionError() {
+        new NoSerwerConnectionErrorDialog(this).startErrorDialog().show();
     }
 
     private LevelGame parseMMSEToLvl() {

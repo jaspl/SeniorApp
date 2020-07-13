@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.seniorapp.API.Api;
 import com.example.seniorapp.API.ApiClass;
@@ -35,12 +36,22 @@ public class PatientListActivity extends AppCompatActivity {
         context = this;
         getPatienstList();
         setButtonAcctions();
+        setLogOutText();
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         getPatienstList();
+    }
+
+    private void setLogOutText(){
+        TextView textView = findViewById(R.id.exit_text);
+        textView.setText("WYLOGUJ");
     }
 
     private void setButtonAcctions() {
@@ -51,10 +62,22 @@ public class PatientListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        getExitButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PatientListActivity.this, StartInActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private FloatingActionButton getFloattingButtonAddPatient() {
         return findViewById(R.id.add_new_patient_floating_button);
+    }
+
+    private FloatingActionButton getExitButton() {
+        return findViewById(R.id.end_game_floatig_buton);
     }
 
     private void getPatienstList() {
@@ -69,6 +92,7 @@ public class PatientListActivity extends AppCompatActivity {
                 if (!response.isSuccessful()) {
                     Log.d("code:", "" + response.code());
                     progressDialog.dismiss();
+                    noSerwerConnectionError();
                 } else {
                     progressDialog.dismiss();
                     List<PatientsObject> patientsObjectList = response.body();
@@ -81,8 +105,12 @@ public class PatientListActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<PatientsObject>> call, Throwable t) {
                 progressDialog.dismiss();
+                noSerwerConnectionError();
             }
         });
+    }
+    private void noSerwerConnectionError() {
+        new NoSerwerConnectionErrorDialog(this).startErrorDialog().show();
     }
 
 }

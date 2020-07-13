@@ -59,6 +59,10 @@ public class MemoryGameActivity extends AppCompatActivity {
         );
     }
 
+    @Override
+    public void onBackPressed() {
+    }
+
     private void setTime(int timeInSeconds) {
 
         int min = timeInSeconds / 60;
@@ -70,7 +74,6 @@ public class MemoryGameActivity extends AppCompatActivity {
         getEndGameButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO set Exit action
                 Intent intent = new Intent(MemoryGameActivity.this, GameSelectorActivity.class);
                 startActivity(intent);
             }
@@ -158,9 +161,8 @@ public class MemoryGameActivity extends AppCompatActivity {
         if (MemoryGameDataHolder.getInstance().cards.size() == 0) {
             Log.d("koniec gry", "udało się zakończyć grę" + currentTime);
             countDownTimer.cancel();
-            sendDataToDatabase(StatusGame.SUCCESSFUL,currentTime);
-            getDialog();
-            //TODO end game action
+            sendDataToDatabase(StatusGame.SUCCESSFUL, currentTime);
+            getDialog("Brawo! Zadanie rozwiązano poprawnie");
         }
     }
 
@@ -187,8 +189,8 @@ public class MemoryGameActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 Log.d("koniec gry ", "nie udało sie wygrać");
-                getDialog();
-                sendDataToDatabase(StatusGame.FAILED,currentTime);
+                getDialog("Zadanie wykonane nieprawidłowo");
+                sendDataToDatabase(StatusGame.FAILED, currentTime);
             }
         };
         countDownTimer.start();
@@ -203,7 +205,7 @@ public class MemoryGameActivity extends AppCompatActivity {
         time.setText(min + ":" + seconds);
     }
 
-    private void getDialog() {
+    private void getDialog(String title) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Czy chcesz kontynuować grę ?")
                 .setCancelable(false)
@@ -220,7 +222,7 @@ public class MemoryGameActivity extends AppCompatActivity {
                     }
                 });
         AlertDialog alert = builder.create();
-        alert.setTitle("?");
+        alert.setTitle(title);
         alert.show();
     }
 

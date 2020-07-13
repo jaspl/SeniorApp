@@ -3,6 +3,7 @@ package com.example.seniorapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.example.seniorapp.API.Api;
 import com.example.seniorapp.API.ApiClass;
 import com.example.seniorapp.Models.PatientsObject;
 import com.example.seniorapp.Utils.LevelGame;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
@@ -35,7 +37,10 @@ public class PatientInfoActivity extends AppCompatActivity {
         getPatientInfo();
         setAllButtonsOnClick();
         setAllGapsEnabled(false);
+    }
 
+    @Override
+    public void onBackPressed() {
     }
 
     private void setAllButtonsOnClick() {
@@ -53,7 +58,13 @@ public class PatientInfoActivity extends AppCompatActivity {
                 checkIfAllDataAreCorect();
             }
         });
-
+        getExitButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PatientInfoActivity.this, SelectedPatientActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setAllGapsEnabled(Boolean bool) {
@@ -202,6 +213,10 @@ public class PatientInfoActivity extends AppCompatActivity {
         return findViewById(R.id.patirnt_info_edit_button);
     }
 
+    private FloatingActionButton getExitButton() {
+        return findViewById(R.id.end_game_floatig_buton);
+    }
+
     private void resetAllErrors() {
         getPatientPasswordInputText().setError(null);
         getPatientLoginInputText().setError(null);
@@ -234,6 +249,7 @@ public class PatientInfoActivity extends AppCompatActivity {
                 if (!response.isSuccessful()) {
                     Log.d("code:", "" + response.code());
                     progressDialog.dismiss();
+                    noSerwerConnectionError();
                 } else {
                     progressDialog.dismiss();
                     PatientsObject patientsObject = response.body();
@@ -245,8 +261,12 @@ public class PatientInfoActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<PatientsObject> call, Throwable t) {
                 progressDialog.dismiss();
+                noSerwerConnectionError();
             }
         });
+    }
+    private void noSerwerConnectionError() {
+        new NoSerwerConnectionErrorDialog(this).startErrorDialog().show();
     }
 
     private Boolean checkIfThereIsNomeoneWithSameLogin(List<PatientsObject> patientsObjectList) {
@@ -284,6 +304,7 @@ public class PatientInfoActivity extends AppCompatActivity {
                 //TODO set error dialog
                 Log.d("caretaker logIn", "onFailure: " + t.getMessage());
                 progressDialog.dismiss();
+                noSerwerConnectionError();
             }
         });
     }

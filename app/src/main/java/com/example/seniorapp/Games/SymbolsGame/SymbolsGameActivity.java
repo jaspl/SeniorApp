@@ -49,6 +49,10 @@ public class SymbolsGameActivity extends AppCompatActivity {
         gameInitialization();
     }
 
+    @Override
+    public void onBackPressed() {
+    }
+
     private void gameInitialization() {
 
         setLvlParams(getLvl());
@@ -81,7 +85,7 @@ public class SymbolsGameActivity extends AppCompatActivity {
             ImageView colorImage = new ImageView(this);
             colorImage.setBackgroundColor(colors.getColor(i, 0));
             colorImage.setPadding(10, 10, 10, 10);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(60, 60);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(150, 150);
             colorImage.setLayoutParams(layoutParams);
             setColorButtonClickAction(colorButton);
             colorButton.addView(colorImage);
@@ -96,7 +100,7 @@ public class SymbolsGameActivity extends AppCompatActivity {
             ImageView colorImage = new ImageView(this);
             colorImage.setImageDrawable(shapes.getDrawable(i));
             colorImage.setPadding(10, 10, 10, 10);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(85, 85);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(150, 150);
             colorImage.setLayoutParams(layoutParams);
             setShapeButtonClickAction(shapeButton);
             shapeButton.addView(colorImage);
@@ -106,7 +110,7 @@ public class SymbolsGameActivity extends AppCompatActivity {
 
     private LinearLayout linearButtonCreator(LinearLayout colorByttonsLayout, int tagid) {
         LinearLayout colorButton = new LinearLayout(this);
-        colorButton.setLayoutParams(new LinearLayout.LayoutParams(85, 85));
+        colorButton.setLayoutParams(new LinearLayout.LayoutParams(150, 150));
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) colorButton.getLayoutParams();
         params.setMargins(10, 0, 10, 0);
         colorButton.setLayoutParams(params);
@@ -273,7 +277,6 @@ public class SymbolsGameActivity extends AppCompatActivity {
         if (ShapeLocationController.getInstance().checkIfGameFinished()) {
             getDialog();
             endGameTimer();
-            //TODO you win action
 
         }
         clearBoard();
@@ -346,7 +349,7 @@ public class SymbolsGameActivity extends AppCompatActivity {
     }
 
     private int getLvl() {
-       return new SharedPrefs(this).getlvlInInt();
+        return new SharedPrefs(this).getlvlInInt();
     }
 
     private void setLvlParams(int lvl) {
@@ -407,7 +410,7 @@ public class SymbolsGameActivity extends AppCompatActivity {
                     }
                 });
         AlertDialog alert = builder.create();
-        alert.setTitle("?");
+        alert.setTitle("Brawo! Zadanie rozwiązano poprawnie");
         alert.show();
     }
 
@@ -423,7 +426,6 @@ public class SymbolsGameActivity extends AppCompatActivity {
                         float time = (float) (endTime - startTime) / 1000;
                         setStartTime();
                         sendDatatadatabase(time, StatusGame.FAILED);
-                        //TODO wysłać dane do bazy o niewukonaniu zadania
                     }
                 })
                 .setNegativeButton("Nie", new DialogInterface.OnClickListener() {
@@ -440,10 +442,11 @@ public class SymbolsGameActivity extends AppCompatActivity {
         setEndTime();
         float time = (float) (endTime - startTime) / 1000;
         setStartTime();
-        sendDatatadatabase(time,StatusGame.SUCCESSFUL);
+        sendDatatadatabase(time, StatusGame.SUCCESSFUL);
         return time;
     }
-    private void sendDatatadatabase(float time, StatusGame status){
+
+    private void sendDatatadatabase(float time, StatusGame status) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
         Date date = java.util.Calendar.getInstance().getTime();
         new GameResultSendToDatabase().sendDataToDatabase(SymbolsGameActivity.this,

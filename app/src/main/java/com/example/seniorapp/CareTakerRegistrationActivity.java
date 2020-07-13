@@ -3,6 +3,7 @@ package com.example.seniorapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import com.example.seniorapp.API.Api;
 import com.example.seniorapp.API.ApiClass;
 import com.example.seniorapp.Models.CaregiversObject;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 import retrofit2.Call;
@@ -26,6 +28,9 @@ public class CareTakerRegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_care_taker_registration);
         setButtonsOnClicks();
     }
+    @Override
+    public void onBackPressed() {
+    }
 
     private void setButtonsOnClicks() {
         getRegisterButon().setOnClickListener(new View.OnClickListener() {
@@ -35,6 +40,14 @@ public class CareTakerRegistrationActivity extends AppCompatActivity {
                 checkIfAllDataCorrect();
             }
         });
+        getExitButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CareTakerRegistrationActivity.this,CareTakerLogInActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void checkIfAllDataCorrect() {
@@ -46,6 +59,10 @@ public class CareTakerRegistrationActivity extends AppCompatActivity {
 
     private Button getRegisterButon() {
         return findViewById(R.id.care_taker_button_to_register);
+    }
+
+    private FloatingActionButton getExitButton() {
+        return findViewById(R.id.end_game_floatig_buton);
     }
 
     private EditText getNameEditText() {
@@ -155,8 +172,8 @@ public class CareTakerRegistrationActivity extends AppCompatActivity {
             public void onResponse(Call<CaregiversObject> call, Response<CaregiversObject> response) {
                 if (!response.isSuccessful()) {
                     Log.d("code:", "" + response.code());
-                    //TODO error handler when sth i wrong
                     progressDialog.dismiss();
+                    noSerwerConnectionError();
                 }
                 progressDialog.dismiss();
             }
@@ -165,11 +182,13 @@ public class CareTakerRegistrationActivity extends AppCompatActivity {
             public void onFailure(Call<CaregiversObject> call, Throwable t) {
                 Log.d("msg:", t.getMessage());
                 progressDialog.dismiss();
-                //TODO det error dialog
+                noSerwerConnectionError();
             }
         });
     }
-
+    private void noSerwerConnectionError() {
+        new NoSerwerConnectionErrorDialog(this).startErrorDialog().show();
+    }
 
     private void resetAllErrors() {
         getSecondPasswordInputText().setError(null);

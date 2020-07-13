@@ -205,12 +205,12 @@
 
         <Button
             android:id="@+id/symbol_game_remove_shape_button"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:text="X"
-            android:textSize="60sp" />
+            android:textSize="25sp" />
 
         <LinearLayout
             android:id="@+id/symbol_game_shape_button"

@@ -24,6 +24,9 @@ public class GameSelectorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_selector);
         setAllButtonsClick();
     }
+    @Override
+    public void onBackPressed() {
+    }
 
     private void setAllButtonsClick() {
         LinearLayout hangman = findViewById(R.id.hangman);
@@ -59,7 +62,6 @@ public class GameSelectorActivity extends AppCompatActivity {
         numberGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO change activity
                 startActivity(new Intent(GameSelectorActivity.this, NumberGameActivity.class));
             }
         });
@@ -67,7 +69,6 @@ public class GameSelectorActivity extends AppCompatActivity {
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO log Out Action
                 startActivity(new Intent(GameSelectorActivity.this, StartInActivity.class));
             }
         });
@@ -108,7 +109,6 @@ public class GameSelectorActivity extends AppCompatActivity {
         });
 
     }
-
 
     private void setDialog(String message, String title) {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
