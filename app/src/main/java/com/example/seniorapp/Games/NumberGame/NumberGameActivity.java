@@ -1,6 +1,8 @@
 package com.example.seniorapp.Games.NumberGame;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,20 +12,31 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.example.seniorapp.API.Api;
+import com.example.seniorapp.API.ApiClass;
 import com.example.seniorapp.GameSelectorActivity;
+import com.example.seniorapp.Models.GamesObject;
+import com.example.seniorapp.Models.PairModel;
+import com.example.seniorapp.NoSerwerConnectionErrorDialog;
+import com.example.seniorapp.ProgressDialogClass;
 import com.example.seniorapp.R;
+import com.example.seniorapp.SharedPrefs;
+import com.example.seniorapp.Utils.NameGame;
+import com.example.seniorapp.Utils.StatusGame;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import static java.lang.Integer.*;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class NumberGameActivity extends AppCompatActivity {
     int digitsNumber = 0;
@@ -38,6 +51,7 @@ public class NumberGameActivity extends AppCompatActivity {
     long startTime = System.currentTimeMillis();
     long endTime = 0;
     TextView countNumberPair = null;
+    List<PairModel> positions = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,31 +67,29 @@ public class NumberGameActivity extends AppCompatActivity {
     }
 
     private int getLvl() {
-        //TODO get lvl
-        int lvl = 4;
-        return lvl;
+        return new SharedPrefs(this).getlvlInInt();
     }
 
     private void setLvl() {
 
         switch (getLvl()) {
-            case 1:
+            case 0:
                 digitsNumber = 10;
                 exercises = 0;
                 break;
-            case 2:
+            case 1:
                 digitsNumber = 15;
                 exercises = 0;
                 break;
-            case 3:
+            case 2:
                 digitsNumber = 20;
                 exercises = 0;
                 break;
-            case 4:
+            case 3:
                 digitsNumber = 15;
                 exercises = 1;
                 break;
-            case 5:
+            case 4:
                 digitsNumber = 20;
                 exercises = 1;
                 break;
@@ -115,7 +127,7 @@ public class NumberGameActivity extends AppCompatActivity {
             numberButton.setLayoutParams(params);
             int j = randomDigitsList.get(i);
             numberButton.setText(String.valueOf(j));
-            numberButton.setTag(j);
+            numberButton.setTag(i);
             gridLayout.addView(numberButton);
             setNumberButtonClickAction(numberButton);
         }
@@ -129,13 +141,18 @@ public class NumberGameActivity extends AppCompatActivity {
             //generate random values from 0-24
             rand = new Random();
             randomDigitsList.clear();
+            positions.clear();
             for (int i = 0; i < digitsNumber; i++) {
                 randomDigitsList.add(rand.nextInt(10));
             }
             count = 0;
-            for (int i = 1; i < digitsNumber; i++) {
-                if (randomDigitsList.get(i - 1) + randomDigitsList.get(i) == searchNumber) {
-                    count++;
+
+            for (int i = 0; i < digitsNumber; i++) {
+                for (int j = i+1; j < digitsNumber; j++) {
+                    if (randomDigitsList.get(i) + randomDigitsList.get(j) == searchNumber) {
+                        positions.add(new PairModel(i, j));
+                        count++;
+                    }
                 }
             }
         } while (count == 0);
@@ -150,14 +167,19 @@ public class NumberGameActivity extends AppCompatActivity {
         do {
             rand = new Random();
             randomDigitsList.clear();
+            positions.clear();
             for (int i = 0; i < digitsNumber; i++) {
                 int r = rand.nextInt(10);
                 randomDigitsList.add(r);
             }
             count = 0;
-            for (int i = 1; i < digitsNumber; i++) {
-                if (randomDigitsList.get(i - 1) * randomDigitsList.get(i) == searchNumber) {
-                    count++;
+
+            for (int i = 0; i < digitsNumber; i++) {
+                for (int j = i+1; j < digitsNumber; j++) {
+                    if (randomDigitsList.get(i) * randomDigitsList.get(j) == searchNumber) {
+                        positions.add(new PairModel(i, j));
+                        count++;
+                    }
                 }
             }
         } while (count == 0);
@@ -174,23 +196,29 @@ public class NumberGameActivity extends AppCompatActivity {
                     number_one = colorButton;
                 } else if (click_two == 2) {
                     number_two = colorButton;
-                    if ((exercises == 0 && parseInt(number_one.getText().toString()) + parseInt(number_two.getText().toString()) == searchNumber) ||
-                            (exercises == 1 && parseInt(number_one.getText().toString()) * parseInt(number_two.getText().toString()) == searchNumber)) {
+                    PairModel pairModel1 = new PairModel(Integer.parseInt(number_one.getTag().toString()),
+                            Integer.parseInt(number_two.getTag().toString()));
+
+                    if (positions.contains(pairModel1)) {
                         countNumberPairs++;
-                        number_one.setBackgroundColor(Color.GREEN);
-                        number_two.setBackgroundColor(Color.GREEN);
+                        positions.remove(pairModel1);
+
+                        checkUsed(pairModel1.getNumberOne(), number_one);
+                        checkUsed(pairModel1.getNumberTwo(), number_two);
+
                         countNumberPair.setText(countNumberPairs + "/" + count);
                         click_two = 0;
                         if (countNumberPairs == count) {
                             setEndTime();
                             float reactionTimeInSeconds = (float) (endTime - startTime) / 1000;
-                            sendResultToDatabase();
+                            sendResultToDatabase(StatusGame.SUCCESSFUL, reactionTimeInSeconds);
                             Log.d("Koniec", "Koniec: ");
                             getDialog();
                         }
                     } else {
                         number_one.setBackgroundColor(Color.LTGRAY);
                         number_two.setBackgroundColor(Color.LTGRAY);
+
                         click_two = 0;
                     }
                 }
@@ -198,12 +226,24 @@ public class NumberGameActivity extends AppCompatActivity {
         });
     }
 
+    private void checkUsed(int numberOnePosition, Button button) {
+        for (int j = 0; j < positions.size(); j++) {
+            if (positions.get(j).getNumberOne() == numberOnePosition || positions.get(j).getNumberTwo() == numberOnePosition) {
+                button.setBackgroundColor(Color.YELLOW);
+                return;
+            }
+        }
+        button.setBackgroundColor(Color.GREEN);
+        button.setClickable(false);
+    }
 
     private void setEndGameButton() {
         getEndGameButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //todo set end game action;
+                float reactionTimeInSeconds = (float) (endTime - startTime) / 1000;
+                sendResultToDatabase(StatusGame.FAILED, reactionTimeInSeconds);
+
                 Intent intent = new Intent(NumberGameActivity.this, GameSelectorActivity.class);
                 startActivity(intent);
             }
@@ -253,7 +293,39 @@ public class NumberGameActivity extends AppCompatActivity {
         endTime = getTime();
     }
 
-    private void sendResultToDatabase() {
-        //TODO
+    private void sendResultToDatabase(StatusGame statusGame, float reactionTimeInSeconds) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+        Date date = java.util.Calendar.getInstance().getTime();
+        Api api = new ApiClass().getApi();
+        ProgressDialog progressDialog = new ProgressDialogClass().CustomCallBack(this, "wczytywanie");
+        progressDialog.show();
+        Call<GamesObject> call = api.addGame(new GamesObject(statusGame,
+                String.valueOf(reactionTimeInSeconds),
+                simpleDateFormat.format(date),
+                new SharedPrefs(getApplicationContext()).getId(),
+                new SharedPrefs(getApplicationContext()).getLvl(),
+                NameGame.COLORS));
+        call.enqueue(new Callback<GamesObject>() {
+            @Override
+            public void onResponse(Call<GamesObject> call, Response<GamesObject> response) {
+                if (!response.isSuccessful()) {
+                    Log.d("code:", "" + response.code());
+                    noSerwerConnectionError(getApplicationContext());
+                    progressDialog.dismiss();
+                } else {
+                    progressDialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GamesObject> call, Throwable t) {
+                progressDialog.dismiss();
+                noSerwerConnectionError(getApplicationContext());
+            }
+        });
+    }
+
+    private void noSerwerConnectionError(Context context) {
+        new NoSerwerConnectionErrorDialog(context).startErrorDialog().show();
     }
 }
