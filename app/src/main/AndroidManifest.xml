@@ -15,7 +15,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="LockedOrientationActivity"
         tools:targetApi="n">
-        <activity android:name=".Statistics.ChartsActivity"></activity>
+        <activity android:name=".Statistics.MmseChartActivity"></activity>
+        <activity android:name=".Statistics.ChartsActivity" />
         <activity android:name=".Statistics.StatisticActivity" />
         <activity android:name=".PatientInfoActivity" />
         <activity android:name=".GameSelectorActivity" />

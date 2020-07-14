@@ -125,6 +125,8 @@ public class MmseActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 //TODO zrobić aby zmieniło się ze btrac wynik mmse do doboru poziomu
                                 setMMSETrueOrFalse();
+                                Intent intent = new Intent(MmseActivity.this, SelectedPatientActivity.class);
+                                startActivity(intent);
                             }
                         });
                         dialog.setNegativeButton("NIE", new DialogInterface.OnClickListener() {

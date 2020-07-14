@@ -1,8 +1,9 @@
 package com.example.seniorapp.Models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TestMmseObject {
+public class TestMmseObject implements Serializable {
     private int id;
     private int result;
     private String time;
