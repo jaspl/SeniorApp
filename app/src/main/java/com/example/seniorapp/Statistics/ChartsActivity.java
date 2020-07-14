@@ -125,7 +125,6 @@ public class ChartsActivity extends AppCompatActivity {
 
     private void getAllResults(NameGame nameGame) {
         Log.d("TAG", "getAllResults: " + nameGame);
-
         Intent intent = getIntent();
         Bundle args = intent.getBundleExtra("BUNDLE");
         ArrayList<GamesObject> gamesObjects = (ArrayList<GamesObject>) args.getSerializable("ARRAYLIST");

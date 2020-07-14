@@ -14,6 +14,8 @@ import android.widget.LinearLayout;
 import com.example.seniorapp.API.Api;
 import com.example.seniorapp.API.ApiClass;
 import com.example.seniorapp.Models.GamesObject;
+import com.example.seniorapp.Models.PatientsObject;
+import com.example.seniorapp.Models.TestMmseObject;
 import com.example.seniorapp.ProgressDialogClass;
 import com.example.seniorapp.R;
 import com.example.seniorapp.SelectedPatientActivity;
@@ -45,7 +47,7 @@ public class StatisticActivity extends AppCompatActivity {
         mmse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // getDataAboutGame("MMSE",NameGame.COLORS);
+                getMmseResults("MMSE");
             //TODO
             }
         });
@@ -132,9 +134,44 @@ public class StatisticActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<List<GamesObject>> call, Throwable t) {
                     progressDialog.dismiss();
+                    //todo
                 }
             });
+    }
 
+    private void getMmseResults(String chartTitle) {
+        Intent intent = new Intent(getApplicationContext(), MmseChartActivity.class);
+        intent.putExtra("title", chartTitle);
+
+        Api api = new ApiClass().getApi();
+        Call<List<TestMmseObject>> call = api.getMmseResults(new SharedPrefs(this).getId());
+        ProgressDialog progressDialog = new ProgressDialogClass().CustomCallBack(this, "wczytywanie");
+        progressDialog.show();
+        call.enqueue(new Callback<List<TestMmseObject>>() {
+            @Override
+            public void onResponse(Call<List<TestMmseObject>> call, Response<List<TestMmseObject>> response) {
+                if (!response.isSuccessful()) {
+                    Log.d("code:", "" + response.code());
+                    progressDialog.dismiss();
+                } else {
+                    List<TestMmseObject> testMmseObject = response.body();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("ARRAYLIST",(Serializable)testMmseObject);
+                    intent.putExtra("BUNDLE",bundle);
+                    progressDialog.dismiss();
+                    startActivity(intent);
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<TestMmseObject>> call, Throwable t) {
+                //TODO set error dialog
+                Log.d("caretaker logIn", "onFailure: " + t.getMessage());
+                progressDialog.dismiss();
+                //noSerwerConnectionError();
+            }
+        });
     }
 
 }

@@ -34,6 +34,9 @@ public interface Api {
     @GET("games/get/all")
     Call<List<GamesObject>> getGames(@Query("Patient id") int id, @Query("Game name") NameGame nameGame);
 
+    @GET("testMmse/get/all")
+    Call<List<TestMmseObject>> getMmseResults(@Query("patient id") int id);
+
     @POST("caregivers/add")
     Call<CaregiversObject> createCaregiver(@Body CaregiversObject caregiversObject);
 
@@ -52,6 +55,6 @@ public interface Api {
     @PUT("patients/delete")
     Call<PatientsObject> deletePatient(@Query("patient id") int id);
 
-    @PUT("patients/put/updateLevelFormMMSE")
+    @PUT("patients/put/updateLevelFromMMSE")
     Call<PatientsObject> updateLevelMMSE(@Query("patient id") int id, @Query("level Of MMSE") boolean mmseToLvl, @Query("level of Game") LevelGame levelGame);
 }
