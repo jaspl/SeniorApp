@@ -21,28 +21,31 @@
         android:orientation="vertical"
         tools:context=".PatientInfoActivity">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:text="INFORMACJE O PACJENCIE"
-            android:textSize="30dp" />
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginEnd="100dp"
+            android:layout_marginStart="100dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:gravity="center"
-
                 android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="INFORMACJE O PACJENCIE"
+                    android:textSize="30dp" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/patirnt_info_name_error"
-                    android:layout_width="500dp"
+                    android:layout_width="400dp"
                     android:layout_height="wrap_content"
                     app:errorEnabled="true"
                     tools:layout_editor_absoluteX="1dp"
@@ -57,7 +60,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/patirnt_info_surname_error"
-                    android:layout_width="500dp"
+                    android:layout_width="400dp"
                     android:layout_height="wrap_content"
                     app:errorEnabled="true"
                     tools:layout_editor_absoluteX="1dp"
@@ -71,7 +74,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="500dp"
+                    android:layout_width="400dp"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
                     app:errorEnabled="true"
@@ -86,7 +89,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
-                    android:layout_width="500dp"
+                    android:layout_width="400dp"
                     android:layout_height="25dp"
                     android:layout_marginBottom="15dp"
                     android:orientation="horizontal">
@@ -107,10 +110,9 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="500dp"
+                    android:layout_width="400dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -146,7 +148,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/patirnt_info_login_error"
-                    android:layout_width="500dp"
+                    android:layout_width="400dp"
                     android:layout_height="wrap_content"
                     app:errorEnabled="true"
                     tools:layout_editor_absoluteX="1dp"
@@ -161,7 +163,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/patirnt_info_password_error"
-                    android:layout_width="500dp"
+                    android:layout_width="400dp"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
                     app:errorEnabled="true"
@@ -179,7 +181,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/patirnt_info_PESEL_error"
-                    android:layout_width="500dp"
+                    android:layout_width="400dp"
                     android:layout_height="wrap_content"
                     app:errorEnabled="true"
                     tools:layout_editor_absoluteX="1dp"
@@ -193,7 +195,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="500dp"
+                    android:layout_width="400dp"
                     android:layout_height="wrap_content"
                     app:errorEnabled="true"
                     tools:layout_editor_absoluteX="1dp"

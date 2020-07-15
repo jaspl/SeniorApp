@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.seniorapp.Models.GamesObject;
 import com.example.seniorapp.Models.TestMmseObject;
@@ -45,9 +46,17 @@ public class MmseChartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mmse_chart);
         setExitButton();
         getAllResults();
+        setAxisTitles();
     }
     @Override
     public void onBackPressed() {
+    }
+
+    private void setAxisTitles(){
+        TextView yAxisTitle = findViewById(R.id.yAxisTitle);
+        yAxisTitle.setText("Punkty");
+        TextView xAxisTitle = findViewById(R.id.xAxisTitle);
+        xAxisTitle.setText("Data");
     }
 
     private void setExitButton() {
@@ -70,7 +79,7 @@ public class MmseChartActivity extends AppCompatActivity {
         LineDataSet datasetSuccessfull = new LineDataSet(mMSE, "Wyniki testu MMSE");
         datasetSuccessfull.setColor(Color.BLUE);
         datasetSuccessfull.setLineWidth(4f);
-        datasetSuccessfull.setValueTextSize(0f);
+        datasetSuccessfull.setValueTextSize(12f);
         datasetSuccessfull.setCircleRadius(5f);
         datasetSuccessfull.setCircleHoleRadius(2.5f);
         datasetSuccessfull.setCircleColor(Color.BLUE);

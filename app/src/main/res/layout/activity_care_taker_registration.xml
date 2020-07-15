@@ -15,13 +15,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="100dp"
-        android:layout_marginEnd="100dp">
+        android:layout_marginEnd="100dp"
+
+        >
 
         <LinearLayout
             android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Rejestracja opiekuna"
+                android:textSize="30dp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/care_taker_register_name_error"

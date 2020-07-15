@@ -24,6 +24,12 @@
             android:layout_marginEnd="100dp"
             android:layout_marginStart="100dp"
             android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Logowanie opiekuna"
+                android:gravity="center"
+                android:textSize="30dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/care_taker_log_in_login_error"

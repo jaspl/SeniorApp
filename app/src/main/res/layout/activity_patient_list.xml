@@ -21,7 +21,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
             android:text="Lista pacjentów"
-            android:textSize="20dp" />
+            android:textSize="30dp" />
 
         <ListView
             android:id="@+id/patient_list"
