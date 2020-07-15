@@ -86,15 +86,15 @@ public class ChartsActivity extends AppCompatActivity {
         LineDataSet datasetSuccessfull = new LineDataSet(succesful, "Prawidłowo");
         datasetSuccessfull.setColor(Color.BLUE);
         datasetSuccessfull.setLineWidth(4f);
-        datasetSuccessfull.setValueTextSize(0f);
+        datasetSuccessfull.setValueTextSize(12f);
         datasetSuccessfull.setCircleRadius(5f);
         datasetSuccessfull.setCircleHoleRadius(2.5f);
         datasetSuccessfull.setCircleColor(Color.BLUE);
 
         LineDataSet datasetFailed = new LineDataSet(failed, "Błędnie");
         datasetFailed.setColor(Color.RED);
-        datasetFailed.setLineWidth(0f);
-        datasetFailed.setValueTextSize(0f);
+        datasetFailed.setLineWidth(2f);
+        datasetFailed.setValueTextSize(12f);
         datasetFailed.setCircleRadius(5f);
         datasetFailed.setCircleHoleRadius(2.5f);
         datasetFailed.setCircleColor(Color.RED);
@@ -110,6 +110,7 @@ public class ChartsActivity extends AppCompatActivity {
         xAxis.setTextSize(20);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         YAxis yAxisL = getLineChart().getAxisLeft();
+
         yAxisL.setTextSize(20);
         getLineChart().getAxisRight().setEnabled(false);
         Legend legend = getLineChart().getLegend();

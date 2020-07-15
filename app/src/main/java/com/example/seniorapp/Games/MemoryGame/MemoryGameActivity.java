@@ -30,6 +30,7 @@ public class MemoryGameActivity extends AppCompatActivity {
     boolean cardClicked = false;
     Card currentCard;
     int currentTime = 0;
+    int timeInS=0;
     CountDownTimer countDownTimer;
 
     @Override
@@ -40,6 +41,7 @@ public class MemoryGameActivity extends AppCompatActivity {
         memoryGameController.setLvl(new SharedPrefs(this).getlvlInInt());
         setButtonsClicks();
         setAllCardsEnabled(false);
+        timeInS=memoryGameController.timeInSeconds;
         setTime(memoryGameController.timeInSeconds);
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
@@ -161,7 +163,7 @@ public class MemoryGameActivity extends AppCompatActivity {
         if (MemoryGameDataHolder.getInstance().cards.size() == 0) {
             Log.d("koniec gry", "udało się zakończyć grę" + currentTime);
             countDownTimer.cancel();
-            sendDataToDatabase(StatusGame.SUCCESSFUL, currentTime);
+            sendDataToDatabase(StatusGame.SUCCESSFUL, timeInS-currentTime);
             getDialog("Brawo! Zadanie rozwiązano poprawnie");
         }
     }
@@ -190,7 +192,7 @@ public class MemoryGameActivity extends AppCompatActivity {
             public void onFinish() {
                 Log.d("koniec gry ", "nie udało sie wygrać");
                 getDialog("Zadanie wykonane nieprawidłowo");
-                sendDataToDatabase(StatusGame.FAILED, currentTime);
+                sendDataToDatabase(StatusGame.FAILED, timeInS-currentTime);
             }
         };
         countDownTimer.start();
