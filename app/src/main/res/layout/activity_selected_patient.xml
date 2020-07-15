@@ -51,6 +51,15 @@
             android:text="Wykonaj test MMSE" />
 
         <Button
+            android:id="@+id/selected_patient_change_patient_password"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorAccent"
+            android:text="Zmień hasło dal konta pacjenta"
+            android:visibility="gone"/>
+
+        <Button
             android:id="@+id/selected_patient_delete_patient_button"
             android:layout_width="500dp"
             android:layout_height="wrap_content"

@@ -37,7 +37,7 @@ public class SelectedPatientActivity extends AppCompatActivity {
     }
 
     private void setPatientName() {
-        String name  = new SharedPrefs(this).getName();
+        String name = new SharedPrefs(this).getName();
         TextView textView = findViewById(R.id.selected_patient);
         textView.append(name);
     }
@@ -47,6 +47,7 @@ public class SelectedPatientActivity extends AppCompatActivity {
         Button infoButton = findViewById(R.id.selected_patient_info_button);
         Button MMSEButton = findViewById(R.id.selected_patient_MMSE_button);
         Button statisticButton = findViewById(R.id.selected_patient_statistics_button);
+        Button changePassword = findViewById(R.id.selected_patient_change_patient_password);
         FloatingActionButton exitButton = findViewById(R.id.end_game_floatig_buton);
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,15 +71,23 @@ public class SelectedPatientActivity extends AppCompatActivity {
         statisticButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO statistic
                 startActivity(new Intent(SelectedPatientActivity.this, StatisticActivity.class));
+            }
+        });
+        changePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SelectedPatientActivity.this, ChangePasswordActivity.class);
+                intent.putExtra("changePasswordTitle","ZMIANA HASŁA DLA PACJENTA:"+new SharedPrefs(getBaseContext()).getName());
+                startActivity(intent);
+
             }
         });
 
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SelectedPatientActivity.this,PatientListActivity.class);
+                Intent intent = new Intent(SelectedPatientActivity.this, PatientListActivity.class);
                 startActivity(intent);
             }
         });
@@ -129,6 +138,7 @@ public class SelectedPatientActivity extends AppCompatActivity {
             }
         });
     }
+
     private void noSerwerConnectionError() {
         new NoSerwerConnectionErrorDialog(this).startErrorDialog().show();
     }

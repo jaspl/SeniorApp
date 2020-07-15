@@ -24,8 +24,10 @@ import com.example.seniorapp.Utils.NameGame;
 import com.example.seniorapp.Utils.StatusGame;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -51,7 +53,9 @@ public class ChartsActivity extends AppCompatActivity {
         setExitButton();
         getAllResults(nameGame);
     }
-
+    @Override
+    public void onBackPressed() {
+    }
     private void setExitButton() {
         FloatingActionButton exitButton = findViewById(R.id.end_game_floatig_buton);
         exitButton.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +106,14 @@ public class ChartsActivity extends AppCompatActivity {
         LineData lineData = new LineData(datasets);
         getLineChart().setScaleEnabled(true);
         getLineChart().setData(lineData);
+        XAxis xAxis = getLineChart().getXAxis();
+        xAxis.setTextSize(20);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        YAxis yAxisL = getLineChart().getAxisLeft();
+        yAxisL.setTextSize(20);
+        getLineChart().getAxisRight().setEnabled(false);
+        Legend legend = getLineChart().getLegend();
+        legend.setTextSize(20);
     }
 
     private LineChart getLineChart() {
@@ -109,8 +121,9 @@ public class ChartsActivity extends AppCompatActivity {
     }
 
     private void setLimitLineX(int limitValue, LevelGame lvl) {
-        LimitLine lvlBoarder = new LimitLine(limitValue, lvl.toString());
+        LimitLine lvlBoarder = new LimitLine(limitValue, getLvlInPolish(lvl));
         lvlBoarder.setLineWidth(5f);
+        lvlBoarder.setTextSize(20);
         XAxis xAxis = getLineChart().getXAxis();
         xAxis.addLimitLine(lvlBoarder);
         xAxis.setDrawGridLinesBehindData(true);
@@ -119,7 +132,7 @@ public class ChartsActivity extends AppCompatActivity {
     private void setChartTitle(String name) {
         Description description = new Description();
         description.setText(name);
-        description.setTextSize(20);
+        description.setTextSize(30);
         getLineChart().setDescription(description);
     }
 
@@ -131,6 +144,14 @@ public class ChartsActivity extends AppCompatActivity {
         setChart(gamesObjects);
         String name = intent.getStringExtra("gameTitle");
         setChartTitle(name);
+    }
+
+    public String getLvlInPolish(LevelGame levelGame) {
+        if (levelGame.equals(LevelGame.VERYLOW)) return "Bardzo Niski";
+        else if (levelGame.equals(LevelGame.EASY)) return "Łatwy";
+        else if (levelGame.equals(LevelGame.MEDIUM)) return "Średni";
+        else if (levelGame.equals(LevelGame.HIGH)) return "Wysoki";
+        else return "Bardzo trudny";
     }
 
 }

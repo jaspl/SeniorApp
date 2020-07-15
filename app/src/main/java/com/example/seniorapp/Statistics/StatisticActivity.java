@@ -42,101 +42,105 @@ public class StatisticActivity extends AppCompatActivity {
         setButtonsOnClicks();
     }
 
+    @Override
+    public void onBackPressed() {
+    }
+
     private void setButtonsOnClicks() {
         LinearLayout mmse = findViewById(R.id.MMSE_statistuc);
         mmse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getMmseResults("MMSE");
-            //TODO
+                //TODO
             }
         });
         LinearLayout hangman = findViewById(R.id.hangman_statistic);
         hangman.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getDataAboutGame("Wisielec",NameGame.HANGMAN);
+                getDataAboutGame("Wisielec", NameGame.HANGMAN);
             }
         });
         LinearLayout symbols = findViewById(R.id.symbol_game_statistic);
         symbols.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getDataAboutGame("Symbole",NameGame.SYMBOLS);
+                getDataAboutGame("Symbole", NameGame.SYMBOLS);
             }
         });
         LinearLayout numbers = findViewById(R.id.number_game_statistic);
         numbers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getDataAboutGame("Cyfry",NameGame.NUMBERPAIR);
+                getDataAboutGame("Cyfry", NameGame.NUMBERPAIR);
             }
         });
         LinearLayout memory = findViewById(R.id.memory_game_statistic);
         memory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getDataAboutGame("Meomory",NameGame.MEMORY);
+                getDataAboutGame("Meomory", NameGame.MEMORY);
             }
         });
         LinearLayout colors = findViewById(R.id.color_game_statistic);
         colors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getDataAboutGame("Kolory",NameGame.COLORS);
+                getDataAboutGame("Kolory", NameGame.COLORS);
             }
         });
         FloatingActionButton exit = findViewById(R.id.end_game_floatig_buton);
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent( StatisticActivity.this, SelectedPatientActivity.class));
+                startActivity(new Intent(StatisticActivity.this, SelectedPatientActivity.class));
             }
         });
     }
 
-    private void getDataAboutGame(String chartTitle,NameGame nameGame) {
+    private void getDataAboutGame(String chartTitle, NameGame nameGame) {
         Intent intent = new Intent(getApplicationContext(), ChartsActivity.class);
         intent.putExtra("gameTitle", chartTitle);
-        intent.putExtra("gameName",nameGame);
+        intent.putExtra("gameName", nameGame);
 
-            Log.d("TAG", "getAllResults: " + nameGame);
+        Log.d("TAG", "getAllResults: " + nameGame);
 
-            Api api = new ApiClass().getApi();
-            ProgressDialog progressDialog = new ProgressDialogClass().CustomCallBack(this, "wczytywanie");
-            progressDialog.show();
-            Call<List<GamesObject>> call = api.getGames(new SharedPrefs(getApplicationContext()).getId(),nameGame);
-            call.enqueue(new Callback<List<GamesObject>>() {
-                @Override
-                public void onResponse(Call<List<GamesObject>> call, Response<List<GamesObject>> response) {
-                    if (!response.isSuccessful()) {
-                        Log.d("code:", "" + response.code());
-                        //TODO error handler when sth i wrong
-                        progressDialog.dismiss();
-
-                    } else {
-                        progressDialog.dismiss();
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                List<GamesObject> gamesObjects = response.body();
-                                Bundle bundle = new Bundle();
-                                bundle.putSerializable("ARRAYLIST",(Serializable)gamesObjects);
-                                intent.putExtra("BUNDLE",bundle);
-                                startActivity(intent);
-                            }
-                        });
-
-
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<List<GamesObject>> call, Throwable t) {
+        Api api = new ApiClass().getApi();
+        ProgressDialog progressDialog = new ProgressDialogClass().CustomCallBack(this, "wczytywanie");
+        progressDialog.show();
+        Call<List<GamesObject>> call = api.getGames(new SharedPrefs(getApplicationContext()).getId(), nameGame);
+        call.enqueue(new Callback<List<GamesObject>>() {
+            @Override
+            public void onResponse(Call<List<GamesObject>> call, Response<List<GamesObject>> response) {
+                if (!response.isSuccessful()) {
+                    Log.d("code:", "" + response.code());
+                    //TODO error handler when sth i wrong
                     progressDialog.dismiss();
-                    //todo
+
+                } else {
+                    progressDialog.dismiss();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            List<GamesObject> gamesObjects = response.body();
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("ARRAYLIST", (Serializable) gamesObjects);
+                            intent.putExtra("BUNDLE", bundle);
+                            startActivity(intent);
+                        }
+                    });
+
+
                 }
-            });
+            }
+
+            @Override
+            public void onFailure(Call<List<GamesObject>> call, Throwable t) {
+                progressDialog.dismiss();
+                //todo
+            }
+        });
     }
 
     private void getMmseResults(String chartTitle) {
@@ -156,8 +160,8 @@ public class StatisticActivity extends AppCompatActivity {
                 } else {
                     List<TestMmseObject> testMmseObject = response.body();
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("ARRAYLIST",(Serializable)testMmseObject);
-                    intent.putExtra("BUNDLE",bundle);
+                    bundle.putSerializable("ARRAYLIST", (Serializable) testMmseObject);
+                    intent.putExtra("BUNDLE", bundle);
                     progressDialog.dismiss();
                     startActivity(intent);
 

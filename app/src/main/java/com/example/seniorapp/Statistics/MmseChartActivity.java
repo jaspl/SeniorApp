@@ -16,7 +16,9 @@ import com.example.seniorapp.Utils.StatusGame;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -43,6 +45,9 @@ public class MmseChartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mmse_chart);
         setExitButton();
         getAllResults();
+    }
+    @Override
+    public void onBackPressed() {
     }
 
     private void setExitButton() {
@@ -80,6 +85,15 @@ public class MmseChartActivity extends AppCompatActivity {
         getLineChart().getXAxis().setValueFormatter(new com.github.mikephil.charting.formatter.IndexAxisValueFormatter(dateList));
         getLineChart().getXAxis().setGranularity(1);
 
+        XAxis xAxis = getLineChart().getXAxis();
+        xAxis.setTextSize(20);
+        xAxis.setLabelRotationAngle(-90);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        YAxis yAxisL = getLineChart().getAxisLeft();
+        yAxisL.setTextSize(20);
+        getLineChart().getAxisRight().setEnabled(false);
+        Legend legend = getLineChart().getLegend();
+        legend.setTextSize(20);
     }
 
 
@@ -90,7 +104,7 @@ public class MmseChartActivity extends AppCompatActivity {
     private void setChartTitle(String name) {
         Description description = new Description();
         description.setText(name);
-        description.setTextSize(20);
+        description.setTextSize(30);
         getLineChart().setDescription(description);
     }
 
