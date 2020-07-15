@@ -14,6 +14,7 @@ public class SharedPrefs {
     private static final String ID = "id";
     private static final String LVL = "lvl";
     private static final String PatientName = "fullName";
+    private static final String PatientLogin = "login";
 
     public SharedPrefs(Context context) {
         preferences = context.getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
@@ -31,6 +32,12 @@ public class SharedPrefs {
         preferencesEditor.commit();
     }
 
+    public void saveLogin(String login) {
+        SharedPreferences.Editor preferencesEditor = preferences.edit();
+        preferencesEditor.putString(PatientLogin, login);
+        preferencesEditor.commit();
+    }
+
     public void saveLvlInSharedPrefs(int lvl) {
         SharedPreferences.Editor preferencesEditor = preferences.edit();
         preferencesEditor.putInt(LVL, lvl);
@@ -43,6 +50,10 @@ public class SharedPrefs {
 
     public String getName() {
         return preferences.getString(PatientName, " ");
+    }
+
+    public String getLogin() {
+        return preferences.getString(PatientLogin, " ");
     }
 
     public int getlvlInInt() {

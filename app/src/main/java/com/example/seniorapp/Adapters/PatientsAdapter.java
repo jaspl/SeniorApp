@@ -61,6 +61,7 @@ public class PatientsAdapter extends BaseAdapter {
                 activity.startActivity(intent);
                 new SharedPrefs(activity).saveId(patientObjects.get(i).getId());
                 new SharedPrefs(activity).saveLvl(patientObjects.get(i).getLevel());
+                new SharedPrefs(activity).saveLogin(patientObjects.get(i).getLogin());
                 int id = new SharedPrefs(activity).getId();
                 Log.d("id", ""+id);
             }
