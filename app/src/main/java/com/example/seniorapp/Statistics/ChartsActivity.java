@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.seniorapp.API.Api;
 import com.example.seniorapp.API.ApiClass;
@@ -52,10 +53,18 @@ public class ChartsActivity extends AppCompatActivity {
         NameGame nameGame = (NameGame) intent.getSerializableExtra("gameName");
         setExitButton();
         getAllResults(nameGame);
+        setPatientNameOnTitleChart();
     }
+
     @Override
     public void onBackPressed() {
     }
+
+    private void setPatientNameOnTitleChart() {
+        TextView textView = findViewById(R.id.ChartTitle);
+        textView.setText("Pacjent : "+new SharedPrefs(this).getName());
+    }
+
     private void setExitButton() {
         FloatingActionButton exitButton = findViewById(R.id.end_game_floatig_buton);
         exitButton.setOnClickListener(new View.OnClickListener() {

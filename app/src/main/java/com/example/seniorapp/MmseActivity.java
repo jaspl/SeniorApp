@@ -24,6 +24,7 @@ import com.example.seniorapp.Models.PatientsObject;
 import com.example.seniorapp.Models.TestMmseObject;
 import com.example.seniorapp.Patterns.MMSEQuestion;
 import com.example.seniorapp.Utils.LevelGame;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.ParseException;
@@ -49,9 +50,21 @@ public class MmseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mmse);
         setButtonsOnClics();
         startTime = System.currentTimeMillis();
+        setExitButton();
     }
+
     @Override
     public void onBackPressed() {
+    }
+
+    private void setExitButton(){
+        FloatingActionButton exitButton = findViewById(R.id.end_game_floatig_buton);
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MmseActivity.this,SelectedPatientActivity.class));
+            }
+        });
     }
 
     private void setButtonsOnClics() {
@@ -190,7 +203,7 @@ public class MmseActivity extends AppCompatActivity {
             public void onResponse(Call<TestMmseObject> call, Response<TestMmseObject> response) {
                 if (!response.isSuccessful()) {
                     Log.d("code:", "" + response.code());
-                   noSerwerConnectionError();
+                    noSerwerConnectionError();
                     progressDialog.dismiss();
                 } else {
                     progressDialog.dismiss();
@@ -230,6 +243,7 @@ public class MmseActivity extends AppCompatActivity {
             }
         });
     }
+
     private void noSerwerConnectionError() {
         new NoSerwerConnectionErrorDialog(this).startErrorDialog().show();
     }
@@ -243,6 +257,6 @@ public class MmseActivity extends AppCompatActivity {
             return LevelGame.MEDIUM;
         } else if (pointGetCounter >= 10 && pointGetCounter < 20) {
             return LevelGame.EASY;
-        } else  return LevelGame.VERYLOW;
+        } else return LevelGame.VERYLOW;
     }
 }

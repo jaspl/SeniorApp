@@ -38,4 +38,15 @@
         android:text="Nr gry"
         app:layout_constraintBottom_toBottomOf="@+id/chart"
         app:layout_constraintStart_toEndOf="@+id/chart" />
+
+    <TextView
+        android:id="@+id/ChartTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:text="ChartTitle"
+        app:layout_constraintBottom_toTopOf="@+id/yAxisTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/include3" />
 </androidx.constraintlayout.widget.ConstraintLayout>
