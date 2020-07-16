@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.seniorapp.Models.GamesObject;
 import com.example.seniorapp.Models.TestMmseObject;
 import com.example.seniorapp.R;
+import com.example.seniorapp.SharedPrefs;
 import com.example.seniorapp.Utils.NameGame;
 import com.example.seniorapp.Utils.StatusGame;
 import com.github.mikephil.charting.charts.LineChart;
@@ -47,11 +48,15 @@ public class MmseChartActivity extends AppCompatActivity {
         setExitButton();
         getAllResults();
         setAxisTitles();
+        setPatientNameOnTitleChart();
     }
     @Override
     public void onBackPressed() {
     }
-
+    private void setPatientNameOnTitleChart() {
+        TextView textView = findViewById(R.id.ChartTitle);
+        textView.setText("Pacjent : "+new SharedPrefs(this).getName());
+    }
     private void setAxisTitles(){
         TextView yAxisTitle = findViewById(R.id.yAxisTitle);
         yAxisTitle.setText("Punkty");
