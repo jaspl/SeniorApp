@@ -2,7 +2,6 @@ package com.example.seniorapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,13 +9,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 
 import com.example.seniorapp.API.Api;
 import com.example.seniorapp.API.ApiClass;
-import com.example.seniorapp.Adapters.PatientsAdapter;
 import com.example.seniorapp.Models.PatientsObject;
-import com.example.seniorapp.Patterns.Patient;
 import com.example.seniorapp.Utils.LevelGame;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
@@ -60,6 +56,8 @@ public class AddNewPatientActivity extends AppCompatActivity {
     private void checkIfAllDataAreCorect() {
         if (checkIfLoginIsOk() & checkIfNameIsOk() & checkIfSurnameIsOk() & checkPasswordsIsOk() & checkIfPeselIsOk()) {
             getPatienstList();
+        }else{
+            incorrectDataError();
         }
     }
 
@@ -208,9 +206,16 @@ public class AddNewPatientActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<PatientsObject> call, Response<PatientsObject> response) {
                 if (!response.isSuccessful()) {
+                    if(response.code()==400){
+                        getPatientLoginInputText().setError("Pacjent o podanym loginie juz istnieje");
+                        getPatientPeselInputText().setError("Pacjent o podanym peselu juz istnieje");
+                        incorrectDataError();
+                        progressDialog.dismiss();
+
+                    }else{
                     Log.d("code:", "" + response.code());
                     noSerwerConnectionError();
-                    progressDialog.dismiss();
+                    progressDialog.dismiss();}
                 } else {
                     progressDialog.dismiss();
                     startActivity(new Intent(AddNewPatientActivity.this, PatientListActivity.class));
@@ -226,6 +231,9 @@ public class AddNewPatientActivity extends AppCompatActivity {
     }
     private void noSerwerConnectionError() {
         new NoSerwerConnectionErrorDialog(this).startErrorDialog().show();
+    }
+    private void incorrectDataError(){
+        new NoSerwerConnectionErrorDialog(this).logInRegistrError().show();
     }
 
     private void getPatienstList() {
@@ -261,6 +269,7 @@ public class AddNewPatientActivity extends AppCompatActivity {
         for (PatientsObject patient : patientsObjectList) {
             if (patient.getLogin().equals(getPatientLoginEditText().getText().toString())) {
                 getPatientLoginInputText().setError("Użytkownik o takim loginie juz istnieje!");
+                incorrectDataError();
                 is = true;
                 break;
             }

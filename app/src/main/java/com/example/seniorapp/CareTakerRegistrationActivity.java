@@ -28,6 +28,7 @@ public class CareTakerRegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_care_taker_registration);
         setButtonsOnClicks();
     }
+
     @Override
     public void onBackPressed() {
     }
@@ -43,7 +44,7 @@ public class CareTakerRegistrationActivity extends AppCompatActivity {
         getExitButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CareTakerRegistrationActivity.this,CareTakerLogInActivity.class);
+                Intent intent = new Intent(CareTakerRegistrationActivity.this, CareTakerLogInActivity.class);
                 startActivity(intent);
             }
         });
@@ -54,6 +55,8 @@ public class CareTakerRegistrationActivity extends AppCompatActivity {
         if (checkIfLoginCorrect() & checkIfNameCorrect() & checkIfSurnameCorrect() & checkPasswordsIsOk()) {
             checkIfLoginIsCOrrectWithDataBase();
             sendToDatabase();
+        }else{
+            incorrectDataError();
         }
     }
 
@@ -171,9 +174,15 @@ public class CareTakerRegistrationActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<CaregiversObject> call, Response<CaregiversObject> response) {
                 if (!response.isSuccessful()) {
-                    Log.d("code:", "" + response.code());
-                    progressDialog.dismiss();
-                    noSerwerConnectionError();
+                    if (response.code() == 400) {
+                        getLoginInputText().setError("Opiekun o podanym loginie już istnieje");
+                        incorrectDataError();
+                        progressDialog.dismiss();
+                    } else {
+                        Log.d("code:", "" + response.code());
+                        progressDialog.dismiss();
+                        noSerwerConnectionError();
+                    }
                 }
                 progressDialog.dismiss();
             }
@@ -186,8 +195,13 @@ public class CareTakerRegistrationActivity extends AppCompatActivity {
             }
         });
     }
+
     private void noSerwerConnectionError() {
         new NoSerwerConnectionErrorDialog(this).startErrorDialog().show();
+    }
+
+    private void incorrectDataError() {
+        new NoSerwerConnectionErrorDialog(this).logInRegistrError().show();
     }
 
     private void resetAllErrors() {

@@ -31,6 +31,20 @@ public class NoSerwerConnectionErrorDialog {
 
         return alertDialog;
     }
+    public AlertDialog logInRegistrError(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Nieprawidłowe dane ");
+        builder.setMessage("\nSprawdź poprawność wprowadzonych danych");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+
+        return alertDialog;
+    }
     public AlertDialog checkCodeAndSetErrorDialog(int code){
         if(code!=200){
             return startErrorDialog();
