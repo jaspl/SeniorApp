@@ -93,10 +93,10 @@ public class PatientInfoActivity extends AppCompatActivity {
     }
 
     private void checkIfAllDataAreCorect() {
-        if (checkIfNameIsOk() &
-                checkIfSurnameIsOk() &
-                checkIfPeselIsOk()) {
+        if (checkIfNameIsOk() & checkIfSurnameIsOk() & checkIfPeselIsOk()) {
             updatePatientInfo();
+        } else {
+            incorrectDataError();
         }
     }
 
@@ -247,9 +247,15 @@ public class PatientInfoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<PatientsObject> call, Response<PatientsObject> response) {
                 if (!response.isSuccessful()) {
-                    Log.d("code:", "" + response.code());
-                    progressDialog.dismiss();
-                    noSerwerConnectionError();
+                    if (response.code() == 404) {
+                        getPatientLoginInputText().setError("Pacjent o takim loginie już istnieje");
+                        incorrectDataError();
+                        progressDialog.dismiss();
+                    } else {
+                        Log.d("code:", "" + response.code());
+                        progressDialog.dismiss();
+                        noSerwerConnectionError();
+                    }
                 } else {
                     progressDialog.dismiss();
                     PatientsObject patientsObject = response.body();
@@ -265,8 +271,13 @@ public class PatientInfoActivity extends AppCompatActivity {
             }
         });
     }
+
     private void noSerwerConnectionError() {
         new NoSerwerConnectionErrorDialog(this).startErrorDialog().show();
+    }
+
+    private void incorrectDataError() {
+        new NoSerwerConnectionErrorDialog(this).logInRegistrError().show();
     }
 
     private Boolean checkIfThereIsNomeoneWithSameLogin(List<PatientsObject> patientsObjectList) {

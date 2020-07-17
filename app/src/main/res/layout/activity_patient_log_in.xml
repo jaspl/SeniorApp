@@ -11,65 +11,62 @@
         android:id="@+id/include3"
         layout="@layout/end_game_button" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="100dp"
-        >
 
-        <LinearLayout
-            android:layout_width="400dp"
+    <LinearLayout
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:orientation="vertical">
+            android:text="Logowanie pacjenta"
+            android:textSize="30dp" />
 
-            <TextView
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/patient_log_in_login_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <EditText
+                android:id="@+id/patient_log_in_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Logowanie pacjenta"
-                android:textSize="30dp"
-                android:layout_gravity="center"
-                android:gravity="center"/>
+                android:hint="Login" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/patient_log_in_login_error"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/patient_log_in_password_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            app:errorEnabled="true"
+            app:passwordToggleEnabled="true">
+
+            <EditText
+                android:id="@+id/patient_log_in_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp">
+                android:hint="Hasło"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <EditText
-                    android:id="@+id/patient_log_in_login"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Login" />
-            </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/patient_log_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="?android:attr/textColorLink"
+            android:text="Zaloguj" />
+    </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/patient_log_in_password_error"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                app:errorEnabled="true"
-                app:passwordToggleEnabled="true">
-
-                <EditText
-                    android:id="@+id/patient_log_in_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Hasło"
-                    android:inputType="textPassword" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/patient_log_in_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="?android:attr/textColorLink"
-                android:text="Zaloguj" />
-        </LinearLayout>
-
-    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
