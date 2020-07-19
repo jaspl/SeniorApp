@@ -31,4 +31,118 @@
         <item>Trudny</item>
         <item>Bardzo trudny</item>
     </array>
+    <string-array name="PRZYRODA">
+        <item>SŁOŃCE</item>
+        <item>NIEBO</item>
+    </string-array>
+    <string-array name="ZWERZĘTA">
+        <item>PIES</item>
+        <item>KOT</item>
+    </string-array>
+    <string-array name="SPRZĘT">
+        <item>TELEWIZOR</item>
+        <item>KOMPUTER</item>
+        <item>TELEFON</item>
+        <item>LODÓWKA</item>
+    </string-array>
+    <string-array name="ZAWÓD">
+        <item>MURARZ</item>
+        <item>KUCHARZ</item>
+    </string-array>
+    <string-array name="KUCHNIA">
+        <item>OKAP</item>
+        <item>ZLEWOZMYWAK</item>
+    </string-array>
+
+    <string-array name="level2_words1">
+        <item>SŁOŃCE</item>
+        <item>NIEBO</item>
+    </string-array>
+    <string-array name="level2_words2">
+        <item>PIES</item>
+        <item>KOT</item>
+    </string-array>
+    <string-array name="level2_words3">
+        <item>TELEWIZOR</item>
+        <item>KOMPUTER</item>
+        <item>TELEFON</item>
+        <item>LODÓWKA</item>
+    </string-array>
+    <string-array name="level2_words4">
+        <item>MURARZ</item>
+        <item>KUCHARZ</item>
+    </string-array>
+    <string-array name="level2_words5">
+        <item>OKAP</item>
+        <item>ZLEWOZMYWAK</item>
+    </string-array>
+
+    <string-array name="level3_words1">
+        <item>SŁOŃCE</item>
+        <item>NIEBO</item>
+    </string-array>
+    <string-array name="level3_words2">
+        <item>PIES</item>
+        <item>KOT</item>
+    </string-array>
+    <string-array name="level3_words3">
+        <item>TELEWIZOR</item>
+        <item>KOMPUTER</item>
+        <item>TELEFON</item>
+        <item>LODÓWKA</item>
+    </string-array>
+    <string-array name="level3_words4">
+        <item>MURARZ</item>
+        <item>KUCHARZ</item>
+    </string-array>
+    <string-array name="level3_words5">
+        <item>OKAP</item>
+        <item>ZLEWOZMYWAK</item>
+    </string-array>
+
+    <string-array name="level4_words1">
+        <item>SŁOŃCE</item>
+        <item>NIEBO</item>
+    </string-array>
+    <string-array name="level4_words2">
+        <item>PIES</item>
+        <item>KOT</item>
+    </string-array>
+    <string-array name="level4_words3">
+        <item>TELEWIZOR</item>
+        <item>KOMPUTER</item>
+        <item>TELEFON</item>
+        <item>LODÓWKA</item>
+    </string-array>
+    <string-array name="level4_words4">
+        <item>MURARZ</item>
+        <item>KUCHARZ</item>
+    </string-array>
+    <string-array name="level4_words5">
+        <item>OKAP</item>
+        <item>ZLEWOZMYWAK</item>
+    </string-array>
+
+    <string-array name="level5_words1">
+        <item>SŁOŃCE</item>
+        <item>NIEBO</item>
+    </string-array>
+    <string-array name="level5_words2">
+        <item>PIES</item>
+        <item>KOT</item>
+    </string-array>
+    <string-array name="level5_words3">
+        <item>TELEWIZOR</item>
+        <item>KOMPUTER</item>
+        <item>TELEFON</item>
+        <item>LODÓWKA</item>
+    </string-array>
+    <string-array name="level5_words4">
+        <item>MURARZ</item>
+        <item>KUCHARZ</item>
+    </string-array>
+    <string-array name="level5_words5">
+        <item>OKAP</item>
+        <item>ZLEWOZMYWAK</item>
+    </string-array>
 </resources>

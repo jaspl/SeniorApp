@@ -35,6 +35,9 @@
             android:screenOrientation="landscape"/>
         <activity android:name=".Games.NumberGame.NumberGameActivity"
             android:screenOrientation="landscape"/>
+        <activity
+            android:name=".Games.HangManGame.HangManActivity"
+            android:screenOrientation="landscape" />
         <activity android:name=".MmseActivity"
             android:screenOrientation="landscape"/>
         <activity android:name=".SelectedPatientActivity"

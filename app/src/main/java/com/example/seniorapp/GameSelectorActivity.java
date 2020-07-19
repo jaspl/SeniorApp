@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.seniorapp.Games.ColorGame.ColorGameActivity;
+import com.example.seniorapp.Games.HangManGame.HangManActivity;
 import com.example.seniorapp.Games.MemoryGame.MemoryGameActivity;
 import com.example.seniorapp.Games.NumberGame.NumberGameActivity;
 import com.example.seniorapp.Games.SymbolsGame.SymbolsGameActivity;
@@ -33,8 +34,7 @@ public class GameSelectorActivity extends AppCompatActivity {
         hangman.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO change activity
-                //startActivity(new Intent(GameSelectorActivity.this, MemoryGameActivity.class));
+                startActivity(new Intent(GameSelectorActivity.this, HangManActivity.class));
             }
         });
         LinearLayout symbolGame = findViewById(R.id.symbol_game);

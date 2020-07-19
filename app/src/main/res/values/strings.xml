@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">SeniorApp</string>
+    <string name="title_activity_hang_man">HangManActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="category">KATEGORIA: </string>
+    <string name="hangman_start">Start</string>
+    <string name="construction">Konstrukcja</string>
+    <string name="head">Głowa</string>
+    <string name="body">Ciało</string>
+    <string name="arm">Ręka</string>
+    <string name="leg">Noga</string>
 </resources>

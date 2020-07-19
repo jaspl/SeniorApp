@@ -241,6 +241,7 @@ public class NumberGameActivity extends AppCompatActivity {
         getEndGameButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setEndTime();
                 float reactionTimeInSeconds = (float) (endTime - startTime) / 1000;
                 sendResultToDatabase(StatusGame.FAILED, reactionTimeInSeconds);
 
@@ -261,15 +262,15 @@ public class NumberGameActivity extends AppCompatActivity {
 
     private void getDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Czy chcesz kontynuować grę ?")
+        builder.setMessage("Wygrałeś!\n\n")
                 .setCancelable(false)
-                .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Zagraj ponownie", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent intent = new Intent(NumberGameActivity.this, NumberGameActivity.class);
                         startActivity(intent);
                     }
                 })
-                .setNegativeButton("Nie", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Zakończ", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent intent = new Intent(NumberGameActivity.this, GameSelectorActivity.class);
                         startActivity(intent);
@@ -277,7 +278,7 @@ public class NumberGameActivity extends AppCompatActivity {
                 });
         AlertDialog alert = builder.create();
         //Setting the title manually
-        alert.setTitle("?");
+        alert.setTitle("JEJ");
         alert.show();
     }
 
