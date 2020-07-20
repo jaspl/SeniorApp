@@ -94,12 +94,12 @@ public class HangManActivity extends AppCompatActivity {
             case 0:
                 Integer[] wordLists = {R.array.PRZYRODA, R.array.ZWERZĘTA, R.array.SPRZĘT, R.array.ZAWÓD, R.array.KUCHNIA};
                 int list = rand.nextInt(wordLists.length);
-                category = res.getResourceEntryName(list);
+                category = res.getResourceEntryName(wordLists[list]);
                 return wordLists[list];
             case 1:
                 Integer[] wordLists2 = {R.array.level2_words1, R.array.level2_words2, R.array.level2_words3, R.array.level2_words4, R.array.level2_words5};
                 int list2 = rand.nextInt(wordLists2.length);
-                category = res.getResourceEntryName(list2);
+                category = res.getResourceEntryName(wordLists2[list2]);
                 return wordLists2[list2];
             case 2:
                 Integer[] wordLists3 = {R.array.level3_words1, R.array.level3_words2, R.array.level3_words3, R.array.level3_words4, R.array.level3_words5};
@@ -109,12 +109,12 @@ public class HangManActivity extends AppCompatActivity {
             case 3:
                 Integer[] wordLists4 = {R.array.level4_words1, R.array.level4_words2, R.array.level4_words3, R.array.level4_words4, R.array.level4_words5};
                 int list4 = rand.nextInt(wordLists4.length);
-                category = res.getResourceEntryName(list4);
+                category = res.getResourceEntryName(wordLists4[list4]);
                 return wordLists4[list4];
             case 4:
                 Integer[] wordLists5 = {R.array.level5_words1, R.array.level5_words2, R.array.level5_words3, R.array.level5_words4, R.array.level5_words5};
                 int list5 = rand.nextInt(wordLists5.length);
-                category = res.getResourceEntryName(list5);
+                category = res.getResourceEntryName(wordLists5[list5]);
                 return wordLists5[list5];
         }
         Integer[] wordLists0 = {R.array.PRZYRODA, R.array.ZWERZĘTA, R.array.SPRZĘT, R.array.ZAWÓD, R.array.KUCHNIA};
