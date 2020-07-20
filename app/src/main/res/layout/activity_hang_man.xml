@@ -44,7 +44,31 @@
                 android:src="@drawable/hangman_start" />
 
             <ImageView
-                android:id="@+id/construction"
+                android:id="@+id/construction1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/construction"
+                android:foregroundGravity="center_vertical|center|center_horizontal"
+                android:paddingTop="10dp"
+                android:src="@drawable/construction1" />
+            <ImageView
+                android:id="@+id/construction2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/construction"
+                android:foregroundGravity="center_vertical|center|center_horizontal"
+                android:paddingTop="10dp"
+                android:src="@drawable/construction2" />
+            <ImageView
+                android:id="@+id/construction3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/construction"
+                android:foregroundGravity="center_vertical|center|center_horizontal"
+                android:paddingTop="10dp"
+                android:src="@drawable/construction3" />
+            <ImageView
+                android:id="@+id/construction4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/construction"

@@ -41,7 +41,7 @@ import retrofit2.Response;
 
 public class HangManActivity extends AppCompatActivity {
     private ImageView[] bodyParts;
-    private int numParts=7;
+    private int numParts=10;
     private int currPart;
     private int numChars;
     private int numCorr;
@@ -73,13 +73,16 @@ public class HangManActivity extends AppCompatActivity {
         textViewCategory.setText(String.format("%s %s", res.getString(R.string.category), category));
         letters = (GridView)findViewById(R.id.letters);
         bodyParts = new ImageView[numParts];
-        bodyParts[0] = (ImageView)findViewById(R.id.construction);
-        bodyParts[1] = (ImageView)findViewById(R.id.head);
-        bodyParts[2] = (ImageView)findViewById(R.id.body);
-        bodyParts[3] = (ImageView)findViewById(R.id.arm1);
-        bodyParts[4] = (ImageView)findViewById(R.id.arm2);
-        bodyParts[5] = (ImageView)findViewById(R.id.leg1);
-        bodyParts[6] = (ImageView)findViewById(R.id.leg2);
+        bodyParts[0] = (ImageView)findViewById(R.id.construction1);
+        bodyParts[1] = (ImageView)findViewById(R.id.construction2);
+        bodyParts[2] = (ImageView)findViewById(R.id.construction3);
+        bodyParts[3] = (ImageView)findViewById(R.id.construction4);
+        bodyParts[4] = (ImageView)findViewById(R.id.head);
+        bodyParts[5] = (ImageView)findViewById(R.id.body);
+        bodyParts[6] = (ImageView)findViewById(R.id.arm1);
+        bodyParts[7] = (ImageView)findViewById(R.id.arm2);
+        bodyParts[8] = (ImageView)findViewById(R.id.leg1);
+        bodyParts[9] = (ImageView)findViewById(R.id.leg2);
         playGame();
         setStartTime();
     }
