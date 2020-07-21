@@ -26,6 +26,7 @@ import com.example.seniorapp.NoSerwerConnectionErrorDialog;
 import com.example.seniorapp.ProgressDialogClass;
 import com.example.seniorapp.R;
 import com.example.seniorapp.SharedPrefs;
+import com.example.seniorapp.Utils.Category;
 import com.example.seniorapp.Utils.NameGame;
 import com.example.seniorapp.Utils.StatusGame;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -70,7 +71,7 @@ public class HangManActivity extends AppCompatActivity {
         currWord = "";
         wordLayout = (LinearLayout)findViewById(R.id.word);
         TextView textViewCategory = findViewById(R.id.category);
-        textViewCategory.setText(String.format("%s %s", res.getString(R.string.category), category));
+        textViewCategory.setText(String.format("%s %s", res.getString(R.string.category), Category.valueOf(category)));
         letters = (GridView)findViewById(R.id.letters);
         bodyParts = new ImageView[numParts];
         bodyParts[0] = (ImageView)findViewById(R.id.construction1);
@@ -95,32 +96,32 @@ public class HangManActivity extends AppCompatActivity {
         Resources res = getResources();
         switch (getLvl()) {
             case 0:
-                Integer[] wordLists = {R.array.PRZYRODA, R.array.ZWERZĘTA, R.array.SPRZĘT, R.array.ZAWÓD, R.array.KUCHNIA};
+                Integer[] wordLists = {R.array.KOLORY, R.array.ZWERZĘTA, R.array.RODZINA, R.array.OWOCE, R.array.WARZYWA};
                 int list = rand.nextInt(wordLists.length);
                 category = res.getResourceEntryName(wordLists[list]);
                 return wordLists[list];
             case 1:
-                Integer[] wordLists2 = {R.array.level2_words1, R.array.level2_words2, R.array.level2_words3, R.array.level2_words4, R.array.level2_words5};
+                Integer[] wordLists2 = {R.array.DOM_MIESZKANIE, R.array.EMOCJE, R.array.CZŁOWIEK, R.array.W_MIESZKANIU, R.array.RZECZY_OSOBISTE};
                 int list2 = rand.nextInt(wordLists2.length);
                 category = res.getResourceEntryName(wordLists2[list2]);
                 return wordLists2[list2];
             case 2:
-                Integer[] wordLists3 = {R.array.level3_words1, R.array.level3_words2, R.array.level3_words3, R.array.level3_words4, R.array.level3_words5};
+                Integer[] wordLists3 = {R.array.POGODA_I_KLIMAT, R.array.ZAWODY, R.array.ZAKUPY_I_USŁUGI, R.array.KULTURA, R.array.SPORT};
                 int list3 = rand.nextInt(wordLists3.length);
                 category = res.getResourceEntryName(wordLists3[list3]);
                 return wordLists3[list3];
             case 3:
-                Integer[] wordLists4 = {R.array.level4_words1, R.array.level4_words2, R.array.level4_words3, R.array.level4_words4, R.array.level4_words5};
+                Integer[] wordLists4 = {R.array.ZDROWIE, R.array.PAŃSTWO_I_SPOŁECZEŃSTWO, R.array.BUDOWNICTWO_I_ARCHITEKTURA, R.array.EKOLOGIA, R.array.CHARAKTER};
                 int list4 = rand.nextInt(wordLists4.length);
                 category = res.getResourceEntryName(wordLists4[list4]);
                 return wordLists4[list4];
             case 4:
-                Integer[] wordLists5 = {R.array.level5_words1, R.array.level5_words2, R.array.level5_words3, R.array.level5_words4, R.array.level5_words5};
+                Integer[] wordLists5 = {R.array.PODRÓŻOWANIE_I_TURYSTYKA, R.array.NAUKA_I_TECHNIKA, R.array.MOTORYZACJA, R.array.KOMUNIKACJA, R.array.CZAS_WOLNY};
                 int list5 = rand.nextInt(wordLists5.length);
                 category = res.getResourceEntryName(wordLists5[list5]);
                 return wordLists5[list5];
         }
-        Integer[] wordLists0 = {R.array.PRZYRODA, R.array.ZWERZĘTA, R.array.SPRZĘT, R.array.ZAWÓD, R.array.KUCHNIA};
+        Integer[] wordLists0 = {R.array.KOLORY, R.array.ZWERZĘTA, R.array.RODZINA, R.array.OWOCE, R.array.WARZYWA};
         int list0 = rand.nextInt(wordLists0.length);
         category = String.valueOf(list0);
         return wordLists0[list0];

@@ -31,118 +31,730 @@
         <item>Trudny</item>
         <item>Bardzo trudny</item>
     </array>
-    <string-array name="PRZYRODA">
-        <item>SŁOŃCE</item>
-        <item>NIEBO</item>
+    <string-array name="KOLORY">
+        <item>CZARNY</item>
+        <item>BIAŁY</item>
+        <item>RÓŻOWY</item>
+        <item>CZERWONY</item>
+        <item>POMARAŃCZOWY</item>
+        <item>BRĄZOWY</item>
+        <item>ŻÓŁTY</item>
+        <item>ZIELONY</item>
+        <item>NIEBIESKI</item>
+        <item>FIOLETOWY</item>
+        <item>SZARY</item>
     </string-array>
     <string-array name="ZWERZĘTA">
+        <item>ZEBRA</item>
+        <item>KROKODYL</item>
+        <item>KOZA</item>
+        <item>ROBAK</item>
+        <item>ŻYRAFA</item>
         <item>PIES</item>
+        <item>KOŃ</item>
+        <item>SŁOŃ</item>
+        <item>WĄŻ</item>
         <item>KOT</item>
+        <item>REKIN</item>
+        <item>PTAK</item>
+        <item>ŻABA</item>
+        <item>NIEDŹWIEDŹ</item>
+        <item>MOTYL</item>
+        <item>WIELBŁĄD</item>
+        <item>KROWA</item>
+        <item>DELFIN</item>
+        <item>KACZKA</item>
+        <item>RYBA</item>
+        <item>LIS</item>
+        <item>MAŁPA</item>
+        <item>LEW</item>
     </string-array>
-    <string-array name="SPRZĘT">
-        <item>TELEWIZOR</item>
-        <item>KOMPUTER</item>
-        <item>TELEFON</item>
-        <item>LODÓWKA</item>
+    <string-array name="RODZINA">
+        <item>BABCIA</item>
+        <item>BRAT</item>
+        <item>CHŁOPIEC</item>
+        <item>CIOCIA</item>
+        <item>CÓRKA</item>
+        <item>DOROSŁY</item>
+        <item>DZIADEK</item>
+        <item>DZIECKO</item>
+        <item>DZIEWCZYNKA</item>
+        <item>KOBIETA</item>
+        <item>MAMA</item>
+        <item>MATKA</item>
+        <item>MĄŻ</item>
+        <item>MĘŻCZYZNA</item>
+        <item>OJCIEC</item>
+        <item>RODZEŃSTWO</item>
+        <item>RODZICE</item>
+        <item>RODZINA</item>
+        <item>SIOSTRA</item>
+        <item>SYN</item>
+        <item>STRYJ</item>
+        <item>TATA</item>
+        <item>WNUK</item>
+        <item>WUJEK</item>
+        <item>ŻONA</item>
+        <item>SZWAGIER</item>
+        <item>ZIĘĆ</item>
+        <item>KUZYNOSTWO</item>
+        <item>SYNOWA</item>
+        <item>TEŚCIOWA</item>
+        <item>TEŚĆ</item>
     </string-array>
-    <string-array name="ZAWÓD">
-        <item>MURARZ</item>
-        <item>KUCHARZ</item>
+    <string-array name="OWOCE">
+        <item>ANANAS</item>
+        <item>ARBUZ</item>
+        <item>BANAN</item>
+        <item>BRZOSKWINIA</item>
+        <item>CYTRYNA</item>
+        <item>CZEREŚNIA</item>
+        <item>JAGODA</item>
+        <item>PORZECZKA</item>
+        <item>GRUSZKA</item>
+        <item>JABŁKO</item>
+        <item>KIWI</item>
+        <item>MALINA</item>
+        <item>MANGO</item>
+        <item>POMARAŃCZA</item>
+        <item>ŚLIWKA</item>
+        <item>TRUSKAWKA</item>
+        <item>WINOGRONO</item>
+        <item>WIŚNIA</item>
     </string-array>
-    <string-array name="KUCHNIA">
-        <item>OKAP</item>
-        <item>ZLEWOZMYWAK</item>
+    <string-array name="WARZYWA">
+        <item>SZPARAG</item>
+        <item>RUKOLA</item>
+        <item>BAKŁAŻAN</item>
+        <item>FASOLA</item>
+        <item>BURAK</item>
+        <item>BROKUŁ</item>
+        <item>KAPUSTA</item>
+        <item>MARCHEW</item>
+        <item>KALAFIOR</item>
+        <item>SELER</item>
+        <item>KUKURYDZA</item>
+        <item>OGÓREK</item>
+        <item>KALAREPA</item>
+        <item>POR</item>
+        <item>BRUKSELKA</item>
+        <item>GROCH</item>
+        <item>PAPRYKA</item>
+        <item>ZIEMNIAK</item>
+        <item>DYNIA</item>
+        <item>RZODKIEWKA</item>
+        <item>CEBULA</item>
     </string-array>
 
-    <string-array name="level2_words1">
-        <item>SŁOŃCE</item>
-        <item>NIEBO</item>
+    <string-array name="DOM_MIESZKANIE">
+        <item>STRYCH</item>
+        <item>BALKON</item>
+        <item>ŁAZIENKA</item>
+        <item>SYPIALNIA</item>
+        <item>PIWNICA</item>
+        <item>SUFIT</item>
+        <item>KOMIN</item>
+        <item>KORYTARZ</item>
+        <item>JADALNIA</item>
+        <item>DRZWI</item>
+        <item>KOMINEK</item>
+        <item>MIESZKANIE</item>
+        <item>PODDASZE</item>
+        <item>PRZEDPOKÓJ</item>
+        <item>DOM</item>
+        <item>KUCHNIA</item>
+        <item>NIERUCHOMOŚĆ</item>
+        <item>DACH</item>
+        <item>POKÓJ</item>
+        <item>APARTAMENT</item>
+        <item>TOALETA</item>
+        <item>ŚCIANA</item>
+        <item>OKNO</item>
     </string-array>
-    <string-array name="level2_words2">
-        <item>PIES</item>
-        <item>KOT</item>
+    <string-array name="EMOCJE">
+        <item>ZŁOŚĆ</item>
+        <item>RADOŚĆ</item>
+        <item>SMUTEK</item>
+        <item>STRACH</item>
+        <item>EUFORIA</item>
+        <item>ZAWÓD</item>
+        <item>WSTYD</item>
+        <item>FRUSTRACJA</item>
+        <item>NIEPOKÓJ</item>
+        <item>NIENAWIŚĆ</item>
+        <item>PODNIECENIE</item>
+        <item>ROZPACZ</item>
+        <item>LĘK</item>
+        <item>IRYTACJA</item>
+        <item>SZCZĘŚCIE</item>
+        <item>ŻAL</item>
+        <item>TĘSKNOTA</item>
+        <item>WŚCIEKŁOŚĆ</item>
+        <item>ROZBAWIENIE</item>
+        <item>PANIKA</item>
+        <item>ENTUZJAZM</item>
+        <item>GNIEW</item>
+        <item>ZADOWOLENIE</item>
+        <item>ZACHWYT</item>
+        <item>ROZCZAROWANIE</item>
+        <item>ZDENERWOWANIE</item>
+        <item>TRAUMA</item>
+        <item>NIEŚMIAŁOŚĆ</item>
+        <item>WESOŁOŚĆ</item>
+        <item>EKSCYTACJA</item>
+        <item>BÓL</item>
+        <item>PRZYGNĘBIENIE</item>
+        <item>ZAGUBIENIE</item>
     </string-array>
-    <string-array name="level2_words3">
-        <item>TELEWIZOR</item>
-        <item>KOMPUTER</item>
-        <item>TELEFON</item>
+    <string-array name="CZŁOWIEK">
+        <item>CIAŁO</item>
+        <item>MÓZG</item>
+        <item>UCHO</item>
+        <item>ŁOKIEĆ</item>
+        <item>TWARZ</item>
+        <item>OKO</item>
+        <item>STOPA</item>
+        <item>GŁOWA</item>
+        <item>KOLANO</item>
+        <item>NOGA</item>
+        <item>PŁUCO</item>
+        <item>ŻOŁĄDEK</item>
+        <item>NOS</item>
+        <item>USTA</item>
+        <item>SZCZUPŁY</item>
+        <item>OTYŁY</item>
+        <item>SILNY</item>
+        <item>SŁABY</item>
+        <item>PRZYSTOJNY</item>
+        <item>STAWY</item>
+        <item>WŁOSY</item>
+        <item>KOŚCI</item>
+        <item>SZYJA</item>
+        <item>DŁOŃ</item>
+        <item>WĄTROBA</item>
+    </string-array>
+    <string-array name="W_MIESZKANIU">
+        <item>BUDZIK</item>
+        <item>FOTEL</item>
+        <item>ŁÓŻKO</item>
+        <item>DYWAN</item>
+        <item>KRZESŁO</item>
+        <item>FILIŻANKA</item>
+        <item>ZASŁONA</item>
+        <item>SZTUĆCE</item>
+        <item>ZMYWARKA</item>
+        <item>SZUFLADA</item>
+        <item>WIDELEC</item>
+        <item>ZAMRAŻALKA</item>
         <item>LODÓWKA</item>
+        <item>MEBLE</item>
+        <item>SZKLANKA</item>
+        <item>GRZEJNIK</item>
+        <item>NÓŻ</item>
+        <item>LAMPA</item>
+        <item>LUSTRO</item>
+        <item>KUBEK</item>
+        <item>PIEKARNIK</item>
+        <item>MYDŁO</item>
+        <item>SOFA</item>
+        <item>ŁYŻKA</item>
+        <item>STÓŁ</item>
+        <item>SZAFA</item>
+        <item>UMYWALKA</item>
+        <item>PRALKA</item>
     </string-array>
-    <string-array name="level2_words4">
-        <item>MURARZ</item>
-        <item>KUCHARZ</item>
-    </string-array>
-    <string-array name="level2_words5">
-        <item>OKAP</item>
-        <item>ZLEWOZMYWAK</item>
+    <string-array name="RZECZY_OSOBISTE">
+        <item>SASZETKA</item>
+        <item>AKTÓWKA</item>
+        <item>KALENDARZ</item>
+        <item>CZAPKA</item>
+        <item>KLUCZE</item>
+        <item>MONETA</item>
+        <item>GRZEBIEŃ</item>
+        <item>TERMINARZ</item>
+        <item>KOLCZYK</item>
+        <item>OKULARY</item>
+        <item>KAPELUSZ</item>
+        <item>SZMINKA</item>
+        <item>TELEFON</item>
+        <item>PASZPORT</item>
+        <item>PIÓRO</item>
+        <item>OŁÓWEK</item>
+        <item>BRZYTWA</item>
+        <item>SZALIK</item>
+        <item>PIERŚCIONEK</item>
+        <item>RĘCZNIK</item>
+        <item>KOSMETYCZKA</item>
+        <item>PORTFEL</item>
+        <item>ZEGAREK</item>
+        <item>OBRĄCZKA</item>
     </string-array>
 
-    <string-array name="level3_words1">
-        <item>SŁOŃCE</item>
-        <item>NIEBO</item>
+    <string-array name="POGODA_I_KLIMAT">
+        <item>POWIETRZE</item>
+        <item>JESIEŃ</item>
+        <item>LAWINA</item>
+        <item>ZAMIEĆ</item>
+        <item>WIAĆ</item>
+        <item>WIETRZYK</item>
+        <item>CHŁODNO</item>
+        <item>CHMURA</item>
+        <item>SUSZA</item>
+        <item>MŻAWKA</item>
+        <item>MGŁA</item>
+        <item>MRÓZ</item>
+        <item>GRAD</item>
+        <item>UPAŁ</item>
+        <item>GORĄCO</item>
+        <item>WILGOTNO</item>
+        <item>HURAGAN</item>
+        <item>BŁYSKAWICA</item>
+        <item>KSIĘŻYC</item>
+        <item>DESZCZ</item>
+        <item>TĘCZA</item>
+        <item>OPADY</item>
+        <item>ZACHMURZONY</item>
+        <item>MGLISTY</item>
+        <item>SŁONECZNIE</item>
     </string-array>
-    <string-array name="level3_words2">
-        <item>PIES</item>
-        <item>KOT</item>
-    </string-array>
-    <string-array name="level3_words3">
-        <item>TELEWIZOR</item>
-        <item>KOMPUTER</item>
-        <item>TELEFON</item>
-        <item>LODÓWKA</item>
-    </string-array>
-    <string-array name="level3_words4">
-        <item>MURARZ</item>
+    <string-array name="ZAWODY">
+        <item>KSIĘGOWY</item>
+        <item>AKTOR</item>
+        <item>ARCHITEKT</item>
+        <item>ASYSTENT</item>
+        <item>PIEKARZ</item>
+        <item>KOSMETYCZKA</item>
+        <item>KOWAL</item>
+        <item>BUDOWNICZY</item>
+        <item>KIEROWCA</item>
+        <item>RZEŹNIK</item>
+        <item>STOLARZ OPIEKUNKA</item>
+        <item>KOMINIARZ</item>
+        <item>TRENER</item>
+        <item>GÓRNIK</item>
         <item>KUCHARZ</item>
+        <item>DENTYSTA</item>
+        <item>KIEROWCA</item>
+        <item>KRAWCOWA</item>
+        <item>ELEKTRYK</item>
+        <item>INŻYNIER</item>
+        <item>ROLNIK</item>
+        <item>STRAŻAK</item>
+        <item>MECHANIK</item>
+        <item>FRYZJER</item>
+        <item>DYREKTOR</item>
+        <item>DZIENNIKARZ</item>
+        <item>PRAWNIK</item>
+        <item>PIELĘGNIARKA</item>
+        <item>MALARZ</item>
+        <item>HYDRAULIK</item>
+        <item>POLICJANT</item>
+        <item>PROGRAMISTA</item>
+        <item>SEKRETARKA</item>
+        <item>ŻOŁNIERZ</item>
+        <item>NAUCZYCIEL</item>
+        <item>WETERYNARZ</item>
+        <item>KELNER</item>
+        <item>ZEGARMISTRZ</item>
     </string-array>
-    <string-array name="level3_words5">
-        <item>OKAP</item>
-        <item>ZLEWOZMYWAK</item>
+    <string-array name="ZAKUPY_I_USŁUGI">
+        <item>KONTO</item>
+        <item>REKLAMA</item>
+        <item>UMOWA</item>
+        <item>ILOŚĆ</item>
+        <item>CENA</item>
+        <item>RACHUNEK</item>
+        <item>KSIĄŻKA</item>
+        <item>BUTY</item>
+        <item>KASA</item>
+        <item>BUDŻET</item>
+        <item>KUPOWAĆ</item>
+        <item>NABYWCA</item>
+        <item>KOSZT</item>
+        <item>TANI</item>
+        <item>SKLEP</item>
+        <item>KLIENT</item>
+        <item>DROGI</item>
+        <item>KWIACIARNIA</item>
+        <item>PIEKARNIA</item>
+        <item>KIOSK</item>
+        <item>GAZETY</item>
+        <item>ZAMÓWIENIE</item>
+        <item>APTEKA</item>
+        <item>PASAŻ</item>
+        <item>DRUK</item>
+        <item>SPRZEDAWAĆ</item>
+        <item>GALERIA</item>
+        <item>STRAGAN</item>
+        <item>SUPERMARKET</item>
+        <item>ANTYKWARIAT</item>
+        <item>PRZYMIERZALNIE</item>
+        <item>WARSZTAT</item>
+        <item>OBNIŻKA</item>
+    </string-array>
+    <string-array name="KULTURA">
+        <item>SZTUKA</item>
+        <item>ARTYSTA</item>
+        <item>ZESPÓŁ</item>
+        <item>KAPELA</item>
+        <item>KAMERA</item>
+        <item>APARAT</item>
+        <item>PŁÓTNO</item>
+        <item>NATURA</item>
+        <item>CHÓR</item>
+        <item>KINO</item>
+        <item>DŁUTO</item>
+        <item>KOMPOZYTOR</item>
+        <item>TANIEC</item>
+        <item>REŻYSER</item>
+        <item>TEATR</item>
+        <item>DRAMATURG</item>
+        <item>ROZRYWKA</item>
+        <item>FILM</item>
+        <item>FIKCJA</item>
+        <item>RAMA</item>
+        <item>GALERIA</item>
+        <item>LITERATURA</item>
+        <item>INSTRUMENTY</item>
+        <item>LITERATURA</item>
+        <item>MUZEUM</item>
+        <item>MUZYKA</item>
+        <item>GAZETY</item>
+        <item>POWIEŚĆ</item>
+        <item>ORKIESTRA</item>
+        <item>OBRAZ</item>
+        <item>FOTOGRAFIA</item>
+        <item>FABUŁA</item>
+        <item>POEZJA</item>
+        <item>SCENA</item>
+        <item>RZEŹBIARSTWO</item>
+        <item>PIEŚŃ</item>
+        <item>POSĄG</item>
+    </string-array>
+    <string-array name="SPORT">
+        <item>AEROBIK</item>
+        <item>ŁUCZNICTWO</item>
+        <item>ATLETYKA</item>
+        <item>BADMINTON</item>
+        <item>PIŁKA</item>
+        <item>KOSZYKÓWKA</item>
+        <item>BILARD</item>
+        <item>BOKS</item>
+        <item>KAJAKARSTWO</item>
+        <item>MISTRZOSTWA</item>
+        <item>BIEG</item>
+        <item>KRYKIET</item>
+        <item>KOLARSTWO</item>
+        <item>DYSCYPLINA</item>
+        <item>NURKOWANIE</item>
+        <item>SZERMIERKA</item>
+        <item>PIŁKARSTWO</item>
+        <item>MECZ</item>
+        <item>GOLF</item>
+        <item>GIMNASTYKA</item>
+        <item>LOTNIARSTWO</item>
+        <item>HOKEJ </item>
+        <item>ŁYŻWIARSTWO</item>
+        <item>BIEGANIE</item>
+        <item>ŻEGLARSTWO</item>
+        <item>NARCIARSTWO</item>
+        <item>PŁYWACTWO</item>
+        <item>TURNIEJ</item>
     </string-array>
 
-    <string-array name="level4_words1">
-        <item>SŁOŃCE</item>
-        <item>NIEBO</item>
+    <string-array name="ZDROWIE">
+        <item>BOLEĆ</item>
+        <item>ZDROWY</item>
+        <item>BÓL</item>
+        <item>TRĄDZIK</item>
+        <item>GRUCZOLAK</item>
+        <item>GRYPA</item>
+        <item>OTYŁOŚĆ</item>
+        <item>ANEMIA</item>
+        <item>ANTYBIOTYK</item>
+        <item>ASPIRYNA</item>
+        <item>ASTMA</item>
+        <item>MIAŻDŻYCA</item>
+        <item>BAKTERIE</item>
+        <item>BANDAŻ</item>
+        <item>KRWAWIENIE</item>
+        <item>ZŁAMANIE</item>
+        <item>CHOROBA</item>
+        <item>SINIAK</item>
+        <item>OPARZENIE</item>
+        <item>ZAPALENIE</item>
+        <item>OSPA</item>
+        <item>CHOLESTEROL</item>
+        <item>PRZEZIĘBIENIE</item>
+        <item>KASZEL</item>
+        <item>BIEGUNKA</item>
+        <item>LEKARSTWO</item>
+        <item>EPIDEMIA</item>
+        <item>APTEKA</item>
+        <item>ZADRAŚNIĘCIE </item>
+        <item>KRWOTOK</item>
+        <item>OPERACJA</item>
+        <item>ZAWAŁ</item>
+        <item>ODPORNOŚĆ</item>
+        <item>INFEKCJA</item>
+        <item>ZAKAŹNY</item>
+        <item>SZCZEPIONKA</item>
+        <item>SWĘDZENIE</item>
+        <item>NUDNOŚCI</item>
+        <item>REUMATYZM</item>
     </string-array>
-    <string-array name="level4_words2">
-        <item>PIES</item>
-        <item>KOT</item>
+    <string-array name="PAŃSTWO_I_SPOŁECZEŃSTWO">
+        <item>POROZUMIENIE</item>
+        <item>SOJUSZNIK</item>
+        <item>ANARCHIA</item>
+        <item>WOJSKO</item>
+        <item>STOLICA</item>
+        <item>OBYWATELE</item>
+        <item>KOMITET</item>
+        <item>KONGRES</item>
+        <item>KONSTYTUCJA</item>
+        <item>WIEŚ</item>
+        <item>WYBORY</item>
+        <item>RZĄD</item>
+        <item>IMIGRACJA</item>
+        <item>NIEPODLEGŁOŚĆ</item>
+        <item>USTAWA</item>
+        <item>MINISTERSTWO</item>
+        <item>SĄD</item>
+        <item>MONARCHIA</item>
+        <item>PREMIER</item>
+        <item>WIĘZIENIE</item>
+        <item>RELIGIA</item>
+        <item>REPUBLIKA</item>
+        <item>WOJNA</item>
     </string-array>
-    <string-array name="level4_words3">
-        <item>TELEWIZOR</item>
-        <item>KOMPUTER</item>
-        <item>TELEFON</item>
-        <item>LODÓWKA</item>
+    <string-array name="BUDOWNICTWO_I_ARCHITEKTURA">
+        <item>APARTAMENT</item>
+        <item>BLOK</item>
+        <item>PODDASZE</item>
+        <item>KAWALERKA</item>
+        <item>MOST</item>
+        <item>BUDOWLA</item>
+        <item>POWIERZCHNIA</item>
+        <item>CHATKA</item>
+        <item>KAJUTA</item>
+        <item>ELEWACJA</item>
+        <item>EKSPERTYZY</item>
+        <item>WYKOŃCZENIE</item>
+        <item>PLAN</item>
+        <item>RYSUNEK</item>
+        <item>BIUROWIEC</item>
+        <item>WYKONAWCA</item>
+        <item>KOSZTORYSANT</item>
+        <item>SZOPA</item>
+        <item>BUDA</item>
+        <item>PROJEKT</item>
+        <item>KIEROWNICTWO</item>
+        <item>OFERTA</item>
+        <item>INWESTYCJA</item>
     </string-array>
-    <string-array name="level4_words4">
-        <item>MURARZ</item>
-        <item>KUCHARZ</item>
+    <string-array name="EKOLOGIA">
+        <item>ZANIECZYSZCZENIE</item>
+        <item>KLIMAT</item>
+        <item>WĘGIEL</item>
+        <item>WYCINKA</item>
+        <item>KATASTROFA</item>
+        <item>WYSYPISKO</item>
+        <item>ŚRODOWISKO</item>
+        <item>ROLNICTWO</item>
+        <item>WYGINIĘCIE</item>
+        <item>PALIWA</item>
+        <item>SPALINY</item>
+        <item>OCIEPLENIE</item>
+        <item>NATURA</item>
+        <item>OLEJ</item>
+        <item>ORGANICZNY</item>
+        <item>PESTYCYDY</item>
+        <item>PLASTIK</item>
+        <item>RADIOAKTYWNY</item>
+        <item>RECYKLING</item>
+        <item>ŚCIEKI</item>
+        <item>ENERGIA</item>
+        <item>SMOG</item>
+        <item>UZDATNIANIE</item>
     </string-array>
-    <string-array name="level4_words5">
-        <item>OKAP</item>
-        <item>ZLEWOZMYWAK</item>
+    <string-array name="CHARAKTER">
+        <item>CZUŁY</item>
+        <item>AGRESYWNY</item>
+        <item>WYBUCHOWY</item>
+        <item>AMBITNY</item>
+        <item>ODWAŻNY</item>
+        <item>OSTROŻNY</item>
+        <item>DZIECINNY</item>
+        <item>NIEZDARNY</item>
+        <item>ZAROZUMIAŁY</item>
+        <item>UPRZEJMY</item>
+        <item>WYMAGAJĄCY</item>
+        <item>NIELOJALNY</item>
+        <item>LOJALNY</item>
+        <item>ZŁY</item>
+        <item>PRZYJAZNY</item>
+        <item>CHOJNY</item>
+        <item>CHCIWY</item>
+        <item>SZCZERY</item>
+        <item>INTELIGENTNY</item>
+        <item>ZAZDROSNY</item>
+        <item>INTROWERTYCZNY</item>
+        <item>ZŁOŚLIWY</item>
+        <item>SKROMNY</item>
+        <item>NERWOWY</item>
+        <item>OPIEKUŃCZY</item>
+        <item>KULTURALNY</item>
+        <item>PORYWCZY</item>
+        <item>SOLIDNY</item>
+        <item>ODPOWIEDZIALNY</item>
+        <item>WRAŻLIWY</item>
+        <item>SAMOLUBNY</item>
+        <item>TOWARZYSKI</item>
+        <item>UPARTY</item>
+        <item>PRÓŻNY</item>
+        <item>WSPÓŁCZUJĄCY</item>
     </string-array>
 
-    <string-array name="level5_words1">
-        <item>SŁOŃCE</item>
-        <item>NIEBO</item>
+    <string-array name="PODRÓŻOWANIE_I_TURYSTYKA">
+        <item>LOTNISKO</item>
+        <item>BAGAŻ</item>
+        <item>ZAKWATEROWANIE</item>
+        <item>DWORZEC</item>
+        <item>WAKACJE</item>
+        <item>SAMOLOT</item>
+        <item>POCIĄG</item>
+        <item>AUTOKAR</item>
+        <item>REJS</item>
+        <item>POŁĄCZENIE</item>
+        <item>WALUTA</item>
+        <item>WYCIECZKA</item>
+        <item>ZWIEDZANIE</item>
+        <item>PROM</item>
+        <item>LOT</item>
+        <item>PRZEWODNIK</item>
+        <item>PORT</item>
+        <item>WZGÓRZE </item>
+        <item>CENTRUM</item>
+        <item>WYSPA</item>
+        <item>POMNIK</item>
+        <item>AUTOSTRADA</item>
+        <item>PERON</item>
+        <item>REZERWACJA</item>
+        <item>BILET</item>
+        <item>ZDJĘCIA </item>
+        <item>ROZKŁAD</item>
+        <item>TRAMWAJ</item>
+        <item>METRO</item>
+        <item>JACHT</item>
+        <item>POCZEKALNIA</item>
+        <item>FUNT</item>
+        <item>EURO</item>
+        <item>DOLAR</item>
     </string-array>
-    <string-array name="level5_words2">
-        <item>PIES</item>
-        <item>KOT</item>
-    </string-array>
-    <string-array name="level5_words3">
-        <item>TELEWIZOR</item>
+    <string-array name="NAUKA_I_TECHNIKA">
+        <item>URZĄDZENIE</item>
+        <item>ANTENA</item>
+        <item>BATERIA</item>
+        <item>PRZEWÓD</item>
+        <item>ŁADOWARKA</item>
+        <item>ELEKTRONICZNY</item>
+        <item>CYFROWY</item>
+        <item>ODKRYCIE</item>
+        <item>SILNIK</item>
+        <item>EKSPERYMENT</item>
+        <item>WYNALAZEK</item>
+        <item>KLAWIATURA</item>
+        <item>LABORATORIUM</item>
+        <item>ŻARÓWKA</item>
         <item>KOMPUTER</item>
         <item>TELEFON</item>
-        <item>LODÓWKA</item>
+        <item>GŁOŚNIK</item>
+        <item>MYSZKA</item>
+        <item>WTYCZKA</item>
+        <item>DRUKARKA</item>
+        <item>BADANIA</item>
+        <item>SKANER</item>
+        <item>EKRAN</item>
+        <item>TELEWIZOR</item>
+        <item>KAMERA</item>
+        <item>SIEĆ</item>
+        <item>TABLET</item>
+        <item>TOSTER</item>
+        <item>MIKROFALÓWKA</item>
+        <item>PROBÓWKA</item>
+        <item>PALNIK</item>
     </string-array>
-    <string-array name="level5_words4">
-        <item>MURARZ</item>
-        <item>KUCHARZ</item>
+    <string-array name="MOTORYZACJA">
+        <item>MASKA</item>
+        <item>KAROSERIA</item>
+        <item>BAGAŻNIK</item>
+        <item>SZYBA</item>
+        <item>ZDERZAK</item>
+        <item>KOŁO</item>
+        <item>OPONA</item>
+        <item>LUSTERKO</item>
+        <item>SILNIK</item>
+        <item>AKUMULATOR</item>
+        <item>KLAKSON</item>
+        <item>HAMULEC</item>
+        <item>KIEROWCA</item>
+        <item>PIESZY</item>
+        <item>SAMOCHÓD</item>
+        <item>WARSZTAT</item>
+        <item>RUCH</item>
+        <item>ASFALT</item>
+        <item>STACJA</item>
+        <item>MANDAT</item>
+        <item>OBWODNICA</item>
+        <item>POBOCZE</item>
+        <item>SKRZYŻOWANIE</item>
+        <item>RONDO</item>
+        <item>DROGOWSKAZ</item>
+        <item>SYGNALIZACJA</item>
+        <item>PARKING</item>
     </string-array>
-    <string-array name="level5_words5">
-        <item>OKAP</item>
-        <item>ZLEWOZMYWAK</item>
+    <string-array name="KOMUNIKACJA">
+        <item>POTWIERDZAĆ</item>
+        <item>PRZYSIĘGAĆ</item>
+        <item>ROZWAŻAĆ</item>
+        <item>ZNIECHĘCAĆ</item>
+        <item>ZACHĘCAĆ</item>
+        <item>ZRZĘDZIĆ</item>
+        <item>CHICHOTAĆ</item>
+        <item>PODSŁUCHAĆ</item>
+        <item>PRZYPOMINAĆ</item>
+        <item>KONTYNUOWAĆ</item>
+        <item>WYRAŻAĆ</item>
+        <item>OSTRZEGAĆ</item>
+        <item>ODPOWIADAĆ</item>
+        <item>REAGOWAĆ</item>
+    </string-array>
+    <string-array name="CZAS_WOLNY">
+        <item>PARK</item>
+        <item>DWÓR</item>
+        <item>CHÓR</item>
+        <item>DRZEMAĆ</item>
+        <item>GRAĆ</item>
+        <item>KARTY</item>
+        <item>KOŚCI</item>
+        <item>DRZEMKA</item>
+        <item>HOBBY</item>
+        <item>MAJSTERKOWANIE</item>
+        <item>SZYCIE</item>
+        <item>PARAPETÓWKA</item>
+        <item>SIŁOWNIA</item>
+        <item>WAKACJE</item>
+        <item>PODRÓŻE</item>
+        <item>BRYDŻ</item>
+        <item>CZYTANIE</item>
+        <item>GRANIE</item>
+        <item>KRZYŻÓWKA</item>
+        <item>MALOWANIE</item>
+        <item>MUZYKA</item>
+        <item>PASJA</item>
+        <item>SACHY</item>
+        <item>WĘDKARSTWO</item>
+        <item>FOTOGRAFIA</item>
     </string-array>
 </resources>
