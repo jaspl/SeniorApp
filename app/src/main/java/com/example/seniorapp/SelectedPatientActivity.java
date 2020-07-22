@@ -78,7 +78,7 @@ public class SelectedPatientActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SelectedPatientActivity.this, ChangePasswordActivity.class);
-                intent.putExtra("changePasswordTitle","ZMIANA HASŁA DLA PACJENTA:"+new SharedPrefs(getBaseContext()).getName());
+                intent.putExtra("changePasswordTitle","ZMIANA HASŁA DLA PACJENTA: "+new SharedPrefs(getBaseContext()).getName());
                 startActivity(intent);
 
             }

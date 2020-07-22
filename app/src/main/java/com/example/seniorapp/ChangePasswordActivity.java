@@ -2,15 +2,24 @@ package com.example.seniorapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.seniorapp.API.Api;
+import com.example.seniorapp.API.ApiClass;
+import com.example.seniorapp.Models.PatientsObject;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ChangePasswordActivity extends AppCompatActivity {
 
@@ -21,6 +30,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         setOnButtonsClick();
         setTitle(getIntent().getStringExtra("changePasswordTitle"));
     }
+
     @Override
     public void onBackPressed() {
     }
@@ -30,7 +40,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ChangePasswordActivity.this,SelectedPatientActivity.class));
+                startActivity(new Intent(ChangePasswordActivity.this, SelectedPatientActivity.class));
             }
         });
         Button savePatientPassword = findViewById(R.id.change_patient_password_button);
@@ -38,8 +48,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 resetAllErrors();
-                if (checkPasswordsIsOk()){
-                    //TODO zmiana hasła
+                if (checkPasswordsIsOk()) {
+                    changePassword();
                 }
             }
         });
@@ -50,7 +60,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         titleText.setText(title);
     }
 
-    private String getLogin(){
+    private String getLogin() {
         return new SharedPrefs(this).getLogin();
     }
 
@@ -88,9 +98,40 @@ public class ChangePasswordActivity extends AppCompatActivity {
     private TextInputLayout getSecondPasswordInputLayout() {
         return findViewById(R.id.change_second_password_input_layout);
     }
+
     private void resetAllErrors() {
         getPasswordInputLayout().setError(null);
         getSecondPasswordInputLayout().setError(null);
     }
 
+    private void changePassword() {
+        Api api = new ApiClass().getApi();
+        ProgressDialog progressDialog = new ProgressDialogClass().CustomCallBack(this, "wczytywanie");
+        progressDialog.show();
+        Call<PatientsObject> call = api.changePatientPassword(new SharedPrefs(this).getLogin(), getPassword().getText().toString());
+        call.enqueue(new Callback<PatientsObject>() {
+            @Override
+            public void onResponse(Call<PatientsObject> call, Response<PatientsObject> response) {
+                if (!response.isSuccessful()) {
+                    Log.d("code:", "" + response.code());
+                    //TODO error handler when sth i wrong
+                    progressDialog.dismiss();
+                    noSerwerConnectionError();
+                } else {
+                    progressDialog.dismiss();
+                    startActivity(new Intent(ChangePasswordActivity.this, PatientListActivity.class));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PatientsObject> call, Throwable t) {
+                progressDialog.dismiss();
+                noSerwerConnectionError();
+            }
+        });
+    }
+
+    private void noSerwerConnectionError() {
+        new NoSerwerConnectionErrorDialog(this).startErrorDialog().show();
+    }
 }
