@@ -9,6 +9,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -64,6 +65,7 @@ public class HangManActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hang_man);
         setEndGameButton();
+        setSkipGameButton();
         category = "";
         rand = new Random();
         Resources res = getResources();
@@ -236,11 +238,21 @@ public class HangManActivity extends AppCompatActivity {
         getEndGameButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(HangManActivity.this, GameSelectorActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void setSkipGameButton() {
+        getSkipGameButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 setEndTime();
                 float reactionTimeInSeconds = (float) (endTime - startTime) / 1000;
                 sendResultToDatabase(StatusGame.FAILED, reactionTimeInSeconds);
 
-                Intent intent = new Intent(HangManActivity.this, GameSelectorActivity.class);
+                Intent intent = new Intent(HangManActivity.this, HangManActivity.class);
                 startActivity(intent);
             }
         });
@@ -248,6 +260,10 @@ public class HangManActivity extends AppCompatActivity {
 
     public FloatingActionButton getEndGameButton() {
         return findViewById(R.id.end_game_floatig_buton);
+    }
+
+    public Button getSkipGameButton() {
+        return findViewById(R.id.skip_game_floatig_buton);
     }
 
     private void setStartTime() {

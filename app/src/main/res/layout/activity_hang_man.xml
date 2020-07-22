@@ -13,7 +13,7 @@
 
         <TextView
             android:id="@+id/category"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
@@ -161,4 +161,9 @@
     <include
         android:id="@+id/include3"
         layout="@layout/end_game_button" />
+
+    <include
+        android:id="@+id/include4"
+        layout="@layout/skip_game_button" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
