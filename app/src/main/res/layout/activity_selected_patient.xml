@@ -57,7 +57,7 @@
             android:layout_marginTop="20dp"
             android:background="@color/colorAccent"
             android:text="Zmień hasło dal konta pacjenta"
-            android:visibility="gone"/>
+            android:visibility="visible"/>
 
         <Button
             android:id="@+id/selected_patient_delete_patient_button"

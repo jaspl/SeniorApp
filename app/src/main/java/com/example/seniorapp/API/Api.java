@@ -52,6 +52,9 @@ public interface Api {
     @PUT("patients/put/update")
     Call<PatientsObject> updatePatientData(@Body PatientsObject patientsObject);
 
+    @PUT("patients/updatePassword")
+    Call<PatientsObject> changePatientPassword(@Query("login") String login, @Query("new password") String password);
+
     @PUT("patients/delete")
     Call<PatientsObject> deletePatient(@Query("patient id") int id);
 
