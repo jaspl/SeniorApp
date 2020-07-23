@@ -59,13 +59,16 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
+
                 android:text="MEMORY" />
 
             <Button
                 android:id="@+id/memory_how_to_play_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+
+                android:background="@color/colorAccent"
+
                 android:text="JAK GRAĆ" />
         </LinearLayout>
 
@@ -97,7 +100,8 @@
                 android:id="@+id/symbol_game_how_to_play_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:background="@color/colorAccent"
+
                 android:text="JAK GRAĆ" />
         </LinearLayout>
 
@@ -127,7 +131,8 @@
                 android:id="@+id/number_game_how_to_play_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:background="@color/colorAccent"
+
                 android:text="JAK GRAĆ" />
         </LinearLayout>
 
@@ -158,8 +163,9 @@
                 android:id="@+id/color_game_how_to_play_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="JAK GRAĆ" />
+                android:text="JAK GRAĆ"
+                android:background="@color/colorAccent"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -187,7 +193,7 @@
                 android:id="@+id/hungman_how_to_play_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:background="@color/colorAccent"
                 android:text="JAK GRAĆ" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
