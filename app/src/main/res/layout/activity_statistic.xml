@@ -26,11 +26,17 @@
             app:layout_constraintStart_toStartOf="@+id/number_game_statistic"
             app:layout_constraintTop_toTopOf="@+id/hangman_statistic">
 
-            <ImageView
+
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_weight="1"
-                android:src="@drawable/ic_launcher_background" />
+                android:textSize="40dp"
+                android:textColor="@color/colorBlack"
+                android:text="MMSE" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -55,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/ic_launcher_background" />
+                android:src="@mipmap/ic_launcher_memory" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -81,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/ic_launcher_background" />
+                android:src="@mipmap/ic_launcher_symbols" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -106,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/ic_launcher_background" />
+                android:src="@mipmap/ic_launcher_numbers" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -131,7 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/ic_launcher_background" />
+                android:src="@mipmap/ic_launcher_colors" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -155,7 +161,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/ic_launcher_background" />
+                android:src="@mipmap/ic_launcher_hangman" />
 
             <TextView
                 android:layout_width="match_parent"
