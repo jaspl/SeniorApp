@@ -205,8 +205,8 @@
 
         <Button
             android:id="@+id/symbol_game_remove_shape_button"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
+            android:layout_width="150px"
+            android:layout_height="150px"
             android:layout_gravity="center"
             android:gravity="center"
             android:text="X"
