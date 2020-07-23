@@ -97,7 +97,7 @@ public class GameSelectorActivity extends AppCompatActivity {
         numberGameHowToPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDialog("Jest to gra spostrzegawcza, polegająca na odnajdywaniu w ciągu znaków, dwóch takich cyfr, których suma jest równa podanej w poleceniu. Użytkownikowi pokażą się pola ze znakami, po czym będzie on miał możliwość wybrania dwóch pól leżących koło siebie, jeśli suma tych pól rzeczywiście będzie wynosiła podaną sumę, to pola zmienią kolor na zielony, jeśli nie to na kolor czerwony. Gra kończy się gdy gracz zakreśli wszystkie występujące pary na planszy.\n", "Gra w cyfry");
+                setDialog("Jest to gra spostrzegawcza, polegająca na odnajdywaniu w ciągu znaków, dwóch takich cyfr, których suma lub iloczyn w zależności od polecenia jest równy podanej wartości w poleceniu. Użytkownikowi pokażą się pola ze znakami, po czym będzie on miał możliwość wybrania dwóch pól, jeśli suma tych pól rzeczywiście będzie wynosiła podaną sumę, to pola zmienią kolor na zielony, jeśli nie to na kolor czerwony, gdy kolor pola zostanie zamieniony na żółty to znaczy, że użytkownik dobrze wybrał parę ale to pole tworzy parę także z innym nie wybranym jeszcze polem. Gra kończy się gdy gracz zakreśli wszystkie występujące pary na planszy.\n", "Gra w cyfry");
             }
         });
         Button memoryGameHowToPlay = findViewById(R.id.memory_how_to_play_button);

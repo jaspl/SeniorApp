@@ -58,6 +58,7 @@ public class NumberGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_number_game);
         setLvl();
+        setSkipGameButton();
         setEndGameButton();
         setStartTime();
     }
@@ -155,11 +156,11 @@ public class NumberGameActivity extends AppCompatActivity {
                     }
                 }
             }
-        } while (count == 0);
+        } while (count > 5 || count <= 1);
     }
 
     private void generateRandomNumbersMultiplications(int digitsNumber) {
-        int[] multiplicationList = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18,
+        int[] multiplicationList = {2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18,
                 15, 21, 24, 27, 20, 28, 32, 36, 25, 30, 35, 40,
                 45, 42, 48, 54, 49, 56, 63, 64, 72, 81};
         Random rand = new Random(); //instance of random class
@@ -182,7 +183,7 @@ public class NumberGameActivity extends AppCompatActivity {
                     }
                 }
             }
-        } while (count == 0);
+        } while (count > 5 || count <= 1);
     }
 
     private void setNumberButtonClickAction(final Button colorButton) {
@@ -241,10 +242,6 @@ public class NumberGameActivity extends AppCompatActivity {
         getEndGameButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setEndTime();
-                float reactionTimeInSeconds = (float) (endTime - startTime) / 1000;
-                sendResultToDatabase(StatusGame.FAILED, reactionTimeInSeconds);
-
                 Intent intent = new Intent(NumberGameActivity.this, GameSelectorActivity.class);
                 startActivity(intent);
             }
@@ -328,5 +325,23 @@ public class NumberGameActivity extends AppCompatActivity {
 
     private void noSerwerConnectionError(Context context) {
         new NoSerwerConnectionErrorDialog(context).startErrorDialog().show();
+    }
+
+    public Button getSkipGameButton() {
+        return findViewById(R.id.skip_game_floatig_buton);
+    }
+
+    private void setSkipGameButton() {
+        getSkipGameButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setEndTime();
+                float reactionTimeInSeconds = (float) (endTime - startTime) / 1000;
+                sendResultToDatabase(StatusGame.FAILED, reactionTimeInSeconds);
+
+                Intent intent = new Intent(NumberGameActivity.this, NumberGameActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
