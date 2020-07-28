@@ -12,7 +12,7 @@ public class ApiClass {
 
     public void retrofitBuild(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.115:8080")
+                .baseUrl("http://senior-app-api-git-projektmagisterski2.apps.us-east-2.starter.openshift-online.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         api = retrofit.create(Api.class);
